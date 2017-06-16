@@ -1,0 +1,17 @@
+{
+  "generator-ng-fullstack": {
+    "appName": "expenseManagementSystem",
+    "username": "user",
+    "userEmail": "user.email@example.com",
+    "stack": "server",
+    "repoHostUrl": "github.com",
+    "userNameSpace": "user",
+    "client": "",
+    "server": "node",
+    "nodeWebFrameworkServer": "express",
+    "transpilerServer": "babel",
+    "secure": true,
+    "testsSeparated": true,
+    "boilerplate": true
+  }
+}
