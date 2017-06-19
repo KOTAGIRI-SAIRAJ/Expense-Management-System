@@ -17,6 +17,13 @@ module.exports = {
       DOB: {
         type: Sequelize.DATE
       },
+      emailId: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
+      password: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
