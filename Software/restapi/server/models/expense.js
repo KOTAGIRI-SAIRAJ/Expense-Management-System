@@ -9,12 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     amount: DataTypes.INTEGER,
     expenseDate: DataTypes.DATE,
-    typeOfExpense:{
+    expensetype:{
       type:DataTypes.ENUM,
       values:expenseStatus.values
     },
-    projectId: DataTypes.INTEGER,
-    resourceId: DataTypes.INTEGER,
     status:{
       type:DataTypes.ENUM,
       values:expenseStatus.values
@@ -23,8 +21,20 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        expense.hasMany(models.project,{
+          foreignKey:{
+            projectId:"id"
+          },
+          onDelete: "CASCADE"
+        })
+        expense.hasMany(models.resources,{
+          foreignKey:{
+            resourceId:"id"
+          },
+          onDelete: "CASCADE"
+        })
       }
-    }
+      }
   });
   return expense;
 };

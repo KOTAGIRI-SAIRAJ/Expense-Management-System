@@ -32,13 +32,12 @@ export default class projectDAO{
 
   static createNew(request,res) {
     return new Promise((resolve, reject) => {
-      let _reqBody = request;
       models.project
         .create({
-          projectName: _reqBody.projectName,
-          projectDescription: _reqBody.projectDescription,
-          projectStartDate: _reqBody.projectStartDate,
-          projectEndDate: _reqBody.projectEndDate
+          projectName: request.projectName,
+          projectDescription: request.projectDescription,
+          projectStartDate: request.projectStartDate,
+          projectEndDate: request.projectEndDate
     }).then(result => {
         resolve(result)
       })

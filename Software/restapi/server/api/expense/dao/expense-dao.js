@@ -1,6 +1,7 @@
 import Promise from "bluebird";
 import models from "../../../../server/models"
-import roleStatus from "../../../enums/role"
+import expenseStatus from "../../../enums/expenseStatus"
+import expenseType from "../../../enums/expenseType"
 
 
 export default class expenseDAO{
@@ -21,11 +22,11 @@ export default class expenseDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.expense
-        .findAll({where:{$or:[{firstname : queryParams}, { lastname : queryParams}]}})
+        .findAll({where:{$or:[{title : queryParams}]}})
         .then(result => {
           resolve(result);
         }, (error) => {
-          logger.error(`Internal error while retrieving client: ${error}`);
+
           reject(error);
         });
     });
@@ -34,16 +35,17 @@ export default class expenseDAO{
   static createNew(request,res) {
     return new Promise((resolve, reject) => {
       let _reqBody = request;
+      let date = new Date(_reqBody.expenseDate);
+      date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
       models.expense
         .create({
           title: _reqBody.title,
           amount: _reqBody.amount,
-          DOB: _reqBody.DOB,
-          emailId: _reqBody.emailId,
-          password : _reqBody.password,
-          joinDate : _reqBody.joinDate,
-          endDate : _reqBody.endDate,
-          role: roleStatus[_reqBody.role].value
+          expenseDate: date,
+          expensetype:expenseType[_reqBody.expensetype].value,
+          projectId: _reqBody.projectId,
+          resourceId: _reqBody.resourceId,
+          status:expenseStatus[_reqBody.status].value
         }).then(result => {
         resolve(result)
       })
@@ -54,17 +56,18 @@ export default class expenseDAO{
   }
 
   static update(_reqBody,_reqParamId) {
+    let date = new Date(_reqBody.expenseDate);
+    date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
     return new Promise((resolve, reject) => {
       models.expense
         .update({
-            firstname: _reqBody.firstname,
-            lastname: _reqBody.lastname,
-            DOB: _reqBody.DOB,
-            emailId: _reqBody.emailId,
-            password : _reqBody.password,
-            joinDate : _reqBody.joinDate,
-            endDate : _reqBody.endDate,
-            role: roleStatus[_reqBody.role].value
+            title: _reqBody.title,
+            amount: _reqBody.amount,
+            expenseDate: date,
+            expensetype:expenseType[_reqBody.expensetype].value,
+            projectId: _reqBody.projectId,
+            resourceId: _reqBody.resourceId,
+            status:expenseStatus[_reqBody.status].value
           },
           { where: { id: _reqParamId}, returning: true, plain:true}
         ).then((result) => {
@@ -95,3 +98,4 @@ export default class expenseDAO{
   }
 
 }
+

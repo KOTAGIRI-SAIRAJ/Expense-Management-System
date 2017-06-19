@@ -33,7 +33,6 @@ export default class userController {
     userDAO
       .update(_reqBody,_reqParmaId)
       .then(newuserss => {
-
         res.send(newuserss);
       })
       .catch(error => {
@@ -46,7 +45,6 @@ export default class userController {
     userDAO
       .getById(_query)
       .then(newusers => {
-        console.log(newusers)
         res.send(newusers);
       })
       .catch(error => {

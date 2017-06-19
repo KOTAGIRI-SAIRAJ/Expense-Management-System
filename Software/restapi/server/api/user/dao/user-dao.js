@@ -17,34 +17,51 @@ export default class userDAO{
   }
 
   static getById(queryParams) {
+    let date = new Date(queryParams);
+    date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
     return new Promise((resolve, reject) => {
       const _query = queryParams;
-      models.user
-        .find({where:{$or:[{firstname : queryParams}, { lastname : queryParams}]}})
-        .then(result => {
-          resolve(result);
-        }, (error) => {
-          logger.error(`Internal error while retrieving client: ${error}`);
-          reject(error);
-        });
+      if (date instanceof Date && !isNaN(date.valueOf())) {
+        models.user
+          .findAll({where: {$or: [{DOB: date}]}})
+          .then(result => {
+            resolve(result);
+          }, (error) => {
+
+            reject(error);
+          });
+      } else {
+        queryParams = '%' + queryParams + '%';
+        models.user
+          .findAll({where: {$or: [{firstname: {$ilike: queryParams}}, {lastname: {$ilike: queryParams}}]}})
+          .then(result => {
+            resolve(result);
+          }, (error) => {
+
+            reject(error);
+          });
+      }
     });
   }
 
   static createNew(request,res) {
     return new Promise((resolve, reject) => {
       let _reqBody = request;
+      let date = new Date(_reqBody.DOB);
+      date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
       models.user.create({
         firstname: _reqBody.firstname,
         lastname: _reqBody.lastname,
-        DOB: _reqBody.DOB
+        DOB: date
       }).then(result => {
         resolve(result)
       })
         .catch(error => {
           console.log(error)
-        });;
+        });
     });
   }
+
 
   static update(_reqBody,_reqParamId) {
     return new Promise((resolve, reject) => {
@@ -55,7 +72,7 @@ export default class userDAO{
         },
         { where: { id: _reqParamId}, returning: true, plain:true}
       ).then((result) => {
-        console.log(result[1].dataValues);
+        /*console.log(result[1].dataValues);*/
         resolve(result[1].dataValues);
       }, (error) => {
         reject(error);
@@ -80,7 +97,6 @@ export default class userDAO{
         });
     });
   }
-
 
 }
 

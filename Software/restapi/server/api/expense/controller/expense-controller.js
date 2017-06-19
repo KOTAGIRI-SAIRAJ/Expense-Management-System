@@ -60,7 +60,7 @@ export default class expenseController {
     const _id = req.params.id;
     expenseDAO
       .removeById(_id)
-      .then(() => res.status(204).end())
+      .then(() => res.send('Deleted Sucessfully'))
       .catch(error => {
         if (error === 404) {
           return res.status(404)
