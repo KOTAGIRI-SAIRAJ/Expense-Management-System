@@ -1,0 +1,155 @@
+
+<div class="container">
+  <p>
+    <a  class="btn btn-success btn-lg" (click)="expenses.show()">
+      <span class="glyphicon glyphicon-plus"></span>Add Expenses
+    </a>
+  </p>
+</div>
+
+
+<div class="modal fade" bsModal #expenses="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Expenses Form</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="expenses.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="expensesForm" (ngSubmit)="expensesPopup(expensesForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['title'].valid && expensesForm.controls['title'].touched}">
+            <label>Title</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the Title" [formControl]="expensesForm.controls['title']">
+                <div *ngIf="expensesForm.controls['title'].hasError('required') && expensesForm.controls['title'].touched" class="alert alert-danger">
+                  You must include a Title
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['amount'].valid && expensesForm.controls['amount'].touched}">
+            <label>Amount :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-gbp" aria-hidden="true"></i></span>
+                <input class="form-control" type="number" placeholder="Enter the amount" [formControl]="expensesForm.controls['amount']">
+                <div *ngIf="expensesForm.controls['amount'].hasError('required') && expensesForm.controls['amount'].touched" class="alert alert-danger">
+                  You must include the Amount
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['date'].valid && expensesForm.controls['date'].touched}">
+            <label>Date :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                <input class="form-control" type="date" placeholder="Enter the Date" [formControl]="expensesForm.controls['date']">
+                <div *ngIf="expensesForm.controls['date'].hasError('required') && expensesForm.controls['date'].touched" class="alert alert-danger">
+                  You must include Date
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['description'].valid && expensesForm.controls['description'].touched}">
+            <label>Description :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
+                <textarea class="form-control" type="text" placeholder="Enter the Description" [formControl]="expensesForm.controls['description']"></textarea>
+                <div *ngIf="expensesForm.controls['description'].hasError('required') && expensesForm.controls['description'].touched" class="alert alert-danger">
+                  You must include the Description
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['expensetype'].valid && expensesForm.controls['expensetype'].touched}">
+            <label>Expense type :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <select class="form-control" [formControl]="expensesForm.controls['expensetype']">
+                  <option value="prePopulatedDataOffice">Pre populated data Office</option>
+                  <option value="Recruitment">Recruitment</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Airfare">Airfare</option>
+                  <option value="FoodForStaff">Food For Staff</option>
+                </select>
+                <div *ngIf="expensesForm.controls['expensetype'].hasError('required') && expensesForm.controls['expensetype'].touched" class="alert alert-danger">
+                  You must include your Expense type
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['projectId'].valid && expensesForm.controls['projectId'].touched}">
+            <label>Project Id</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the Project Id" [formControl]="expensesForm.controls['projectId']">
+                <div *ngIf="expensesForm.controls['projectId'].hasError('required') && expensesForm.controls['projectId'].touched" class="alert alert-danger">
+                  You must include Project ID
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['resourceId'].valid && expensesForm.controls['resourceId'].touched}">
+            <label>Resource Id</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the Resource Id" [formControl]="expensesForm.controls['resourceId']">
+                <div *ngIf="expensesForm.controls['resourceId'].hasError('required') && expensesForm.controls['resourceId'].touched" class="alert alert-danger">
+                  You must include a Resouce Id
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!expensesForm.controls['status'].valid && expensesForm.controls['status'].touched}">
+            <label>Expense Status :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <select name="role" class="form-control" [formControl]="expensesForm.controls['status']">
+                  <option value="Draft">Draft</option>
+                  <option value="Submitted">Submitted</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Settled">Settled</option>
+                </select>
+                <div *ngIf="expensesForm.controls['status'].hasError('required') && expensesForm.controls['status'].touched" class="alert alert-danger">
+                  You must include your Expense Status
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm pull-right">
+            <button type="button" class="btn btn-danger" (click)="expenses.hide()">Cancel</button>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!expensesForm.valid">Submit</button>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <h4 class="modal-title pull-right"></h4>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

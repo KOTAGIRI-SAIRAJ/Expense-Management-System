@@ -1,3 +1,162 @@
-<p>
-  homepage works!
-</p>
+<h1>Welcome</h1>
+
+
+<div class="col-sm pull-right">
+  <a  class="btn btn-success btn-lg" (click)="LogIn.show()">
+    <span class="glyphicon glyphicon-user"></span> Log In
+  </a>
+  <a  class="btn btn-success btn-lg" (click)="getTheDetails()">
+    <span class="glyphicon glyphicon-user"></span> Get Data
+  </a>
+</div>
+
+
+<!--                                         Login Popup Html Code                                         -->
+<!--
+<div class="modal fade" bsModal #LogIn="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Log In Form</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="LogIn.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="LogInForm" (ngSubmit)="loginPopup(LogInForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['userName'].valid && LogInForm.controls['userName'].touched}">
+            <label>User Name</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the UserName" [formControl]="LogInForm.controls['userName']">
+                <div *ngIf="LogInForm.controls['userName'].hasError('required') && LogInForm.controls['userName'].touched" class="alert alert-danger">
+                  You must include a User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['password'].valid && LogInForm.controls['password'].touched}">
+            <label>PassWord :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                <input class="form-control" type="password" placeholder="Enter the password" [formControl]="LogInForm.controls['password']">
+                <div *ngIf="LogInForm.controls['password'].hasError('required') && LogInForm.controls['password'].touched" class="alert alert-danger">
+                  You must include a Password
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm pull-right">
+            <button type="button" class="btn btn-danger" (click)="LogIn.hide()">Cancel</button>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!LogInForm.valid">Submit</button>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <h4 class="modal-title pull-right"></h4>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+<div class="modal fade" bsModal #LogIn="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Log In Form</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="LogIn.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="LogInForm" (ngSubmit)="loginPopup(LogInForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['firstname'].valid && LogInForm.controls['firstname'].touched}">
+            <label>First Name</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the First Name" [formControl]="LogInForm.controls['firstname']">
+                <div *ngIf="LogInForm.controls['firstname'].hasError('required') && LogInForm.controls['firstname'].touched" class="alert alert-danger">
+                  You must include a User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['lastname'].valid && LogInForm.controls['lastname'].touched}">
+            <label>Last Name</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the Last Name" [formControl]="LogInForm.controls['lastname']">
+                <div *ngIf="LogInForm.controls['lastname'].hasError('required') && LogInForm.controls['lastname'].touched" class="alert alert-danger">
+                  You must include a User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['DOB'].valid && LogInForm.controls['DOB'].touched}">
+            <label>DOB</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                <input class="form-control" type="date" placeholder="Enter the DOB" [formControl]="LogInForm.controls['DOB']">
+                <div *ngIf="LogInForm.controls['DOB'].hasError('required') && LogInForm.controls['DOB'].touched" class="alert alert-danger">
+                  You must include a User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['emailId'].valid && LogInForm.controls['emailId'].touched}">
+            <label>EmailId</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the EmailID" [formControl]="LogInForm.controls['emailId']">
+                <div *ngIf="LogInForm.controls['emailId'].hasError('required') && LogInForm.controls['emailId'].touched" class="alert alert-danger">
+                  You must include a User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['password'].valid && LogInForm.controls['password'].touched}">
+            <label>PassWord :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the password" [formControl]="LogInForm.controls['password']">
+                <div *ngIf="LogInForm.controls['password'].hasError('required') && LogInForm.controls['password'].touched" class="alert alert-danger">
+                  You must include a Password
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm pull-right">
+            <button type="button" class="btn btn-danger" (click)="LogIn.hide()">Cancel</button>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!LogInForm.valid">Submit</button>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <h4 class="modal-title pull-right"></h4>
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

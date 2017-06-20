@@ -23,7 +23,7 @@ export default class userDAO{
       const _query = queryParams;
       if (date instanceof Date && !isNaN(date.valueOf())) {
         models.user
-          .findAll({where: {$or: [{DOB: date}]}})
+          .find({where: {$or: [{DOB: date}]}})
           .then(result => {
             resolve(result);
           }, (error) => {
@@ -33,7 +33,7 @@ export default class userDAO{
       } else {
         queryParams = '%' + queryParams + '%';
         models.user
-          .findAll({where: {$or: [{firstname: {$ilike: queryParams}}, {lastname: {$ilike: queryParams}}]}})
+          .find({where: {$or: [{firstname: {$ilike: queryParams}}, {lastname: {$ilike: queryParams}}]}})
           .then(result => {
             resolve(result);
           }, (error) => {
@@ -52,7 +52,9 @@ export default class userDAO{
       models.user.create({
         firstname: _reqBody.firstname,
         lastname: _reqBody.lastname,
-        DOB: date
+        DOB: date,
+        emailId: _reqBody.emailId,
+        password: _reqBody.password
       }).then(result => {
         resolve(result)
       })
@@ -68,7 +70,9 @@ export default class userDAO{
       models.user.update({
           firstname: _reqBody.firstname,
           lastname: _reqBody.lastname,
-          DOB: _reqBody.DOB
+          DOB: _reqBody.DOB,
+          emailId: _reqBody.emailId,
+          password: _reqBody.password
         },
         { where: { id: _reqParamId}, returning: true, plain:true}
       ).then((result) => {
