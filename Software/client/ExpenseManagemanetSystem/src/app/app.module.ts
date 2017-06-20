@@ -31,6 +31,7 @@ import { ProjectComponent } from './project/project.component';
     ProjectEditComponent,
     ProjectViewComponent,
     ProjectComponent
+
   ],
   imports: [
     BrowserModule,
