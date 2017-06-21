@@ -17,6 +17,11 @@ import { ProjectAddComponent } from './project/project-add/project-add.component
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectComponent } from './project/project.component';
+import { ResourceComponent } from './resource/resource.component';
+import { ResourceAddComponent } from './resource/resource-add/resource-add.component';
+import { ResourceEditComponent } from './resource/resource-edit/resource-edit.component';
+import { ResourceViewComponent } from './resource/resource-view/resource-view.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -30,7 +35,13 @@ import { ProjectComponent } from './project/project.component';
     ProjectAddComponent,
     ProjectEditComponent,
     ProjectViewComponent,
-    ProjectComponent
+    ProjectComponent,
+    ResourceComponent,
+    ResourceAddComponent,
+    ResourceEditComponent,
+    ResourceViewComponent,
+    DashboardComponent
+
   ],
   imports: [
     BrowserModule,
