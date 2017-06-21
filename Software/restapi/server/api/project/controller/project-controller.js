@@ -2,6 +2,7 @@ import projectDAO from '../dao/project-dao';
 
 export default class projectController {
   static getAll(req, res) {
+    console.log('from getALLLL')
     const _query = req.query;
     projectDAO
       .getAll(_query)
@@ -13,6 +14,7 @@ export default class projectController {
 
 
   static createNew(req, res) {
+
     const _reqBody = req.body;
     projectDAO
       .createNew(_reqBody)
@@ -40,6 +42,7 @@ export default class projectController {
   }
 
   static getById(req, res) {
+    console.log('from getBiIDDDDDD  ')
     const _query = req.params.id;
     projectDAO
       .getById(_query)

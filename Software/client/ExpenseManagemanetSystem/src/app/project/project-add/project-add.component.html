@@ -1,3 +1,80 @@
-<p>
-  project-add works!
-</p>
+
+<body>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">Create a Project</h1>
+        <hr />
+      </div>
+    </div>
+    <div class="main-login main-center">
+      <form [formGroup]="projectsForm" (ngSubmit)="projectsPopup(projectsForm.value)">
+        <div class="form-group" [ngClass]="{'has-error':!projectsForm.controls['projectName'].valid && projectsForm.controls['projectName'].touched}">
+          <label>Project Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
+              <input class="form-control" type="text" placeholder="Enter the Project Name" [formControl]="projectsForm.controls['projectName']">
+              <div *ngIf="projectsForm.controls['projectName'].hasError('required') && projectsForm.controls['projectName'].touched" class="alert alert-danger">
+                You must include a Project Name
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!projectsForm.controls['projectDescription'].valid && projectsForm.controls['projectDescription'].touched}">
+          <label>Project Description :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
+              <textarea class="form-control" type="text" placeholder="Enter the Project Description" [formControl]="projectsForm.controls['projectDescription']"></textarea>
+              <div *ngIf="projectsForm.controls['projectDescription'].hasError('required') && projectsForm.controls['projectDescription'].touched" class="alert alert-danger">
+                You must include a Password
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!projectsForm.controls['projectStartDate'].valid && projectsForm.controls['projectStartDate'].touched}">
+          <label>Start Date :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+              <input class="form-control" type="date" placeholder="Enter the Start Date" [formControl]="projectsForm.controls['projectStartDate']">
+              <div *ngIf="projectsForm.controls['projectStartDate'].hasError('required') && projectsForm.controls['projectStartDate'].touched" class="alert alert-danger">
+                You must include a Project Start Date
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!projectsForm.controls['projectEndDate'].valid && projectsForm.controls['projectEndDate'].touched}">
+          <label>End Date :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+              <input class="form-control" type="date" placeholder="Enter the End Date" [formControl]="projectsForm.controls['projectEndDate']">
+              <div *ngIf="projectsForm.controls['projectEndDate'].hasError('required') && projectsForm.controls['projectEndDate'].touched" class="alert alert-danger">
+                You must include a Project End Date
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="col-sm pull-right">
+          <button type="button" class="btn btn-danger" (click)="revertToProjects()">Cancel</button>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!projectsForm.valid">Submit</button>
+
+        </div>
+        <br><br>
+      </form>
+    </div>
+  </div>
+  <br><br><br>
+</div>
+
+</body>
+

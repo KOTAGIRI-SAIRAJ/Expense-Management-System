@@ -5,6 +5,7 @@ import models from "../../../../server/models"
 export default class projectDAO{
 
   static getAll(queryParams) {
+    console.log("from getAll")
     return new Promise((resolve, reject) => {
       models.project
         .findAndCountAll({})
@@ -17,6 +18,7 @@ export default class projectDAO{
   }
 
   static getById(queryParams) {
+    console.log("from getById")
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.project

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {Http, HttpModule} from '@angular/http';
 import { ModalModule } from 'ngx-bootstrap';
 import { routes } from './app.router';
+import {DataTableModule} from "angular2-datatable"
+
 
 
 import { QueryApi } from './common/request/QueryApi';
@@ -22,6 +24,7 @@ import { ResourceAddComponent } from './resource/resource-add/resource-add.compo
 import { ResourceEditComponent } from './resource/resource-edit/resource-edit.component';
 import { ResourceViewComponent } from './resource/resource-view/resource-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+;
 
 
 @NgModule({
@@ -49,7 +52,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpModule,
     routes,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    DataTableModule,
+    ModalModule.forRoot(),
+
   ],
   providers: [QueryApi],
   bootstrap: [AppComponent]
