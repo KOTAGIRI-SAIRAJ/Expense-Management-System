@@ -61,4 +61,14 @@ export class projectService {
         return Observable.throw(error.json());
       })
   }
+  updateTheProjectDetails(values){
+    return this.queryApi.doPut('updateTheProjectDetails',values)
+      .map((res:Response)=>{
+      alert('hi');
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
 }

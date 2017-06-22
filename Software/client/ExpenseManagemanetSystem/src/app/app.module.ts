@@ -5,6 +5,7 @@ import {Http, HttpModule} from '@angular/http';
 import { ModalModule } from 'ngx-bootstrap';
 import { routes } from './app.router';
 import {DataTableModule} from "angular2-datatable"
+import { MomentModule } from 'angular2-moment';
 
 
 
@@ -54,6 +55,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     DataTableModule,
     ModalModule.forRoot(),
+    MomentModule
 
   ],
   providers: [QueryApi],

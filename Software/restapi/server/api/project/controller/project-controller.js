@@ -28,6 +28,9 @@ export default class projectController {
 
   static update(req, res) {
     const _reqBody = req.body;
+    console.log("-*----------------****")
+    console.log(_reqBody.id)
+    console.log(req.params)
     const _reqParmaId  = req.params.id;
     projectDAO
       .update(_reqBody,_reqParmaId)
@@ -41,7 +44,6 @@ export default class projectController {
   }
 
   static getById(req, res) {
-    console.log('from getBiIDDDDDD  ')
     const _query = req.params.id;
     projectDAO
       .getById(_query)
@@ -59,7 +61,6 @@ export default class projectController {
 
   static removeById(req, res) {
     const _id = req.params.id;
-    console.log('from remove');
     projectDAO
       .removeById(_id)
       .then(() => res.status(204).end())

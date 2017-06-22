@@ -9,6 +9,7 @@ export const resource = 'resource';
 export const delProject = 'delProject'
 export const delResource = 'delResource'
 export const getProjectById = 'getProjectById'
+export const updateTheProjectDetails = 'updateTheProjectDetails'
 
 
 export const ClientEndPoint= (type: string, params: any) => {
@@ -26,8 +27,10 @@ export const ClientEndPoint= (type: string, params: any) => {
       return environment.API_ROOT + '/api/resource/'+params;
     case getProjectById:
       return environment.API_ROOT + '/api/project/'+params;
-
+    case updateTheProjectDetails:
+      return environment.API_ROOT + '/api/project/' + params;
     /*case user:
       return environment.API_ROOT + '/api/user/'+params*/
   }
 }
+

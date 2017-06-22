@@ -6,6 +6,7 @@ import { Http } from '@angular/http';
 
 import {ClientEndPoint} from './../../common/request/ClientEndPoint';
 
+
 @Injectable()
 export class QueryApi {
 

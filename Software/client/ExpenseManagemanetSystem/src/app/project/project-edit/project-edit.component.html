@@ -41,7 +41,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the Start Date" value="{{projectStartDate}}" [formControl]="projectsForm.controls['projectStartDate']">
+              <input class="form-control" type="date" placeholder="Enter the Start Date" value="{{projectStartDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="projectsForm.controls['projectStartDate']">
               <div *ngIf="projectsForm.controls['projectStartDate'].hasError('required') && projectsForm.controls['projectStartDate'].touched" class="alert alert-danger">
                 You must include a Project Start Date
               </div>
@@ -53,7 +53,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the End Date" value="{{projectEndDate}}" [formControl]="projectsForm.controls['projectEndDate']">
+              <input class="form-control" type="date" placeholder="Enter the End Date" value="{{projectEndDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="projectsForm.controls['projectEndDate']">
               <div *ngIf="projectsForm.controls['projectEndDate'].hasError('required') && projectsForm.controls['projectEndDate'].touched" class="alert alert-danger">
                 You must include a Project End Date
               </div>
@@ -65,7 +65,7 @@
         <div class="col-sm pull-right">
           <button type="button" class="btn btn-danger" (click)="revertToProjects()">Cancel</button>
 
-          <button type="submit" class="btn btn-primary" [disabled]="!projectsForm.valid">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
 
         </div>
         <br><br>
