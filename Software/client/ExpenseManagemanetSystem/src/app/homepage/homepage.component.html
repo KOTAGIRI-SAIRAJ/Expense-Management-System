@@ -1,59 +1,106 @@
 <h1>Welcome</h1>
 
+  <body>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">LOGIN</h1>
+        <hr />
+      </div>
+    </div>
+    <div class="main-login main-center">
+      <form [formGroup]="loginForm" (ngSubmit)="checkforCredentials(loginForm.value)">
+        <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['emailId'].valid && loginForm.controls['emailId'].touched}">
+          <label>User Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+              <input class="form-control" type="text" placeholder="Enter the emailId" [formControl]="loginForm.controls['emailId']">
+              <div *ngIf="loginForm.controls['emailId'].hasError('required') && loginForm.controls['emailId'].touched" class="alert alert-danger">
+                You must include a User Name
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="col-sm pull-right">
-  <a  class="btn btn-success btn-lg" (click)="LogIn.show()">
-    <span class="glyphicon glyphicon-user"></span> Log In
-  </a>
-  <a  class="btn btn-success btn-lg" (click)="getTheDetails()">
-    <span class="glyphicon glyphicon-user"></span> Get Data
-  </a>
+        <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+          <label>PassWord :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+              <input class="form-control" type="password" placeholder="Enter the password" [formControl]="loginForm.controls['password']">
+              <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">
+                You must include a Password
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="col-sm pull-right">
+          <button type="button" class="btn btn-danger" (click)="login.hide()">Cancel</button>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+        </div>
+        <br><br>
+      </form>
+    </div>
+  </div>
+  <br><br><br>
 </div>
 
+</body>
 
-<!--                                         Login Popup Html Code                                         -->
+
+
+
+
+
+
+
+<!--                                         login Popup Html Code                                         -->
 <!--
-<div class="modal fade" bsModal #LogIn="bs-modal" [config]="{backdrop: 'static'}"
+<div class="modal fade" bsModal #login="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Log In Form</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="LogIn.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="login.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="LogInForm" (ngSubmit)="loginPopup(LogInForm.value)">
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['userName'].valid && LogInForm.controls['userName'].touched}">
+        <form [formGroup]="loginForm" (ngSubmit)="loginPopup(loginForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['userName'].valid && loginForm.controls['userName'].touched}">
             <label>User Name</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the UserName" [formControl]="LogInForm.controls['userName']">
-                <div *ngIf="LogInForm.controls['userName'].hasError('required') && LogInForm.controls['userName'].touched" class="alert alert-danger">
+                <input class="form-control" type="text" placeholder="Enter the UserName" [formControl]="loginForm.controls['userName']">
+                <div *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched" class="alert alert-danger">
                   You must include a User Name
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['password'].valid && LogInForm.controls['password'].touched}">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
             <label>PassWord :</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-                <input class="form-control" type="password" placeholder="Enter the password" [formControl]="LogInForm.controls['password']">
-                <div *ngIf="LogInForm.controls['password'].hasError('required') && LogInForm.controls['password'].touched" class="alert alert-danger">
+                <input class="form-control" type="password" placeholder="Enter the password" [formControl]="loginForm.controls['password']">
+                <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">
                   You must include a Password
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm pull-right">
-            <button type="button" class="btn btn-danger" (click)="LogIn.hide()">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="login.hide()">Cancel</button>
 
-            <button type="submit" class="btn btn-primary" [disabled]="!LogInForm.valid">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
           </div>
         </form>
         <div class="modal-footer">
@@ -67,52 +114,53 @@
 </div>
 -->
 
+<!--
 
-<div class="modal fade" bsModal #LogIn="bs-modal" [config]="{backdrop: 'static'}"
+<div class="modal fade" bsModal #login="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Log In Form</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="LogIn.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="login.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="LogInForm" (ngSubmit)="loginPopup(LogInForm.value)">
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['firstname'].valid && LogInForm.controls['firstname'].touched}">
+        <form [formGroup]="loginForm" (ngSubmit)="loginPopup(loginForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['firstname'].valid && loginForm.controls['firstname'].touched}">
             <label>First Name</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the First Name" [formControl]="LogInForm.controls['firstname']">
-                <div *ngIf="LogInForm.controls['firstname'].hasError('required') && LogInForm.controls['firstname'].touched" class="alert alert-danger">
+                <input class="form-control" type="text" placeholder="Enter the First Name" [formControl]="loginForm.controls['firstname']">
+                <div *ngIf="loginForm.controls['firstname'].hasError('required') && loginForm.controls['firstname'].touched" class="alert alert-danger">
                   You must include a User Name
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['lastname'].valid && LogInForm.controls['lastname'].touched}">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['lastname'].valid && loginForm.controls['lastname'].touched}">
             <label>Last Name</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the Last Name" [formControl]="LogInForm.controls['lastname']">
-                <div *ngIf="LogInForm.controls['lastname'].hasError('required') && LogInForm.controls['lastname'].touched" class="alert alert-danger">
+                <input class="form-control" type="text" placeholder="Enter the Last Name" [formControl]="loginForm.controls['lastname']">
+                <div *ngIf="loginForm.controls['lastname'].hasError('required') && loginForm.controls['lastname'].touched" class="alert alert-danger">
                   You must include a User Name
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['DOB'].valid && LogInForm.controls['DOB'].touched}">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['DOB'].valid && loginForm.controls['DOB'].touched}">
             <label>DOB</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-                <input class="form-control" type="date" placeholder="Enter the DOB" [formControl]="LogInForm.controls['DOB']">
-                <div *ngIf="LogInForm.controls['DOB'].hasError('required') && LogInForm.controls['DOB'].touched" class="alert alert-danger">
+                <input class="form-control" type="date" placeholder="Enter the DOB" [formControl]="loginForm.controls['DOB']">
+                <div *ngIf="loginForm.controls['DOB'].hasError('required') && loginForm.controls['DOB'].touched" class="alert alert-danger">
                   You must include a User Name
                 </div>
               </div>
@@ -120,35 +168,35 @@
           </div>
 
 
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['emailId'].valid && LogInForm.controls['emailId'].touched}">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['emailId'].valid && loginForm.controls['emailId'].touched}">
             <label>EmailId</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the EmailID" [formControl]="LogInForm.controls['emailId']">
-                <div *ngIf="LogInForm.controls['emailId'].hasError('required') && LogInForm.controls['emailId'].touched" class="alert alert-danger">
+                <input class="form-control" type="text" placeholder="Enter the EmailID" [formControl]="loginForm.controls['emailId']">
+                <div *ngIf="loginForm.controls['emailId'].hasError('required') && loginForm.controls['emailId'].touched" class="alert alert-danger">
                   You must include a User Name
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!LogInForm.controls['password'].valid && LogInForm.controls['password'].touched}">
+          <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
             <label>PassWord :</label>
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the password" [formControl]="LogInForm.controls['password']">
-                <div *ngIf="LogInForm.controls['password'].hasError('required') && LogInForm.controls['password'].touched" class="alert alert-danger">
+                <input class="form-control" type="text" placeholder="Enter the password" [formControl]="loginForm.controls['password']">
+                <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">
                   You must include a Password
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm pull-right">
-            <button type="button" class="btn btn-danger" (click)="LogIn.hide()">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="login.hide()">Cancel</button>
 
-            <button type="submit" class="btn btn-primary" [disabled]="!LogInForm.valid">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
           </div>
         </form>
         <div class="modal-footer">
@@ -160,3 +208,4 @@
     </div>
   </div>
 </div>
+-->

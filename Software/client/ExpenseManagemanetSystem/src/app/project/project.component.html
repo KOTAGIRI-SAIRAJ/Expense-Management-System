@@ -14,7 +14,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown">Project Operations<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li class="kopie" routerLink="/project/create">ADD PROJECT</li>
+            <li class="kopie" routerLink="create">ADD PROJECT</li>
           </ul>
         </li>
       </ul>
@@ -22,31 +22,26 @@
   </nav>
 </div>
 
-<!--
 
-<p>DATA TABLE FOR PROJECTS</p>
 <div class="container">
   <h1>Project Data Table</h1>
   <table class="table table-striped" [mfData]="allProjectDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
     <thead>
     <tr>
       <th style="width: 15%">
-        <mfDefaultSorter by="Item_Name">Project Name</mfDefaultSorter>
+        <mfDefaultSorter by="Project_Name">Project Name</mfDefaultSorter>
       </th>
       <th style="width: 15%">
-        <mfDefaultSorter by="Actual_Price_of_Product">Project Description</mfDefaultSorter>
+        <mfDefaultSorter by="Project_Description">Project Description</mfDefaultSorter>
       </th>
       <th style="width: 15%">
-        <mfDefaultSorter by="Quantity">Start Date</mfDefaultSorter>
+        <mfDefaultSorter by="Start_Date">Start Date</mfDefaultSorter>
       </th>
-      <th style="width: 15%" type="number">
-        <mfDefaultSorter by="Amount">End Date</mfDefaultSorter>
+      <th style="width: 15%">
+        <mfDefaultSorter by="End_Date">End Date</mfDefaultSorter>
       </th>
-      <th style="width: 15%" type="number">
-        <mfDefaultSorter by="Date">Status</mfDefaultSorter>
-      </th>
-      <th style=" width: 25%">
-        <mfDefaultSorter by="mobnum">Options</mfDefaultSorter>
+      <th style="width: 40%">
+        Options
       </th>
     </tr>
     </thead>
@@ -60,23 +55,41 @@
       <td>{{item.projectDescription}}</td>
       <td>{{item.projectStartDate}}</td>
       <td>{{item.projectEndDate}}</td>
-      <td>{{item.projectStatus}}</td>
       <td>
         <button type="button" class="btn btn-info " (click)="ViewProjectdata(item)">View</button>
         &emsp;
         <button type="button" class="btn btn-primary " (click)="EditProjectData(item)">Edit</button>&emsp;
-        <button type="button" class="btn btn-danger" (click)="DeleteProjectData(item)">Delete</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProjectData(item)">Delete</button>
       </td>
     </tr>
 
     </tbody>
-    <tfoot>
-    <tr>
-      <td colspan="4">
-        <mfBootstrapPaginator [rowsOnPageSet]="[5]"></mfBootstrapPaginator>
-      </td>
-    </tr>
-    </tfoot>
   </table>
 </div>
--->
+
+
+
+
+<div bsModal #DeleteProjectDetails="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Project</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeleteProjectDetails()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do You want to delete the project
+        <p><b>{{tempProjectName}}</b>
+        </p>
+      </div>
+      <div class="modal-footer btn-toolbar" role="toolbar" aria-label="...">
+
+        <button type="button" class="btn btn-primary pull-right" (click)="DeleteProjectData(tempProjectDetails)">Submit</button>
+        &emsp;
+        <button type="button" class="btn btn-danger pull-right" (click)="hideDeleteProjectDetails()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

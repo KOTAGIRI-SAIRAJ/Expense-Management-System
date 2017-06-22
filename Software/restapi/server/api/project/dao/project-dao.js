@@ -5,10 +5,9 @@ import models from "../../../../server/models"
 export default class projectDAO{
 
   static getAll(queryParams) {
-    console.log("from getAll")
     return new Promise((resolve, reject) => {
       models.project
-        .findAndCountAll({})
+        .findAll({})
         .then(result => {
           resolve(result);
         }, (error) => {
@@ -22,11 +21,10 @@ export default class projectDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.project
-        .findAll({where:{$or:[{projectName : queryParams}]}})
+        .findAll({where:{$or:[{id : queryParams}]}})
         .then(result => {
           resolve(result);
         }, (error) => {
-          logger.error(`Internal error while retrieving client: ${error}`);
           reject(error);
         });
     });
@@ -80,7 +78,6 @@ export default class projectDAO{
             .destroy()
             .then(() => { resolve(204); }, (error) => reject(error));
         }, (error) => {
-          logger.error(`Internal error while deleting client: ${error}`);
           reject(error);
         });
     });

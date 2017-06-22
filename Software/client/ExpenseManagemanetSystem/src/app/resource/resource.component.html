@@ -1,3 +1,105 @@
-<p>
-  resource works!
-</p>
+<div id="navbar">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">ADMIN</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Resource Operations<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="kopie" routerLink="create">ADD RESOURCE</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<div class="container">
+  <h1>Resource Data Table</h1>
+  <table class="table table-striped" [mfData]="allResourceDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+    <tr>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Project_Name">First Name</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Project_Description">Last Name</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Start_Date">DOB</mfDefaultSorter>
+      </th>
+      <th style="width: 15%">
+        <mfDefaultSorter by="End_Date">Email-Id</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Password</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Join Date</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">End Date</mfDefaultSorter>
+      </th>
+      <th style="width: 30%">
+        Options
+      </th>
+    </tr>
+    </thead>
+    <div *ngIf="allResourceDetails.length === 0">
+      <h2>No Projects...!!</h2>
+    </div>
+    <tbody>
+
+    <tr bgcolor="#fffaf0" *ngFor="let item of allResourceDetails">
+      <td>{{item.firstName}}</td>
+      <td>{{item.lastName}}</td>
+      <td>{{item.DOB}}</td>
+      <td>{{item.emailId}}</td>
+      <td>{{item.password}}</td>
+      <td>{{item.joinDate}}</td>
+      <td>{{item.endDate}}</td>
+      <td>
+        <button type="button" class="btn btn-info " (click)="ViewResourcedata(item)">View</button>
+        &emsp;
+        <button type="button" class="btn btn-primary " (click)="EditResourceData(item)">Edit</button>&emsp;
+        <button type="button" class="btn btn-danger" (click)="deleteResourceData(item)">Delete</button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<div bsModal #DeleteResourceDetails="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Resource</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeleteResourceDetails()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do You want to delete the Resource
+        <p><b>{{tempEmailId}}</b>
+        </p>
+      </div>
+      <div class="modal-footer btn-toolbar" role="toolbar" aria-label="...">
+
+        <button type="button" class="btn btn-primary pull-right" (click)="DeleteResourceData(tempResourceDetails)">Submit</button>
+        &emsp;
+        <button type="button" class="btn btn-danger pull-right" (click)="hideDeleteResourceDetails()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@ export default class resourceDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.resources
-        .findAndCountAll({})
+        .findAll({})
         .then(result => {
           resolve(result);
         }, (error) => {
@@ -21,7 +21,7 @@ export default class resourceDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.resources
-        .findAll({where:{$or:[{firstname : queryParams}, { lastname : queryParams}]}})
+        .findAll({where:{$or:[{firstName : queryParams}, { lastName : queryParams}]}})
         .then(result => {
           resolve(result);
         }, (error) => {
@@ -36,8 +36,8 @@ export default class resourceDAO{
       let _reqBody = request;
       models.resources
         .create({
-          firstname: _reqBody.firstname,
-          lastname: _reqBody.lastname,
+          firstName: _reqBody.firstName,
+          lastName: _reqBody.lastName,
           DOB: _reqBody.DOB,
           emailId: _reqBody.emailId,
           password : _reqBody.password,
@@ -57,8 +57,8 @@ export default class resourceDAO{
     return new Promise((resolve, reject) => {
       models.resources
         .update({
-            firstname: _reqBody.firstname,
-            lastname: _reqBody.lastname,
+            firstName: _reqBody.firstName,
+            lastName: _reqBody.lastName,
             DOB: _reqBody.DOB,
             emailId: _reqBody.emailId,
             password : _reqBody.password,

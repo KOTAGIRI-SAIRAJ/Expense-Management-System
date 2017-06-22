@@ -2,7 +2,6 @@ import projectDAO from '../dao/project-dao';
 
 export default class projectController {
   static getAll(req, res) {
-    console.log('from getALLLL')
     const _query = req.query;
     projectDAO
       .getAll(_query)
@@ -60,6 +59,7 @@ export default class projectController {
 
   static removeById(req, res) {
     const _id = req.params.id;
+    console.log('from remove');
     projectDAO
       .removeById(_id)
       .then(() => res.status(204).end())

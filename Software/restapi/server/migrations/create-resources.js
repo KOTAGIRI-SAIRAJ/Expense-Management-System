@@ -11,10 +11,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstname: {
+      firstName: {
         type: Sequelize.STRING
       },
-      lastname: {
+      lastName: {
         type: Sequelize.STRING
       },
       DOB: {

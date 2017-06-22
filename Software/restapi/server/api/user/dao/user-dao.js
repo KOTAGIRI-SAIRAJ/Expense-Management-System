@@ -7,7 +7,7 @@ export default class userDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.user
-        .findAndCountAll({})
+        .findAll({})
         .then(result => {
           resolve(result);
         }, (error) => {

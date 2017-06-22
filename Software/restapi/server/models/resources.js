@@ -2,8 +2,8 @@
 const roleStatus = require("../enums/role")
 module.exports = function(sequelize, DataTypes) {
   var resources = sequelize.define('resources', {
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
     DOB: DataTypes.DATE,
     emailId: DataTypes.STRING,
     password: DataTypes.STRING,
