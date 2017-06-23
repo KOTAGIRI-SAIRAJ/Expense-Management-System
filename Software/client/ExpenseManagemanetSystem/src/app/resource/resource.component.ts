@@ -10,10 +10,14 @@ import {Router} from '@angular/router';
   providers :[resourceService]
 })
 export class ResourceComponent implements OnInit {
+  private value: any = {};private _disabledV = '0';
+  private disabled = false;
   public router: Router;
   public allResourceDetails:Array<any> = [];
   tempResourceDetails:any;
   tempEmailId:string = '';
+  public totalResourceDetails:Array<any> =[];
+  public allResourceNamesForAutoCompleter:Array<any>;
   @ViewChild('DeleteResourceDetails') public DeleteResourceDetails:ModalDirective;
   constructor(public _resourceService:resourceService,public route: Router) {
     this.router = route;
@@ -21,6 +25,26 @@ export class ResourceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.allResourceNamesForAutoCompleter = [];
+    this._resourceService.getAllResources().subscribe(ResourceDetails=>{
+      ResourceDetails.forEach((eachRecord)=>{
+        let flag = 0;
+        if(this.allResourceNamesForAutoCompleter.length === 0){
+          this.allResourceNamesForAutoCompleter.push(eachRecord.firstName+' '+eachRecord.lastName);
+          flag =1;
+        }else{
+          this.allResourceNamesForAutoCompleter.forEach((eachProject)=>{
+            if(eachProject === eachRecord.projectName){
+              flag =1;
+            }
+          })
+        }
+        if(flag === 0){
+          this.allResourceNamesForAutoCompleter.push(eachRecord.firstName+' '+eachRecord.lastName);
+        }
+      })
+    })
+
   }
   getTheResourceData(){
     this.allResourceDetails =  [];
@@ -35,6 +59,7 @@ export class ResourceComponent implements OnInit {
         this.allResourceDetails.push(eachRecord);
       });
     });
+    this.totalResourceDetails = this.allResourceDetails;
   }
 
   ViewResourcedata(values){
@@ -61,4 +86,44 @@ export class ResourceComponent implements OnInit {
   public hideDeleteResourceDetails = ():void =>{
     this.DeleteResourceDetails.hide();
   };
+
+  private get disabledV(): string {
+    return this._disabledV;
+  }
+
+  private set disabledV(value: string) {
+    this._disabledV = value;
+    this.disabled = this._disabledV === '1';
+  }
+
+  public selected(value: any): void {
+    console.log('from Selected '+value.id);
+    this.updateDataTable(value.id);
+  }
+
+  public removed(value: any): void {
+    console.log('Removed value is: ', value);
+
+  }
+
+  public typed(value: any): void {
+    console.log('from Typed '+value)
+  }
+
+  public refreshValue(value: any): void {
+    this.value = value;
+  }
+
+  updateDataTable(fromAutoCompleter){
+    console.log(fromAutoCompleter);
+    let SplittedValue = fromAutoCompleter.split(' ');
+    console.log(SplittedValue[0],SplittedValue[1]);
+    let tempResourceDetailsarray = this.totalResourceDetails;
+    tempResourceDetailsarray.forEach((eachRecord)=>{
+      if(eachRecord.firstName === SplittedValue[0] && eachRecord.lastName === SplittedValue[1]){
+        this.allResourceDetails = [];
+        this.allResourceDetails.push(eachRecord);
+      }
+    })
+  }
 }

@@ -4,7 +4,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomepageComponent} from "./homepage/homepage.component";
-import {ExpensesComponent} from "./expenses/expenses.component";
 import {AdminOperationsComponent} from "./admin-operations/admin-operations.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
@@ -21,9 +20,9 @@ import {ResourceViewComponent} from "./resource/resource-view/resource-view.comp
 export const router:  Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component : HomepageComponent},
-  {path: 'expenses', component : ExpensesComponent},
   {path: 'home/adminOperations', component : AdminOperationsComponent},
   {path: 'dashboard', component : DashboardComponent},
+
   {path: 'project/create', component : ProjectAddComponent},
   {path: 'project/:id/edit', component : ProjectEditComponent},
   {path: 'project/:id', component : ProjectViewComponent},
@@ -36,9 +35,10 @@ export const router:  Routes = [
     ]
   },*/
   {path: 'resource', component : ResourceComponent},
+  {path: 'resource/create', component : ResourceAddComponent},
   {path: 'resource/:id/edit', component : ResourceEditComponent},
   {path: 'resource/:id', component : ResourceViewComponent},
-  {path: 'resource/create', component : ResourceAddComponent},
+
 
 
 ];

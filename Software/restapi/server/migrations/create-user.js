@@ -1,4 +1,5 @@
 'use strict';
+const roleStatus = require("../enums/role")
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('users', {
@@ -8,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstname: {
+      firstName: {
         type: Sequelize.STRING
       },
-      lastname: {
+      lastName: {
         type: Sequelize.STRING
       },
       DOB: {
@@ -23,6 +24,10 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING
+      },
+      role: {
+        type: Sequelize.ENUM,
+        values:roleStatus.values
       },
       createdAt: {
         allowNull: false,

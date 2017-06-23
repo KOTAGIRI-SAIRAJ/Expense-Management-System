@@ -25,7 +25,7 @@ export default class resourceDAO{
         .then(result => {
           resolve(result);
         }, (error) => {
-          logger.error(`Internal error while retrieving client: ${error}`);
+
           reject(error);
         });
     });
@@ -49,7 +49,7 @@ export default class resourceDAO{
       })
         .catch(error => {
           console.log(error)
-        });;
+        });
     });
   }
 

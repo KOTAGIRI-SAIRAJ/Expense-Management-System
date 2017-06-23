@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {ModalDirective} from "ngx-bootstrap/modal";
 import {Router} from '@angular/router';
 import {UserService} from "./user.service";
 
@@ -30,20 +29,16 @@ export class HomepageComponent implements OnInit {
     alert("hi from loginPopup")
     console.log(values);
     this.loginForm.reset();
-    this._userService.createProject(values).subscribe((response) => {
+    this._userService.createUser(values).subscribe((response) => {
       this.router.navigate(['dashboard']);
     });
 
   }
   checkforCredentials(values){
     this._userService.getAllUsers().subscribe(allUserDetails=>{
-      console.log(allUserDetails)
         allUserDetails.forEach((eachRecord)=>{
           if(eachRecord.emailId === values.emailId && eachRecord.password === values.password){
             this.router.navigate(['dashboard']);
-            this.loginForm.reset();
-          }else{
-            this.router.navigate(['home']);
             this.loginForm.reset();
           }
         })
@@ -51,3 +46,4 @@ export class HomepageComponent implements OnInit {
   }
 
 }
+

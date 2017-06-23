@@ -12,7 +12,7 @@
     <div class="main-login main-center">
       <form [formGroup]="loginForm" (ngSubmit)="checkforCredentials(loginForm.value)">
         <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['emailId'].valid && loginForm.controls['emailId'].touched}">
-          <label>User Name</label>
+          <label> Email-Id </label>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
-          <label>PassWord :</label>
+          <label> Password </label>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>

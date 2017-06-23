@@ -36,7 +36,6 @@ export class ResourceEditComponent implements OnInit {
     });
   }
   resourcePopup(values){
-    alert("hi from resourcePopup")
     values.id = this.userId;
     console.log(values);
     this._resourceService.updateResource(values).subscribe((response) => {

@@ -22,40 +22,56 @@
   </nav>
 </div>
 
+<div *ngIf="allResourceNamesForAutoCompleter.length > 0">
+<!--<div>-->
+  <div class="container">
+    <div class="col-sm-4 pull-right">
+      <ng-select [allowClear]="true"
+                 [items]="allResourceNamesForAutoCompleter"
+                 (data)="refreshValue($event)"
+                 (selected)="selected($event)"
+                 (removed)="removed($event)"
+                 (typed)="typed($event)"
+                 placeholder="No Project Name selected">
+      </ng-select>
+    </div>
+  </div>
+</div>
+
 
 <div class="container">
   <h1>Resource Data Table</h1>
   <table class="table table-striped" [mfData]="allResourceDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
     <thead>
     <tr>
-      <th style="width: 10%">
+      <th style="width: 15%">
         <mfDefaultSorter by="Project_Name">First Name</mfDefaultSorter>
       </th>
-      <th style="width: 10%">
+      <th style="width: 15%">
         <mfDefaultSorter by="Project_Description">Last Name</mfDefaultSorter>
       </th>
-      <th style="width: 10%">
-        <mfDefaultSorter by="Start_Date">DOB</mfDefaultSorter>
-      </th>
       <th style="width: 15%">
-        <mfDefaultSorter by="End_Date">Email-Id</mfDefaultSorter>
+        <mfDefaultSorter by="DOB">DOB</mfDefaultSorter>
       </th>
-      <th style="width: 10%">
+      <th style="width: 25%">
+        <mfDefaultSorter by="Email_Id">Email-Id</mfDefaultSorter>
+      </th>
+     <!-- <th style="width: 10%">
         <mfDefaultSorter by="End_Date">Password</mfDefaultSorter>
       </th>
       <th style="width: 10%">
-        <mfDefaultSorter by="End_Date">Join Date</mfDefaultSorter>
+        <mfDefaultSorter by="Join_Date">Join Date</mfDefaultSorter>
       </th>
       <th style="width: 10%">
         <mfDefaultSorter by="End_Date">End Date</mfDefaultSorter>
-      </th>
+      </th>-->
       <th style="width: 30%">
         Options
       </th>
     </tr>
     </thead>
     <div *ngIf="allResourceDetails.length === 0">
-      <h2>No Projects...!!</h2>
+      <h2>No Resources..!!</h2>
     </div>
     <tbody>
 
@@ -64,9 +80,9 @@
       <td>{{item.lastName}}</td>
       <td>{{item.DOB}}</td>
       <td>{{item.emailId}}</td>
-      <td>{{item.password}}</td>
+     <!-- <td>{{item.password}}</td>
       <td>{{item.joinDate}}</td>
-      <td>{{item.endDate}}</td>
+      <td>{{item.endDate}}</td>-->
       <td>
         <button type="button" class="btn btn-info " (click)="ViewResourcedata(item)">View</button>
         &emsp;

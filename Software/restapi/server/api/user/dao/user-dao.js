@@ -1,5 +1,6 @@
 import Promise from "bluebird";
 import models from "../../../../server/models"
+import roleStatus from "../../../enums/role"
 
 
 export default class userDAO{
@@ -50,11 +51,12 @@ export default class userDAO{
       let date = new Date(_reqBody.DOB);
       date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
       models.user.create({
-        firstname: _reqBody.firstname,
-        lastname: _reqBody.lastname,
+        firstName: _reqBody.firstName,
+        lastName: _reqBody.lastName,
         DOB: date,
         emailId: _reqBody.emailId,
-        password: _reqBody.password
+        password: _reqBody.password,
+        role: roleStatus[_reqBody.role].value
       }).then(result => {
         resolve(result)
       })
@@ -68,11 +70,12 @@ export default class userDAO{
   static update(_reqBody,_reqParamId) {
     return new Promise((resolve, reject) => {
       models.user.update({
-          firstname: _reqBody.firstname,
-          lastname: _reqBody.lastname,
+          firstName: _reqBody.firstName,
+          lastName: _reqBody.lastName,
           DOB: _reqBody.DOB,
           emailId: _reqBody.emailId,
-          password: _reqBody.password
+          password: _reqBody.password,
+          role: roleStatus[_reqBody.role].value
         },
         { where: { id: _reqParamId}, returning: true, plain:true}
       ).then((result) => {

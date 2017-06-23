@@ -23,6 +23,23 @@
 </div>
 
 
+<div *ngIf="allProjectNamesForAutoCompleter.length > 0">
+<!--<div>-->
+  <div class="container">
+    <div class="col-sm-4 pull-right">
+      <ng-select [allowClear]="true"
+                 [items]="allProjectNamesForAutoCompleter"
+                 (data)="refreshValue($event)"
+                 (selected)="selected($event)"
+                 (removed)="removed($event)"
+                 (typed)="typed($event)"
+                 placeholder="No Project Name selected">
+      </ng-select>
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
   <h1>Project Data Table</h1>
   <table class="table table-striped" [mfData]="allProjectDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
@@ -85,7 +102,6 @@
         </p>
       </div>
       <div class="modal-footer btn-toolbar" role="toolbar" aria-label="...">
-
         <button type="button" class="btn btn-primary pull-right" (click)="DeleteProjectData(tempProjectDetails)">Submit</button>
         &emsp;
         <button type="button" class="btn btn-danger pull-right" (click)="hideDeleteProjectDetails()">Cancel</button>

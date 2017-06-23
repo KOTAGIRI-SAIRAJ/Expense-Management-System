@@ -24,7 +24,7 @@ export class UserService {
 
   constructor(private http: Http, private queryApi: QueryApi, private router: Router) {
   }
-  createProject( project ): Observable<any> {
+  createUser( project ): Observable<any> {
     return this.queryApi.doPost('user', project)
       .map((res: Response) => {
         return res.json();
