@@ -64,7 +64,6 @@ export class projectService {
   updateTheProjectDetails(values){
     return this.queryApi.doPut('updateTheProjectDetails',values)
       .map((res:Response)=>{
-      alert('hi');
         return res.json();
       })
       .catch((error:any)=>{

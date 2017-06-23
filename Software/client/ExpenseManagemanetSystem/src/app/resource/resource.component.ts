@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {resourceService} from "./resource.service";
 import {ModalDirective} from "ngx-bootstrap";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-resource',
@@ -9,11 +10,13 @@ import {ModalDirective} from "ngx-bootstrap";
   providers :[resourceService]
 })
 export class ResourceComponent implements OnInit {
+  public router: Router;
   public allResourceDetails:Array<any> = [];
   tempResourceDetails:any;
   tempEmailId:string = '';
   @ViewChild('DeleteResourceDetails') public DeleteResourceDetails:ModalDirective;
-  constructor(public _resourceService:resourceService) {
+  constructor(public _resourceService:resourceService,public route: Router) {
+    this.router = route;
     this.getTheResourceData();
   }
 
@@ -33,6 +36,15 @@ export class ResourceComponent implements OnInit {
       });
     });
   }
+
+  ViewResourcedata(values){
+    this.router.navigate(['resource/'+values.id]);
+  }
+
+  EditResourceData(values){
+    this.router.navigate(['resource/'+values.id+'/edit']);
+  }
+
   DeleteResourceData(values){
     this._resourceService.deleteTheResourceRecord(values.id).subscribe(Resource=>{
       console.log('Sucessfully Deleted');

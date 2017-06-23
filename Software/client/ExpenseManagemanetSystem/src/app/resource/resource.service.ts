@@ -52,4 +52,22 @@ export class resourceService {
         return Observable.throw(error.json());
       })
   }
+  getTheDataById(resourceId){
+    return this.queryApi.doGet('getResourceById',resourceId)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
+  updateResource(values){
+    return this.queryApi.doPut('updateTheResourceDetails',values)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
 }

@@ -7,12 +7,16 @@ import {HomepageComponent} from "./homepage/homepage.component";
 import {ExpensesComponent} from "./expenses/expenses.component";
 import {AdminOperationsComponent} from "./admin-operations/admin-operations.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+
 import {ProjectComponent} from "./project/project.component";
-import {ResourceComponent} from "./resource/resource.component";
 import {ProjectAddComponent} from "./project/project-add/project-add.component";
-import {ResourceAddComponent} from "./resource/resource-add/resource-add.component";
 import {ProjectEditComponent} from "./project/project-edit/project-edit.component";
 import {ProjectViewComponent} from "./project/project-view/project-view.component";
+
+import {ResourceComponent} from "./resource/resource.component";
+import {ResourceAddComponent} from "./resource/resource-add/resource-add.component";
+import {ResourceEditComponent} from "app/resource/resource-edit/resource-edit.component";
+import {ResourceViewComponent} from "./resource/resource-view/resource-view.component";
 
 export const router:  Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,6 +26,7 @@ export const router:  Routes = [
   {path: 'dashboard', component : DashboardComponent},
   {path: 'project/create', component : ProjectAddComponent},
   {path: 'project/:id/edit', component : ProjectEditComponent},
+  {path: 'project/:id', component : ProjectViewComponent},
   {path: 'project', component : ProjectComponent},
   /*{path: 'project', component : ProjectComponent,
     children : [
@@ -31,7 +36,8 @@ export const router:  Routes = [
     ]
   },*/
   {path: 'resource', component : ResourceComponent},
-
+  {path: 'resource/:id/edit', component : ResourceEditComponent},
+  {path: 'resource/:id', component : ResourceViewComponent},
   {path: 'resource/create', component : ResourceAddComponent},
 
 

@@ -3,8 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {projectService} from "../project.service";
 
-
-
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
@@ -36,10 +34,9 @@ export class ProjectEditComponent implements OnInit {
   projectsPopup(values){
     console.log(values);
     values.id = this.userId;
-    /*values = JSON.stringify(values);*/
     this._projectService.updateTheProjectDetails(values).subscribe((response) => {
-      alert('hi');
         console.log(response);
+        this.revertToProjects();
     })
   }
   getTheIdDetailsFromDataBase(idValue){
@@ -57,5 +54,7 @@ export class ProjectEditComponent implements OnInit {
       });
     });
   }
-
+  revertToProjects(){
+    this.router.navigate(['project']);
+  }
 }

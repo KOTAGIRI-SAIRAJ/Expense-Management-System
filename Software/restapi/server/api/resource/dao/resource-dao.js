@@ -21,7 +21,7 @@ export default class resourceDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.resources
-        .findAll({where:{$or:[{firstName : queryParams}, { lastName : queryParams}]}})
+        .findAll({where:{$or:[{id : queryParams}]}})
         .then(result => {
           resolve(result);
         }, (error) => {

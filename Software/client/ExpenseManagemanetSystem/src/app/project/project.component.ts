@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
   public router: Router;
-
   public allProjectDetails:Array<any> =[];
   tempProjectDetails:any;
   tempProjectName:string = '';
@@ -39,7 +38,7 @@ export class ProjectComponent implements OnInit {
 
   }
   ViewProjectdata(values){
-
+    this.router.navigate(['project/'+values.id]);
   }
   EditProjectData(values){
     this.router.navigate(['project/'+values.id+'/edit']);

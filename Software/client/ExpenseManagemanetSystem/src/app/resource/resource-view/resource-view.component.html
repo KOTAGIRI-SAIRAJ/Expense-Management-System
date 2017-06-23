@@ -1,3 +1,85 @@
-<p>
-  resource-view works!
-</p>
+<body>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">Resource Details</h1>
+        <hr />
+      </div>
+    </div>
+    <div class="main-login main-center">
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> First Name :</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{firstName}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> Last Name :</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{lastName}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> DOB :</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{DOB| amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> EmailId:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{emailId}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> Password:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{password}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> Role:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{role}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> Join Date:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{joinDate| amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label> End Date :</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{endDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary pull-right" (click)="revertToProjects()">Submit</button>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+</div>
+</body>

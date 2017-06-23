@@ -9,11 +9,13 @@ export const resource = 'resource';
 export const delProject = 'delProject'
 export const delResource = 'delResource'
 export const getProjectById = 'getProjectById'
+export const getResourceById = 'getResourceById'
 export const updateTheProjectDetails = 'updateTheProjectDetails'
+export const updateTheResourceDetails = 'updateTheResourceDetails'
+
 
 
 export const ClientEndPoint= (type: string, params: any) => {
-  console.log(type);
   switch (type) {
     case user:
       return environment.API_ROOT + '/api/user';
@@ -27,10 +29,12 @@ export const ClientEndPoint= (type: string, params: any) => {
       return environment.API_ROOT + '/api/resource/'+params;
     case getProjectById:
       return environment.API_ROOT + '/api/project/'+params;
+    case getResourceById:
+      return environment.API_ROOT + '/api/resource/'+params;
     case updateTheProjectDetails:
-      return environment.API_ROOT + '/api/project/' + params;
-    /*case user:
-      return environment.API_ROOT + '/api/user/'+params*/
+      return environment.API_ROOT + '/api/project/' + params.id;
+    case updateTheResourceDetails:
+      return environment.API_ROOT + '/api/resource/' + params.id;
   }
 }
 

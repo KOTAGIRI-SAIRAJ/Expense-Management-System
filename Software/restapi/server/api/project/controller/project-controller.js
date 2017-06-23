@@ -28,9 +28,6 @@ export default class projectController {
 
   static update(req, res) {
     const _reqBody = req.body;
-    console.log("-*----------------****")
-    console.log(_reqBody.id)
-    console.log(req.params)
     const _reqParmaId  = req.params.id;
     projectDAO
       .update(_reqBody,_reqParmaId)
