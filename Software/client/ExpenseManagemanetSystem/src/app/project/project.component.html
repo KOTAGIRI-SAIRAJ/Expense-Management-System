@@ -73,9 +73,9 @@
       <td>{{item.projectStartDate}}</td>
       <td>{{item.projectEndDate}}</td>
       <td>
-        <button type="button" class="btn btn-info " (click)="ViewProjectdata(item)">View</button>
+        <button type="button" class="btn btn-info " routerLink="{{item.id}}">View</button>
         &emsp;
-        <button type="button" class="btn btn-primary " (click)="EditProjectData(item)">Edit</button>&emsp;
+        <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
         <button type="button" class="btn btn-danger" (click)="deleteProjectData(item)">Delete</button>
       </td>
     </tr>
@@ -109,3 +109,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

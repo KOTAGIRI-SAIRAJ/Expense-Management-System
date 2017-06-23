@@ -17,29 +17,32 @@ import {ResourceAddComponent} from "./resource/resource-add/resource-add.compone
 import {ResourceEditComponent} from "app/resource/resource-edit/resource-edit.component";
 import {ResourceViewComponent} from "./resource/resource-view/resource-view.component";
 
-export const router:  Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component : HomepageComponent},
-  {path: 'home/adminOperations', component : AdminOperationsComponent},
-  {path: 'dashboard', component : DashboardComponent},
+import {ExpenseComponent} from "./expense/expense.component";
+import {ExpenseAddComponent} from "./expense/expense-add/expense-add.component";
 
-  {path: 'project/create', component : ProjectAddComponent},
-  {path: 'project/:id/edit', component : ProjectEditComponent},
-  {path: 'project/:id', component : ProjectViewComponent},
-  {path: 'project', component : ProjectComponent},
-  /*{path: 'project', component : ProjectComponent,
-    children : [
-      {path : 'create', component: ProjectAddComponent},
-      {path : ':id/edit', component: ProjectEditComponent},
-      {path : ':id', component: ProjectViewComponent},
-    ]
-  },*/
-  {path: 'resource', component : ResourceComponent},
-  {path: 'resource/create', component : ResourceAddComponent},
-  {path: 'resource/:id/edit', component : ResourceEditComponent},
-  {path: 'resource/:id', component : ResourceViewComponent},
+  export const router:  Routes = [
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: 'home', component : HomepageComponent},
+    {path: 'home/adminOperations', component : AdminOperationsComponent},
+    {path: 'dashboard', component : DashboardComponent},
+    {path: 'expense', component : ExpenseComponent},
+    {path: 'expense/create', component : ExpenseAddComponent},
+   /* {path: 'project/create', component : ProjectAddComponent},
+    {path: 'project/:id/edit', component : ProjectEditComponent},
+    {path: 'project/:id', component : ProjectViewComponent},
+    {path: 'project', component : ProjectComponent},  */
 
-
+    {path: 'project', component : ProjectComponent,
+      children : [
+        {path : 'create', component: ProjectAddComponent},
+        {path : ':id/edit', component: ProjectEditComponent},
+        {path : ':id', component: ProjectViewComponent},
+      ]
+    },
+    {path: 'resource', component : ResourceComponent},
+    {path: 'resource/create', component : ResourceAddComponent},
+    {path: 'resource/:id/edit', component : ResourceEditComponent},
+    {path: 'resource/:id', component : ResourceViewComponent},
 
 ];
 

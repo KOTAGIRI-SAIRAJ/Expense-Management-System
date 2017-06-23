@@ -27,7 +27,11 @@ import { ResourceComponent } from './resource/resource.component';
 import { ResourceAddComponent } from './resource/resource-add/resource-add.component';
 import { ResourceEditComponent } from './resource/resource-edit/resource-edit.component';
 import { ResourceViewComponent } from './resource/resource-view/resource-view.component';
+
 import { ExpenseComponent } from './expense/expense.component';
+import { ExpenseAddComponent } from './expense/expense-add/expense-add.component';
+import { ExpenseViewComponent } from './expense/expense-view/expense-view.component';
+import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 
 
 
@@ -50,7 +54,11 @@ import { ExpenseComponent } from './expense/expense.component';
     ResourceAddComponent,
     ResourceEditComponent,
     ResourceViewComponent,
-    ExpenseComponent
+
+    ExpenseComponent,
+    ExpenseAddComponent,
+    ExpenseViewComponent,
+    ExpenseEditComponent,
 
   ],
   imports: [
