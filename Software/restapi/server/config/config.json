@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "password",
-    "database": "expensemangementsystemdb",
+    "database": "expensemanagementsystem",
     "host": "localhost",
     "dialect": "postgres"
   }

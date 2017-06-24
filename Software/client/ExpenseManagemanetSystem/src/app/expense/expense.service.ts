@@ -24,5 +24,32 @@ export class expenseService {
 
   constructor(private http: Http, private queryApi: QueryApi, private router: Router) {
   }
-
+  createExpense(expenseValues): Observable<any> {
+    return this.queryApi.doPost('expense',expenseValues)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
+  getAllResources(){
+    let expenseValues
+    return this.queryApi.doGet('expense',expenseValues)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
+  getTheDataById(idvalue){
+    return this.queryApi.doGet('expense',idvalue)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
 }

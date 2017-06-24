@@ -28,8 +28,9 @@ export class ProjectAddComponent implements OnInit {
     alert('from Projects');
     console.log(values);
     this._projectService.createProject(values).subscribe((response) => {
-      this.projectsForm.reset();
-      this.revertToProjects();
+      //this.projectsForm.reset();
+      this.router.navigate(['project']);
+      //this.revertToProjects();
     });
 
   }

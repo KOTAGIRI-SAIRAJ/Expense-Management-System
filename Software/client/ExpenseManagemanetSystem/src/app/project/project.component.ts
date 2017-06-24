@@ -24,10 +24,12 @@ export class ProjectComponent implements OnInit {
   @ViewChild('DeleteProjectDetails') public DeleteProjectDetails:ModalDirective;
   constructor(public _projectService:projectService,public route: Router) {
     this.router = route;
+    console.log('from consturucotr');
     this.getTheProjectsData();
   }
 
   ngOnInit() {
+    console.log('from ngOninit');
     this.allProjectNamesForAutoCompleter = [];
     this._projectService.getAllProjects().subscribe(ProjectDetails=>{
       ProjectDetails.forEach((eachRecord)=>{

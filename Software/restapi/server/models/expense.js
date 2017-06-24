@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     expenseDate: DataTypes.DATE,
     expensetype:{
       type:DataTypes.ENUM,
-      values:expenseStatus.values
+      values:expenseType.values
     },
     projectId: DataTypes.INTEGER,
     resourceId: DataTypes.INTEGER,

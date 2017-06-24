@@ -23,13 +23,23 @@ module.exports = {
       },
       expensetype: {
         type: Sequelize.ENUM,
-        values:expenseStatus.values
+        values:expenseType.values
       },
       projectId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: "projects",
+          key: "id"
+        }
       },
       resourceId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: "resources",
+          key: "id"
+        }
       },
       status: {
         type: Sequelize.ENUM,

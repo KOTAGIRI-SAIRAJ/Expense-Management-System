@@ -28,7 +28,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-gbp" aria-hidden="true"></i></span>
-              <textarea class="form-control" type="number" placeholder="Enter the Project Description" [formControl]="expenseForm.controls['amount']"></textarea>
+              <input class="form-control" type="number" placeholder="Enter the Amount" [formControl]="expenseForm.controls['amount']">
               <div *ngIf="expenseForm.controls['amount'].hasError('required') && expenseForm.controls['amount'].touched" class="alert alert-danger">
                 You must include a Amount
               </div>
@@ -42,7 +42,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the Start Date" [formControl]="expenseForm.controls['expenseDate']">
+              <input class="form-control" type="date" placeholder="Enter the Date" [formControl]="expenseForm.controls['expenseDate']">
               <div *ngIf="expenseForm.controls['expenseDate'].hasError('required') && expenseForm.controls['expenseDate'].touched" class="alert alert-danger">
                 You must include Date of Expense
               </div>
@@ -55,7 +55,13 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <input class="form-control" type="text" placeholder="Enter the End Date" [formControl]="expenseForm.controls['expensetype']">
+              <select name="expensetype" class="form-control" [formControl]="expenseForm.controls['expensetype']">
+                <option value="PrePopulatedDataOffice">Pre Populated Data Office</option>
+                <option value="Recruitment">Recruitment</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Airfare">Air Fare</option>
+                <option value="FoodForStaff">Food For Staff</option>
+              </select>
               <div *ngIf="expenseForm.controls['expensetype'].hasError('required') && expenseForm.controls['expensetype'].touched" class="alert alert-danger">
                 You must include Expense Type
               </div>
@@ -67,7 +73,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
-              <input class="form-control" type="number" placeholder="Enter the End Date" [formControl]="expenseForm.controls['projectId']">
+              <input class="form-control" type="number" placeholder="Enter the Projects" [formControl]="expenseForm.controls['projectId']">
               <div *ngIf="expenseForm.controls['projectId'].hasError('required') && expenseForm.controls['projectId'].touched" class="alert alert-danger">
                 You must include the Projects
               </div>
@@ -79,20 +85,26 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <input class="form-control" type="number" placeholder="Enter the End Date" [formControl]="expenseForm.controls['resourceId']">
+              <input class="form-control" type="number" placeholder="Enter the Resources" [formControl]="expenseForm.controls['resourceId']">
               <div *ngIf="expenseForm.controls['resourceId'].hasError('required') && expenseForm.controls['resourceId'].touched" class="alert alert-danger">
                 You must include Resources
               </div>
             </div>
           </div>
         </div>
-        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['expensetype'].valid && expenseForm.controls['expensetype'].touched}">
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['status'].valid && expenseForm.controls['status'].touched}">
           <label>Status:</label>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-stats" aria-hidden="true"></i></span>
-              <input class="form-control" type="text" placeholder="Enter the End Date" [formControl]="expenseForm.controls['expensetype']">
-              <div *ngIf="expenseForm.controls['expensetype'].hasError('required') && expenseForm.controls['expensetype'].touched" class="alert alert-danger">
+              <select name="status" class="form-control" [formControl]="expenseForm.controls['status']">
+                <option value="Draft">Draft</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Approved">Approved</option>
+                <option value="Settled">Settled</option>
+              </select>
+              <div *ngIf="expenseForm.controls['status'].hasError('required') && expenseForm.controls['status'].touched" class="alert alert-danger">
                 You must include Status
               </div>
             </div>
@@ -100,7 +112,7 @@
         </div>
         <br>
         <div class="col-sm pull-right">
-          <button type="button" class="btn btn-danger" (click)="revertToexpense()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>
 
           <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
 

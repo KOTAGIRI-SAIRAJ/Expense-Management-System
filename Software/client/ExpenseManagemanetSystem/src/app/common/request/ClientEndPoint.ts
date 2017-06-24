@@ -2,16 +2,18 @@
  * Created by semanticbit on 20/6/17.
  */
 import { environment } from './../../../environments/environment';
+import {isUndefined} from "util";
 
 export const user = 'user';
 export const project = 'project';
+export const expense= 'expense';
 export const resource = 'resource';
-export const delProject = 'delProject'
-export const delResource = 'delResource'
-export const getProjectById = 'getProjectById'
-export const getResourceById = 'getResourceById'
-export const updateTheProjectDetails = 'updateTheProjectDetails'
-export const updateTheResourceDetails = 'updateTheResourceDetails'
+export const delProject = 'delProject';
+export const delResource = 'delResource';
+export const getProjectById = 'getProjectById';
+export const getResourceById = 'getResourceById';
+export const updateTheProjectDetails = 'updateTheProjectDetails';
+export const updateTheResourceDetails = 'updateTheResourceDetails';
 
 
 
@@ -24,6 +26,12 @@ export const ClientEndPoint= (type: string, params: any) => {
       return environment.API_ROOT + '/api/project';
     case resource :
       return environment.API_ROOT + '/api/resource';
+    case expense:
+      if(params){
+        return environment.API_ROOT + '/api/expense/'+params;
+      }else{
+        return environment.API_ROOT + '/api/expense';
+      }
     case delProject:
       return environment.API_ROOT + '/api/project/'+params;
     case delResource:

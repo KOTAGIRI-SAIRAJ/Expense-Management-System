@@ -9,7 +9,7 @@ export default class expenseDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.expense
-        .findAndCountAll({})
+        .findAll({})
         .then(result => {
           resolve(result);
         }, (error) => {
@@ -22,7 +22,7 @@ export default class expenseDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.expense
-        .findAll({where:{$or:[{title : queryParams}]}})
+        .findAll({where:{$or:[{id : queryParams}]}})
         .then(result => {
           resolve(result);
         }, (error) => {

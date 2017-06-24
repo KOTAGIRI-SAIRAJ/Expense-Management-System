@@ -42,6 +42,7 @@ export default class expenseController {
 
   static getById(req, res) {
     const _query = req.params.id;
+
     expenseDAO
       .getById(_query)
       .then(newusers => {
