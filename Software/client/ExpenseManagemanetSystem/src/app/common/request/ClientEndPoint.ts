@@ -27,10 +27,16 @@ export const ClientEndPoint= (type: string, params: any) => {
     case resource :
       return environment.API_ROOT + '/api/resource';
     case expense:
-      if(params){
-        return environment.API_ROOT + '/api/expense/'+params;
-      }else{
-        return environment.API_ROOT + '/api/expense';
+      if(params != null ){
+        if(typeof params === 'string' || params instanceof String){
+          return environment.API_ROOT + '/api/expense/'+params;
+        }else if( typeof params === 'object' && params.hasOwnProperty('id') ){
+          return environment.API_ROOT + '/api/expense/' + params.id;
+        }else {
+          return environment.API_ROOT + '/api/expense'
+        }
+      } else {
+        return environment.API_ROOT + '/api/expense'
       }
     case delProject:
       return environment.API_ROOT + '/api/project/'+params;

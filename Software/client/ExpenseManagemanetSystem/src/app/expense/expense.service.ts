@@ -43,10 +43,29 @@ export class expenseService {
         return Observable.throw(error.json());
       })
   }
+  updateExpenses(values){
+    console.log(values);
+    return this.queryApi.doPut('expense',values)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
   getTheDataById(idvalue){
     return this.queryApi.doGet('expense',idvalue)
       .map((res:Response)=>{
         return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
+  deleteTheExpenseRecord(values){
+    return this.queryApi.doDelete('expense',values)
+      .map((res:Response)=>{
+        return res;
       })
       .catch((error:any)=>{
         return Observable.throw(error.json());

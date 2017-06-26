@@ -26,14 +26,14 @@
 
 <div class="container">
   <h1>Expense Data Table</h1>
-  <table class="table table-striped" [mfData]="allResourceDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
+  <table class="table table-striped" [mfData]="allExpenseDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
     <thead>
     <tr>
       <th style="width: 10%">
-        <mfDefaultSorter by="Project_Name">Title</mfDefaultSorter>
+        <mfDefaultSorter by="Expense_Name">Title</mfDefaultSorter>
       </th>
       <th style="width: 10%">
-        <mfDefaultSorter by="Project_Description">Amount</mfDefaultSorter>
+        <mfDefaultSorter by="Expense_Description">Amount</mfDefaultSorter>
       </th>
       <th style="width: 10%">
         <mfDefaultSorter by="Start_Date">Expense Date</mfDefaultSorter>
@@ -55,12 +55,12 @@
       </th>
     </tr>
     </thead>
-    <div *ngIf="allResourceDetails.length === 0">
+    <div *ngIf="allExpenseDetails.length === 0">
       <h2>No Expenses...!!</h2>
     </div>
     <tbody>
 
-    <tr bgcolor="#fffaf0" *ngFor="let item of allResourceDetails">
+    <tr bgcolor="#fffaf0" *ngFor="let item of allExpenseDetails">
       <td>{{item.title}}</td>
       <td>{{item.amount}}</td>
       <td>{{item.expenseDate}}</td>
@@ -72,10 +72,35 @@
         <button type="button" class="btn btn-info " routerLink="{{item.id}}">View</button>
         &emsp;
         <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
-        <button type="button" class="btn btn-danger" (click)="deleteProjectData(item)">Delete</button>
+        <button type="button" class="btn btn-danger" (click)="deleteExpenseData(item)">Delete</button>
       </td>
     </tr>
 
     </tbody>
   </table>
+</div>
+
+
+
+<div bsModal #DeleteExpenseDetails="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Expense</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeleteExpenseDetails()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do You want to delete the Expense
+        <p><b>{{tempTitle}}</b>
+        </p>
+      </div>
+      <div class="modal-footer btn-toolbar" role="toolbar" aria-label="...">
+        <button type="button" class="btn btn-primary pull-right" (click)="DeleteExpenseData(tempExpenseDetails)">Submit</button>
+        &emsp;
+        <button type="button" class="btn btn-danger pull-right" (click)="hideDeleteExpenseDetails()">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>

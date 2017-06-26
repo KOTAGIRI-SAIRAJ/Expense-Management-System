@@ -12,9 +12,12 @@ import {expenseService} from "./expense.service";
 })
 export class ExpenseComponent implements OnInit {
   allResourceNamesForAutoCompleter = [];
+  tempExpenseDetails:any;
   public router: Router;
-  allResourceDetails:Array<any>=[];
-  totalResourceDetails:Array<any> = [];
+  tempTitle:any;
+  allExpenseDetails:Array<any>=[];
+  totalExpenseDetails:Array<any> = [];
+  @ViewChild('DeleteExpenseDetails') public DeleteExpenseDetails:ModalDirective;
   constructor(public _expenseService:expenseService,public route: Router) {
     this.router = route;
     this.getTheResourcesData();
@@ -22,15 +25,15 @@ export class ExpenseComponent implements OnInit {
 
   ngOnInit() {
     /*this.allResourceNamesForAutoCompleter = [];
-    this._expenseService.getAllResources().subscribe(ProjectDetails=>{
-      ProjectDetails.forEach((eachRecord)=>{
+    this._expenseService.getAllResources().subscribe(ExpenseDetails=>{
+      ExpenseDetails.forEach((eachRecord)=>{
         let flag = 0;
         if(this.allResourceNamesForAutoCompleter.length === 0){
           this.allResourceNamesForAutoCompleter.push(eachRecord.title);
           flag =1;
         }else{
-          this.allResourceNamesForAutoCompleter.forEach((eachProject)=>{
-            if(eachProject === eachRecord.title){
+          this.allResourceNamesForAutoCompleter.forEach((eachExpense)=>{
+            if(eachExpense === eachRecord.title){
               flag =1;
             }
           })
@@ -44,13 +47,31 @@ export class ExpenseComponent implements OnInit {
 
   getTheResourcesData() {
     this._expenseService.getAllResources().subscribe(ResourceDetails=>{
-      this.allResourceDetails =  [];
+      this.allExpenseDetails =  [];
       ResourceDetails.forEach((eachRecord)=>{
         var date = new Date(eachRecord.expenseDate);
+        console.log(date);
         eachRecord.expenseDate = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
-        this.allResourceDetails.push(eachRecord);
+        this.allExpenseDetails.push(eachRecord);
       });
-      this.totalResourceDetails = this.allResourceDetails;
+      this.totalExpenseDetails = this.allExpenseDetails;
     });
   }
+  DeleteExpenseData(values){
+
+    this._expenseService.deleteTheExpenseRecord(values).subscribe(Expense=>{
+      console.log('Sucessfully Deleted');
+      this.getTheResourcesData();
+    });
+    this.hideDeleteExpenseDetails();
+  }
+  deleteExpenseData = (Data):void =>{
+    this.tempExpenseDetails = Data;
+    this.tempTitle = Data.title;
+    console.log(this.tempExpenseDetails);
+    this.DeleteExpenseDetails.show();
+  };
+  public hideDeleteExpenseDetails = ():void =>{
+    this.DeleteExpenseDetails.hide();
+  };
 }

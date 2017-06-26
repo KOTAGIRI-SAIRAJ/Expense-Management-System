@@ -35,13 +35,13 @@ export default class expenseDAO{
   static createNew(request,res) {
     return new Promise((resolve, reject) => {
       let _reqBody = request;
-      let date = new Date(_reqBody.expenseDate);
-      date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
+      /*let date = new Date(_reqBody.expenseDate);
+      date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);*/
       models.expense
         .create({
           title: _reqBody.title,
           amount: _reqBody.amount,
-          expenseDate: date,
+          expenseDate: _reqBody.expenseDate,
           expensetype:expenseType[_reqBody.expensetype].value,
           projectId: _reqBody.projectId,
           resourceId: _reqBody.resourceId,
@@ -51,19 +51,20 @@ export default class expenseDAO{
       })
         .catch(error => {
           console.log(error)
-        });;
+        });
     });
   }
 
-  static update(_reqBody,_reqParamId) {
-    let date = new Date(_reqBody.expenseDate);
-    date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);
+  static update(request,_reqParamId) {
+    let _reqBody = request;
+    /*let date = new Date(_reqBody.expenseDate);
+    date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);*/
     return new Promise((resolve, reject) => {
       models.expense
         .update({
             title: _reqBody.title,
             amount: _reqBody.amount,
-            expenseDate: date,
+            expenseDate: _reqBody.expenseDate,
             expensetype:expenseType[_reqBody.expensetype].value,
             projectId: _reqBody.projectId,
             resourceId: _reqBody.resourceId,
