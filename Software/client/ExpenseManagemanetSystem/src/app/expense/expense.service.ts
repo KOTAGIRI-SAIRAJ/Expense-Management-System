@@ -33,7 +33,7 @@ export class expenseService {
         return Observable.throw(error.json());
       })
   }
-  getAllResources(){
+  getAllExpenses(){
     let expenseValues
     return this.queryApi.doGet('expense',expenseValues)
       .map((res:Response)=>{

@@ -46,7 +46,7 @@ export class ExpenseComponent implements OnInit {
   }
 
   getTheResourcesData() {
-    this._expenseService.getAllResources().subscribe(ResourceDetails=>{
+    this._expenseService.getAllExpenses().subscribe(ResourceDetails=>{
       this.allExpenseDetails =  [];
       ResourceDetails.forEach((eachRecord)=>{
         var date = new Date(eachRecord.expenseDate);

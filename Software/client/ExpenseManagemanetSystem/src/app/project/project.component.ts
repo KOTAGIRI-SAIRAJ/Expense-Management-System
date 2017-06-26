@@ -19,8 +19,6 @@ export class ProjectComponent implements OnInit {
   public allProjectNamesForAutoCompleter:Array<any>;
   tempProjectDetails:any;
   tempProjectName:string = '';
-
-  allProjectsForAutoComplter = ['sai','raj'];
   @ViewChild('DeleteProjectDetails') public DeleteProjectDetails:ModalDirective;
   constructor(public _projectService:projectService,public route: Router) {
     this.router = route;
