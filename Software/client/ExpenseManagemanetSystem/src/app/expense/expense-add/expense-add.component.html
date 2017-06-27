@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="main-login main-center">
-      <form [formGroup]="expenseForm" (ngSubmit)="expensePopup(expenseForm.value)">
+      <form [formGroup]="expenseForm" (ngSubmit)="expenseData(expenseForm.value)">
         <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['title'].valid && expenseForm.controls['title'].touched}">
           <label>Title</label>
           <div class="cols-sm-10">
@@ -74,9 +74,8 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
               <div *ngIf="projectNamesforAutoCompleter.length > 0">
-              <ng-select  [multiple]="true"
+              <ng-select  [allowClear]="true"
                           [items]="projectNamesforAutoCompleter"
-                          [disabled]="disabled"
                           (selected)="selectedProject($event)"
                           (removed)="removedProject($event)"
                           placeholder="No Project selected">
@@ -93,15 +92,7 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <div *ngIf="resorceNamesforAutoCompleter.length > 0">
-                <ng-select  [multiple]="true"
-                            [items]="resorceNamesforAutoCompleter"
-                            [disabled]="disabled"
-                            (selected)="selectedResource($event)"
-                            (removed)="removedResource($event)"
-                            placeholder="No Resource selected">
-                </ng-select>
-              </div>
+              <input class="form-control" type="number" placeholder="Enter the resource" [formControl]="expenseForm.controls['resourceId']">
               <div *ngIf="expenseForm.controls['resourceId'].hasError('required') && expenseForm.controls['resourceId'].touched" class="alert alert-danger">
                 You must include Resources
               </div>
@@ -129,7 +120,6 @@
         <br>
         <div class="col-sm pull-right">
           <button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>
-
           <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
         </div>
         <br><br>

@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="main-login main-center">
-      <form [formGroup]="projectsForm" (ngSubmit)="projectsPopup(projectsForm.value)">
+      <form [formGroup]="projectsForm" (ngSubmit)="projectsData(projectsForm.value)">
         <div class="form-group" [ngClass]="{'has-error':!projectsForm.controls['projectName'].valid && projectsForm.controls['projectName'].touched}">
           <label>Project Name</label>
           <div class="cols-sm-10">

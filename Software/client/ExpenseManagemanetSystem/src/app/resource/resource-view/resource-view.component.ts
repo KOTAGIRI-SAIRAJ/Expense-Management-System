@@ -20,7 +20,7 @@ export class ResourceViewComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
-      console.log(this.userId);
+
       this.getTheIdDetailsFromDataBase(this.userId);
     });
   }

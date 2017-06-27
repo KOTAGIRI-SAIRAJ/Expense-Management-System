@@ -31,11 +31,9 @@ export class ProjectEditComponent implements OnInit {
       this.getTheIdDetailsFromDataBase(this.userId);
     });
   }
-  projectsPopup(values){
-    console.log(values);
+  projectsData(values){
     values.id = this.userId;
     this._projectService.updateTheProjectDetails(values).subscribe((response) => {
-        console.log(response);
         this.revertToProjects();
     })
   }

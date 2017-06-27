@@ -72,7 +72,7 @@ export default class expenseDAO{
           },
           { where: { id: _reqParamId}, returning: true, plain:true}
         ).then((result) => {
-        console.log(result[1].dataValues);
+
         resolve(result[1].dataValues);
       }, (error) => {
         reject(error);

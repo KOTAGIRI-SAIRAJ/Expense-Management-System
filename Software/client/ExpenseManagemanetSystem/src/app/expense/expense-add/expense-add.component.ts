@@ -5,6 +5,7 @@ import {expenseService} from "../expense.service";
 import {router} from "../../app.router";
 import {resourceService} from "../../resource/resource.service";
 import {projectService} from "../../project/project.service";
+import {isUndefined} from "util";
 
 
   @Component({
@@ -25,6 +26,7 @@ import {projectService} from "../../project/project.service";
     resourceData : Map<number, string> = new Map<number, string>();
     selectedProjects:Array<any> = [];
     selectedResources:Array<any> = [];
+    selectedProjectsId:any;
     constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,public _resourceService:resourceService,public _projectService:projectService) {
       this.router = route;
       this.expenseForm = this.fb.group({
@@ -43,31 +45,20 @@ import {projectService} from "../../project/project.service";
           projects.forEach((eachRecord)=>{
             this.projectNamesforAutoCompleter.push(eachRecord.projectName);
             this.projectData.set(eachRecord.id, eachRecord.projectName);
-            console.log(this.projectData)
-            for (let key of Array.from(this.projectData.keys())) {
-              console.log(key);
-            }
           })
         this._resourceService.getAllResources().subscribe((resources) => {
           resources.forEach((eachRecord)=>{
             this.resorceNamesforAutoCompleter.push(eachRecord.firstName+' '+eachRecord.lastName)
             this.resourceData.set(eachRecord.id, eachRecord.firstName+' '+eachRecord.lastName);
-            console.log(this.resourceData)
           })
         })
       })
 
     }
-    expensePopup(values){
-      if(this.selectedProjects.length !== 0 && this.selectedResources.length !== 0){
-        this.selectedProjects.forEach((eachProject)=>{
-          let key = this.projectData.keys();
-          console.log(key);
-        })
-        this.selectedResources.forEach((eachResource)=>{
-          let key = this.resourceData.get(eachResource);
-          console.log(key+' '+eachResource);
-        })
+    expenseData(values){
+      console.log(values)
+      if(this.selectedProjectsId !== null){
+        values.projectId = this.selectedProjectsId;
         this._expenseService.createExpense(values).subscribe((response) => {
           this.revertToExpense();
         })
@@ -87,35 +78,63 @@ import {projectService} from "../../project/project.service";
       this.disabled = this._disabledV === '1';
     }
 
-    public selectedProject(value:any):void {
-      console.log('Selected Project value is: ', value);
-      this.selectedProjects.push(value.id)
+    public selectedProject(SelectedValue:any):void {
+
+      this.projectData.forEach((value: string, key: number) => {
+
+        if(SelectedValue.id === value){
+          this.selectedProjectsId = key;
+        }
+      })
+
+      /*this.selectedProjects.push(value.id)
       console.log(this.selectedProjects)
+      this.projectData.forEach((value: string, key: number) => {
+        console.log("here is " + key + ', ' + value);
+        this.selectedProjects.forEach((eachSelectedProject)=>{
+          if(eachSelectedProject === value){
+            this.selectedProjectsIds.push(key);
+          }
+        })
+      });
+      console.log(this.selectedProjectsIds);*/
     }
 
-    public removedProject(value:any):void {
-      console.log('Removed Project value is: ', value);
-      this.selectedProjects.forEach((eachProject,index)=>{
+    public removedProject(removedValue:any):void {
+      console.log('Removed Project value is: ', removedValue);
+      /*this.selectedProjects.forEach((eachProject,index)=>{
         if(eachProject === value.id){
           this.selectedProjects.splice(index,1);
         }
-      })
-      console.log(this.selectedProjects)
+      })*/
+      /*this.selectedProjectsIds = [];
+      this.projectData.forEach((value: string, key: number) => {
+        console.log("here is " + key + ', ' + value);
+        this.selectedProjects.forEach((eachSelectedProject)=>{
+          if(eachSelectedProject === value){
+            this.selectedProjectsIds.push(key);
+          }
+        })
+      });
+      console.log(this.selectedProjectsIds);*/
+      this.selectedProjectsId = null;
+
+
     }
     public selectedResource(value:any):void {
-      console.log('Selected Resource value is: ', value);
+
       this.selectedResources.push(value.id);
-      console.log(this.selectedResources)
+
     }
 
     public removedResource(value:any):void {
-      console.log('Removed  Resource value is: ', value);
+
       this.selectedResources.forEach((eachResource,index)=>{
         if(eachResource === value.id){
           this.selectedResources.splice(index,1);
         }
       })
-      console.log(this.selectedResources)
+
     }
 
   }

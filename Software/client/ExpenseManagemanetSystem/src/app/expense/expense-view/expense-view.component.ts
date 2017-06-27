@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {expenseService} from "../expense.service";
+import {projectService} from "../../project/project.service";
 
 @Component({
   selector: 'app-expense-view',
   templateUrl: './expense-view.component.html',
   styleUrls: ['./expense-view.component.css'],
-  providers:[expenseService]
+  providers:[expenseService,projectService]
 })
 export class ExpenseViewComponent implements OnInit {
   userId: any;
@@ -19,7 +20,7 @@ export class ExpenseViewComponent implements OnInit {
   status: any;
   public router: Router;
 
-  constructor(private activatedRoute: ActivatedRoute, public route: Router, public _expenseService: expenseService) {
+  constructor(private activatedRoute: ActivatedRoute, public route: Router, public _expenseService: expenseService,public _projectService:projectService) {
     this.router = route;
   }
 
@@ -32,16 +33,18 @@ export class ExpenseViewComponent implements OnInit {
   }
 
   getTheIdDetailsFromDataBase(idValue) {
-    this._expenseService.getTheDataById(idValue).subscribe((response) => {
-      response = response[0];
-      console.log(response);
-      this.title = response.title;
-      this.amount = response.amount;
-      this.expenseDate = response.expenseDate;
-      this.expensetype = response.expensetype;
-      this.projectId = response.projectId;
-      this.resourceId = response.resourceId;
-      this.status = response.status;
+    this._expenseService.getTheDataById(idValue).subscribe((expenseRecord) => {
+      expenseRecord= expenseRecord[0];
+      this._projectService.getTheDataById(expenseRecord.projectId).subscribe((projectRecord) => {
+        this.title = expenseRecord.title;
+        this.amount = expenseRecord.amount;
+        this.expenseDate = expenseRecord.expenseDate;
+        this.expensetype = expenseRecord.expensetype;
+        this.projectId = projectRecord[0].projectName;
+        this.resourceId = expenseRecord.resourceId;
+        this.status = expenseRecord.status;
+      })
+
     });
   }
   revertToExpense(){

@@ -22,12 +22,10 @@ export class ProjectComponent implements OnInit {
   @ViewChild('DeleteProjectDetails') public DeleteProjectDetails:ModalDirective;
   constructor(public _projectService:projectService,public route: Router) {
     this.router = route;
-    console.log('from consturucotr');
     this.getTheProjectsData();
   }
 
   ngOnInit() {
-    console.log('from ngOninit');
     this.allProjectNamesForAutoCompleter = [];
     this._projectService.getAllProjects().subscribe(ProjectDetails=>{
       ProjectDetails.forEach((eachRecord)=>{
@@ -78,7 +76,6 @@ export class ProjectComponent implements OnInit {
   deleteProjectData = (Data):void =>{
     this.tempProjectDetails = Data;
     this.tempProjectName = Data.projectName;
-    console.log(this.tempProjectDetails);
     this.DeleteProjectDetails.show();
   };
   public hideDeleteProjectDetails = ():void =>{
@@ -97,7 +94,6 @@ export class ProjectComponent implements OnInit {
 
   // Get The Selected Product and returns the Product Id using Event Emitter
   public selected(value: any): void {
-    console.log('from Selected '+value.id);
     this.updateDataTable(value.id);
   }
 

@@ -35,11 +35,9 @@ export class ResourceEditComponent implements OnInit {
       this.getTheIdDetailsFromDataBase(this.userId);
     });
   }
-  resourcePopup(values){
+  resourceData(values){
     values.id = this.userId;
-    console.log(values);
     this._resourceService.updateResource(values).subscribe((response) => {
-      console.log(response);
       this.revertToResources();
     });
   }

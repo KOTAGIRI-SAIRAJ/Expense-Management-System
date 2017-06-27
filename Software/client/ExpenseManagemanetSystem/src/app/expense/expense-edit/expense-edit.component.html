@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="main-login main-center">
-      <form [formGroup]="expenseForm" (ngSubmit)="expensePopup(expenseForm.value)">
+      <form [formGroup]="expenseForm" (ngSubmit)="expenseData(expenseForm.value)">
         <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['title'].valid && expenseForm.controls['title'].touched}">
           <label>Title</label>
           <div class="cols-sm-10">
@@ -69,11 +69,23 @@
           </div>
         </div>
         <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['projectId'].valid && expenseForm.controls['projectId'].touched}">
-          <label>Project Id :</label>
+          <label>Project Name :</label>
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
-              <input class="form-control" type="number" placeholder="Enter the Projects" value="{{projectId}}" [formControl]="expenseForm.controls['projectId']">
+              <div *ngIf="selectedProjectvalue.length > 0">
+                <div *ngIf="projectNamesforAutoCompleter.length > 0">
+                <ng-select [formControl]="expenseForm.controls['projectId']"
+                            [allowClear]="true"
+                            [items]="projectNamesforAutoCompleter"
+                            [active]="selectedProjectvalue"
+                            [disabled]="disabled"
+                            (selected)="selectedProject($event)"
+                            (removed)="removedProject($event)"
+                            placeholder="No Project selected">
+                </ng-select>
+                </div>
+              </div>
               <div *ngIf="expenseForm.controls['projectId'].hasError('required') && expenseForm.controls['projectId'].touched" class="alert alert-danger">
                 You must include the Projects
               </div>

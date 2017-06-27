@@ -2,68 +2,96 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {expenseService} from "../expense.service";
+import {projectService} from "../../project/project.service";
 
 @Component({
   selector: 'app-expense-edit',
   templateUrl: './expense-edit.component.html',
   styleUrls: ['./expense-edit.component.css'],
-  providers:[FormBuilder,expenseService]
+  providers:[FormBuilder,expenseService,projectService]
 })
 export class ExpenseEditComponent implements OnInit {
   expenseForm : FormGroup;
   public router: Router;
+  public disabled: any;
   userId:any;
   title:any;amount:number;expenseDate:Date;expensetype:any;
-  projectId:number;resourceId:number;status:any;d
-  constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,private activatedRoute: ActivatedRoute) {
+  projectId:any;resourceId:number;status:any;
+  projectNamesforAutoCompleter:Array<any> =[];
+  selectedProjectvalue:any=[];
+  autocompleterSelectedProject:any;
+  constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,private activatedRoute: ActivatedRoute,public _projectService:projectService) {
     this.router = route;
+  }
+
+  ngOnInit() {
     this.expenseForm = this.fb.group({
       'title' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
       'amount' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
       'expenseDate' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
       'expensetype': ['', Validators.compose([Validators.required,Validators.maxLength(30)])],
-      'projectId': ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
+      'projectId': ['', Validators.required],
       'resourceId': ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
       'status': ['', Validators.compose([Validators.required,Validators.maxLength(20)])]
     });
-  }
-
-  ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
       this.getTheIdDetailsFromDataBase(this.userId);
     });
-  }
-  expensePopup(values){
-    values.id = this.userId;
-    console.log(values);
-    this._expenseService.updateExpenses(values).subscribe((response) => {
-      this.revertToExpense();
+    this._projectService.getAllProjects().subscribe((allProjectRecords)=>{
+      allProjectRecords.forEach((eachProjectRecord)=>{
+        this.projectNamesforAutoCompleter.push(eachProjectRecord.projectName);
+      })
     })
+  }
+  expenseData(values){
+    if(this.autocompleterSelectedProject != null){
+      values.id = this.userId;
+      this._projectService.getAllProjects().subscribe((allProjectRecords)=>{
+        allProjectRecords.forEach((eachProject)=>{
+          if(eachProject.projectName === this.autocompleterSelectedProject){
+            values.projectId = eachProject.id;
+          }
+        })
+        this._expenseService.updateExpenses(values).subscribe((response) => {
+          this.revertToExpense();
+        })
+      })
+    }else{
+      alert('enter at least one project');
+    }
 
   }
   revertToExpense(){
     this.router.navigate(['expense']);
   }
   getTheIdDetailsFromDataBase(idValue){
-    this._expenseService.getTheDataById(idValue).subscribe((response) => {
-      response  = response[0];
-      this.title= response.title;
-      this.amount= response.amount;
-      this.expenseDate = response.expenseDate;
-      this.expensetype= response.expensetype;
-      this.projectId = response.projectId;
-      this.resourceId =  response.resourceId;
-      this.status = response.status;
-      this.expenseForm = this.fb.group({
-        'title' : [this.title, Validators.compose([Validators.required,Validators.maxLength(20)])],
-        'amount' : [this.amount, Validators.compose([Validators.required,Validators.maxLength(20)])],
-        'expenseDate' : [this.expenseDate, Validators.compose([Validators.required,Validators.maxLength(20)])],
-        'expensetype': [this.expensetype, Validators.compose([Validators.required,Validators.maxLength(30)])],
-        'projectId': [this.projectId, Validators.compose([Validators.required,Validators.maxLength(20)])],
-        'resourceId': [this.resourceId, Validators.compose([Validators.required,Validators.maxLength(20)])],
-        'status': [this.status, Validators.compose([Validators.required,Validators.maxLength(20)])]
-      });
+    this._expenseService.getTheDataById(idValue).subscribe((expenseRecord) => {
+      expenseRecord = expenseRecord[0];
+      this._projectService.getTheDataById(expenseRecord.projectId).subscribe((projectRecord) => {
+        this.title= expenseRecord.title;
+        this.amount= expenseRecord.amount;
+        this.expenseDate = expenseRecord.expenseDate;
+        this.expensetype= expenseRecord.expensetype;
+        const obj = {id:  projectRecord[0].projectName,text: projectRecord[0].projectName};
+        this.selectedProjectvalue.push(obj)
+        this.resourceId =  expenseRecord.resourceId;
+        this.status = expenseRecord.status;
+        this.autocompleterSelectedProject = projectRecord[0].projectName;
+        this.expenseForm.controls['projectId'].setValue(this.selectedProjectvalue);
+        this.expenseForm.controls['title'].setValue(this.title);
+        this.expenseForm.controls['amount'].setValue(this.amount);
+        this.expenseForm.controls['expenseDate'].setValue(this.expenseDate);
+        this.expenseForm.controls['expensetype'].setValue(this.expensetype);
+        this.expenseForm.controls['resourceId'].setValue(this.resourceId);
+        this.expenseForm.controls['status'].setValue(this.status);
+      })
     });
+  }
+  public selectedProject(SelectedValue:any):void {
+      this.autocompleterSelectedProject = SelectedValue.id;
+  }
+  public removedProject(removedValue:any):void {
+    this.autocompleterSelectedProject = null;
   }
 }

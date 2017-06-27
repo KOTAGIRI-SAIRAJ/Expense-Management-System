@@ -21,14 +21,12 @@ export class ProjectViewComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
-      console.log(this.userId);
       this.getTheIdDetailsFromDataBase(this.userId);
     });
   }
   getTheIdDetailsFromDataBase(idValue){
     this._projectService.getTheDataById(idValue).subscribe((response) => {
       response = response[0];
-      console.log(response);
       this.projectName = response.projectName;
       this.projectDescription = response.projectDescription;
       this.projectStartDate = response.projectStartDate;

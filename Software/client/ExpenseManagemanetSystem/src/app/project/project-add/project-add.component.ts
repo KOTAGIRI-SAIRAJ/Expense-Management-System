@@ -24,9 +24,7 @@ export class ProjectAddComponent implements OnInit {
 
   ngOnInit() {  }
 
-  projectsPopup(values){
-    alert('from Projects');
-    console.log(values);
+  projectsData(values){
     this._projectService.createProject(values).subscribe((response) => {
       //this.projectsForm.reset();
       this.router.navigate(['project']);

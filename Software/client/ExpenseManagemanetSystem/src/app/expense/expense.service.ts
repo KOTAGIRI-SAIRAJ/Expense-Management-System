@@ -44,7 +44,6 @@ export class expenseService {
       })
   }
   updateExpenses(values){
-    console.log(values);
     return this.queryApi.doPut('expense',values)
       .map((res:Response)=>{
         return res.json();

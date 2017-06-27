@@ -80,7 +80,7 @@ export class ResourceComponent implements OnInit {
   deleteResourceData = (Data):void =>{
     this.tempResourceDetails = Data;
     this.tempEmailId = Data.emailId;
-    console.log(this.tempResourceDetails);
+
     this.DeleteResourceDetails.show();
   };
   public hideDeleteResourceDetails = ():void =>{
@@ -97,17 +97,17 @@ export class ResourceComponent implements OnInit {
   }
 
   public selected(value: any): void {
-    console.log('from Selected '+value.id);
+
     this.updateDataTable(value.id);
   }
 
   public removed(value: any): void {
-    console.log('Removed value is: ', value);
+
 
   }
 
   public typed(value: any): void {
-    console.log('from Typed '+value)
+
   }
 
   public refreshValue(value: any): void {
@@ -115,9 +115,9 @@ export class ResourceComponent implements OnInit {
   }
 
   updateDataTable(fromAutoCompleter){
-    console.log(fromAutoCompleter);
+
     let SplittedValue = fromAutoCompleter.split(' ');
-    console.log(SplittedValue[0],SplittedValue[1]);
+
     let tempResourceDetailsarray = this.totalResourceDetails;
     tempResourceDetailsarray.forEach((eachRecord)=>{
       if(eachRecord.firstName === SplittedValue[0] && eachRecord.lastName === SplittedValue[1]){

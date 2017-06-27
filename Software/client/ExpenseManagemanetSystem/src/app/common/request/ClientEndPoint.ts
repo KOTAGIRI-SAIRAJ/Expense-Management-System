@@ -18,7 +18,7 @@ export const updateTheResourceDetails = 'updateTheResourceDetails';
 
 
 export const ClientEndPoint= (type: string, params: any) => {
-  console.log(type+"-----"+params);
+
   switch (type) {
     case user:
       return environment.API_ROOT + '/api/user';
