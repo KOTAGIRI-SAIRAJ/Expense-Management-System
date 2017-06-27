@@ -6,13 +6,15 @@ import {router} from "../../app.router";
 import {resourceService} from "../../resource/resource.service";
 import {projectService} from "../../project/project.service";
 import {isUndefined} from "util";
+import {localStorageService} from "../../app.service";
+
 
 
   @Component({
     selector: 'app-expense-add',
     templateUrl: './expense-add.component.html',
     styleUrls: ['./expense-add.component.css'],
-    providers: [FormBuilder , expenseService, resourceService, projectService]
+    providers: [FormBuilder , expenseService, resourceService, projectService,localStorageService]
   })
   export class ExpenseAddComponent implements OnInit {
     expenseForm : FormGroup;
@@ -26,21 +28,24 @@ import {isUndefined} from "util";
     resourceData : Map<number, string> = new Map<number, string>();
     selectedProjects:Array<any> = [];
     selectedResources:Array<any> = [];
+    resourceDataLocalStorage:any;
     selectedProjectsId:any;
-    constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,public _resourceService:resourceService,public _projectService:projectService) {
+    constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,public _resourceService:resourceService,public _projectService:projectService,public _localStroage:localStorageService) {
       this.router = route;
+      this.resourceDataLocalStorage = this._localStroage.getLocalStorageValue();
       this.expenseForm = this.fb.group({
         'title' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
         'amount' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
         'expenseDate' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
         'expensetype': ['', Validators.compose([Validators.required,Validators.maxLength(30)])],
         'projectId': ['', Validators,],
-        'resourceId': ['', Validators,],
+        /*'resourceId': ['', Validators,],*/
         'status': ['', Validators.compose([Validators.required,Validators.maxLength(20)])]
       });
     }
 
     ngOnInit() {
+
       this._projectService.getAllProjects().subscribe((projects) => {
           projects.forEach((eachRecord)=>{
             this.projectNamesforAutoCompleter.push(eachRecord.projectName);
@@ -56,6 +61,14 @@ import {isUndefined} from "util";
 
     }
     expenseData(values){
+      console.log(this.resourceDataLocalStorage);
+      this._resourceService.getAllResources().subscribe((resourceData) => {
+        resourceData.forEach((eachResource)=>{
+          if(eachResource.emailId === this.resourceDataLocalStorage.emailId){
+            values.resourceId = eachResource.id;
+          }
+        })
+      })
       console.log(values)
       if(this.selectedProjectsId !== null){
         values.projectId = this.selectedProjectsId;
@@ -86,37 +99,10 @@ import {isUndefined} from "util";
           this.selectedProjectsId = key;
         }
       })
-
-      /*this.selectedProjects.push(value.id)
-      console.log(this.selectedProjects)
-      this.projectData.forEach((value: string, key: number) => {
-        console.log("here is " + key + ', ' + value);
-        this.selectedProjects.forEach((eachSelectedProject)=>{
-          if(eachSelectedProject === value){
-            this.selectedProjectsIds.push(key);
-          }
-        })
-      });
-      console.log(this.selectedProjectsIds);*/
     }
 
     public removedProject(removedValue:any):void {
       console.log('Removed Project value is: ', removedValue);
-      /*this.selectedProjects.forEach((eachProject,index)=>{
-        if(eachProject === value.id){
-          this.selectedProjects.splice(index,1);
-        }
-      })*/
-      /*this.selectedProjectsIds = [];
-      this.projectData.forEach((value: string, key: number) => {
-        console.log("here is " + key + ', ' + value);
-        this.selectedProjects.forEach((eachSelectedProject)=>{
-          if(eachSelectedProject === value){
-            this.selectedProjectsIds.push(key);
-          }
-        })
-      });
-      console.log(this.selectedProjectsIds);*/
       this.selectedProjectsId = null;
 
 

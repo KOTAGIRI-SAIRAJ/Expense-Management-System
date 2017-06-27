@@ -2,18 +2,19 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from "./user.service";
+import {localStorageService} from "../app.service";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  providers:[FormBuilder,UserService]
+  providers:[FormBuilder,UserService,localStorageService]
 })
 export class HomepageComponent implements OnInit {
   loginForm: FormGroup;
   public router: Router;
 
-  constructor(private fb: FormBuilder, public route: Router, private _userService: UserService) {
+  constructor(private fb: FormBuilder, public route: Router, private _userService: UserService,public _localStorage:localStorageService) {
     this.router = route;
     this.loginForm = this.fb.group({
       'emailId': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -41,14 +42,17 @@ export class HomepageComponent implements OnInit {
       allUserDetails.forEach((eachRecord) => {
         if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "ExpenseAdmin") {
           flag = 0;
+          this._localStorage.setLocalStorageValue(eachRecord)
           this.router.navigate(['dashboard']);
           this.loginForm.reset();
         } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Manager") {
           flag = 0;
+          this._localStorage.setLocalStorageValue(eachRecord)
           this.router.navigate((['expense']));
           this.loginForm.reset();
         } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Staff") {
           flag = 0;
+          this._localStorage.setLocalStorageValue(eachRecord)
           this.router.navigate((['expense/create']));
           this.loginForm.reset();
         }else{

@@ -2,12 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {resourceService} from "./resource.service";
 import {ModalDirective} from "ngx-bootstrap";
 import {Router} from '@angular/router';
+import {localStorageService} from "../app.service";
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.css'],
-  providers :[resourceService]
+  providers :[resourceService,localStorageService]
 })
 export class ResourceComponent implements OnInit {
   private value: any = {};private _disabledV = '0';
@@ -16,10 +17,13 @@ export class ResourceComponent implements OnInit {
   public allResourceDetails:Array<any> = [];
   tempResourceDetails:any;
   tempEmailId:string = '';
+  LoggedInPersonType = '';
   public totalResourceDetails:Array<any> =[];
   public allResourceNamesForAutoCompleter:Array<any>;
   @ViewChild('DeleteResourceDetails') public DeleteResourceDetails:ModalDirective;
-  constructor(public _resourceService:resourceService,public route: Router) {
+  constructor(public _resourceService:resourceService,public route: Router,public _localStorage:localStorageService) {
+    let loggedInInfo = this._localStorage.getLocalStorageValue();
+    this.LoggedInPersonType = loggedInInfo.role;
     this.router = route;
     this.getTheResourceData();
   }

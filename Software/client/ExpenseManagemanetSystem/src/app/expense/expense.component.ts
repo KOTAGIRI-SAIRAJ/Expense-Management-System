@@ -3,13 +3,14 @@ import {ModalDirective} from "ngx-bootstrap";
 import {Router} from '@angular/router';
 import {expenseService} from "./expense.service";
 import {projectService} from "../project/project.service";
+import {resourceService} from "../resource/resource.service";
 
 
 @Component({
   selector: 'app-expense',
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.css'],
-  providers :[expenseService,projectService]
+  providers :[expenseService,projectService,resourceService]
 })
 export class ExpenseComponent implements OnInit {
   allResourceNamesForAutoCompleter = [];
@@ -19,14 +20,18 @@ export class ExpenseComponent implements OnInit {
   allExpenseDetails:Array<any>=[];
   totalExpenseDetails:Array<any> = [];
   projectDetailsTotal:Array<any> =[];
+  resourceDetailsTotal:Array<any> =[];
   @ViewChild('DeleteExpenseDetails') public DeleteExpenseDetails:ModalDirective;
-  constructor(public _expenseService:expenseService,public route: Router,public _projectService: projectService) {
+  constructor(public _expenseService:expenseService,public route: Router,public _projectService: projectService,public _resourceService: resourceService) {
     this.router = route;
     this._projectService.getAllProjects().subscribe(projectDetails=>{
         this.projectDetailsTotal = projectDetails;
         this.getTheResourcesData();
     });
-
+    this._resourceService.getAllResources().subscribe(resourceDetails=>{
+      this.resourceDetailsTotal = resourceDetails;
+      this.getTheResourcesData();
+    });
   }
 
   ngOnInit() {  }
@@ -41,6 +46,11 @@ export class ExpenseComponent implements OnInit {
         this.projectDetailsTotal.forEach((eachProjectRecord)=>{
           if(eachProjectRecord.id === eachRecord.projectId){
             eachRecord.projectId = eachProjectRecord.projectName;
+          }
+        })
+        this.resourceDetailsTotal.forEach((eachResourceRecord)=>{
+          if(eachResourceRecord.id === eachRecord.resourceId){
+            eachRecord.resourceId = eachResourceRecord.firstName+' '+eachResourceRecord.lastName;
           }
         })
         this.allExpenseDetails.push(eachRecord);
