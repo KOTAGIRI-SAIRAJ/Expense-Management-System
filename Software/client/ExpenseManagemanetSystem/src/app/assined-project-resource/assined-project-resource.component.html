@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>ProjectResource Data Table</h1>
+  <table class="table table-striped" [mfData]="projectResourceDataTable" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+    <tr>
+      <th style="width: 25%">
+        <mfDefaultSorter by="Project_Name">Project Name</mfDefaultSorter>
+      </th>
+      <th style="width: 25%">
+        <mfDefaultSorter by="Project_Description">Resource Name</mfDefaultSorter>
+      </th>
+     <!-- <th style=" width: 50%">
+        Options
+      </th>-->
+    </tr>
+    </thead>
+    <div *ngIf="projectResourceDataTable.length === 0">
+      <h2>No ProjectResources...!!</h2>
+    </div>
+    <tbody>
+      <tr bgcolor="#fffaf0" *ngFor="let item of projectResourceDataTable">
+        <td>{{item.project_id}}</td>
+        <td>{{item.resource_id}}</td>
+        <!--<td>
+          <button type="button" class="btn btn-info " routerLink="{{item.id}}">View</button>
+          &emsp;
+          <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
+          <button type="button" class="btn btn-danger" (click)="deleteProjectData(item)">Delete</button>
+        </td>-->
+      </tr>
+    </tbody>
+  </table>
+</div>

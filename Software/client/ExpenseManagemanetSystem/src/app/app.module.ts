@@ -33,6 +33,7 @@ import { ExpenseComponent } from './expense/expense.component';
 import { ExpenseAddComponent } from './expense/expense-add/expense-add.component';
 import { ExpenseViewComponent } from './expense/expense-view/expense-view.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
+import { AssinedProjectResourceComponent } from './assined-project-resource/assined-project-resource.component';
 
 
 
@@ -59,6 +60,7 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
     ExpenseAddComponent,
     ExpenseViewComponent,
     ExpenseEditComponent,
+    AssinedProjectResourceComponent,
 
   ],
   imports: [
