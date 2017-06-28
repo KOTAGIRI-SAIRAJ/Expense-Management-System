@@ -20,6 +20,7 @@ import {ExpenseComponent} from "./expense/expense.component";
 import {ExpenseAddComponent} from "./expense/expense-add/expense-add.component";
 import {ExpenseViewComponent} from "./expense/expense-view/expense-view.component";
 import {ExpenseEditComponent} from "./expense/expense-edit/expense-edit.component";
+import {AssinedProjectResourceComponent} from "./assined-project-resource/assined-project-resource.component";
 
   export const router:  Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -43,14 +44,14 @@ import {ExpenseEditComponent} from "./expense/expense-edit/expense-edit.componen
         {path : ':id/edit', component: ProjectEditComponent},
         {path : ':id', component: ProjectViewComponent},
       ]
-    },
-    */
+    }, */
 
     {path: 'resource', component : ResourceComponent},
     {path: 'resource/create', component : ResourceAddComponent},
     {path: 'resource/:id/edit', component : ResourceEditComponent},
     {path: 'resource/:id', component : ResourceViewComponent},
 
+    {path: 'project/:projectId/resource/:resourceId', component : AssinedProjectResourceComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
