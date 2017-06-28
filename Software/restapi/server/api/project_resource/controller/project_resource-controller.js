@@ -8,6 +8,7 @@ export default class project_resourceController {
       .catch(error => res.status(400).json(error));
   }
 
+
   static createNew(req, res) {
     let _project_resource = req.params;
     project_resourceDAO
