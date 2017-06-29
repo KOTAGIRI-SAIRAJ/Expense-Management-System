@@ -51,7 +51,8 @@ import {AssinedProjectResourceComponent} from "./assined-project-resource/assine
     {path: 'resource/:id/edit', component : ResourceEditComponent},
     {path: 'resource/:id', component : ResourceViewComponent},
 
-    {path: 'project/:projectId/resource/:resourceId', component : AssinedProjectResourceComponent}
+    {path: 'project/:projectId/assignResource/:resourceId', component : AssinedProjectResourceComponent},
+    {path: 'resource/:resourceId/assignProject/:projectId', component : AssinedProjectResourceComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

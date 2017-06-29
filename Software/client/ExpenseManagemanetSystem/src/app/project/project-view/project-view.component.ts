@@ -59,7 +59,7 @@ export class ProjectViewComponent implements OnInit {
     if(this.selectedResource !== null) {
         this.totalResources.forEach((eachResource)=>{
           if((eachResource.firstName+' '+eachResource.lastName) === this.selectedResource){
-            this.router.navigate(['project/'+this.userId+'/resource/'+eachResource.id]);
+            this.router.navigate(['project/'+this.userId+'/assignResource/'+eachResource.id]);
           }
         })
     }else{

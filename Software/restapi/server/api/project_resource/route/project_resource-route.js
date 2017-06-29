@@ -3,11 +3,15 @@ import project_resourceController from '../controller/project_resource-controlle
 export default class project_resourceRoutes {
   static init(router) {
     router
-      .route('/api/project/:projectId/resource/:resourceId')
+      .route('/api/project/:projectId/assignResource/:resourceId')
       .post(project_resourceController.createNew);
 
     router
-      .route('/api/projects/resources')
+      .route('/api/resource/:resourceId/assignProject/:projectId')
+      .post(project_resourceController.createNew);
+
+    router
+      .route('/api/assignedProjects/assignedResources')
       .get(project_resourceController.getAll)
 
     router

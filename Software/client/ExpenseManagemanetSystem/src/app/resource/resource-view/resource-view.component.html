@@ -77,6 +77,25 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-right" (click)="revertToProjects()">Submit</button>
+        <button type="button" class="btn btn-warning" (click)="onclickProjectsButton()">
+          <span class="glyphicon glyphicon-save-file"></span> Get all Projects
+        </button>
+        <br><br><br>
+        <div *ngIf="tempFlag === 1">
+          <div *ngIf="allProjectNameForAutoCompleter.length > 0">
+            <div class="col-sm-7">
+              <ng-select [allowClear]="true"
+                         [items]="allProjectNameForAutoCompleter"
+                         (selected)="selected($event)"
+                         (removed)="removed($event)"
+                         placeholder="No Resource Name selected">
+              </ng-select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success pull-right" (click)="assignProject()">
+            <span class="glyphicon glyphicon-user"></span> Assign Project
+          </button>
+        </div>
       </div>
     </div>
   </div>

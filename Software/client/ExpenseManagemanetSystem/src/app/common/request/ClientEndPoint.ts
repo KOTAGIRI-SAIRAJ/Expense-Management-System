@@ -15,7 +15,7 @@ export const getResourceById = 'getResourceById';
 export const updateTheProjectDetails = 'updateTheProjectDetails';
 export const updateTheResourceDetails = 'updateTheResourceDetails';
 export const projectResource='projectResource';
-
+export const ResourceProject ='ResourceProject';
 
 
 export const ClientEndPoint= (type: string, params: any) => {
@@ -53,9 +53,15 @@ export const ClientEndPoint= (type: string, params: any) => {
       return environment.API_ROOT + '/api/resource/' + params.id;
     case projectResource:
       if(params != null){
-        return environment.API_ROOT + '/api/project/' + params.projectId + '/resource/' + params.resourceId;
+        return environment.API_ROOT + '/api/project/' + params.projectId + '/assignResource/' + params.resourceId;
       }else {
-        return environment.API_ROOT + '/api/projects/resources';
+        return environment.API_ROOT + '/api/assignedProjects/assignedResources';
+      }
+    case ResourceProject:
+      if(params != null){
+        return environment.API_ROOT + '/api/resource/'+params.resourceId+'/assignProject/'+params.projectId;
+      }else {
+        return environment.API_ROOT + '/api/assignedProjects/assignedResources';
       }
   }
 }
