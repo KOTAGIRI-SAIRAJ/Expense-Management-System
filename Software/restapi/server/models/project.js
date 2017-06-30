@@ -14,7 +14,14 @@ module.exports = (sequelize, DataTypes) => {
           through: models.ProjectResource,
           as: "resources",
           foreignKey: {
-            name: "project_id",
+            name: "projectId",
+            allowNull: false
+          }
+        });
+        project.hasMany(models.expense, {
+          as: "expenses",
+          foreignKey: {
+            name: "projectId",
             allowNull: false
           }
         });

@@ -61,7 +61,7 @@ export default class userDAO{
         resolve(result)
       })
         .catch(error => {
-          console.log(error)
+
         });
     });
   }

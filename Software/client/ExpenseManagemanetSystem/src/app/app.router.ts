@@ -21,9 +21,11 @@ import {ExpenseAddComponent} from "./expense/expense-add/expense-add.component";
 import {ExpenseViewComponent} from "./expense/expense-view/expense-view.component";
 import {ExpenseEditComponent} from "./expense/expense-edit/expense-edit.component";
 import {AssinedProjectResourceComponent} from "./assined-project-resource/assined-project-resource.component";
+import {AppComponent} from "./app.component";
 
   export const router:  Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: 'appComponent', component:AppComponent},
     {path: 'home', component : HomepageComponent},
     {path: 'dashboard', component : DashboardComponent},
 

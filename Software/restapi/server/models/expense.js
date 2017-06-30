@@ -19,9 +19,24 @@ module.exports = function(sequelize, DataTypes) {
       values:expenseStatus.values
     },
   }, {
+    tableName: "expenses",
+    underscore: true,
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+      associate: models => {
+        expense.belongsTo(models.project, {
+          foreignKey: {
+            name: "projectId",
+            allowNull: false
+          },
+          onDelete: "CASCADE"
+        });
+        expense.belongsTo(models.resources, {
+          foreignKey: {
+            name: "resourceId",
+            allowNull: false
+          },
+          onDelete: "CASCADE"
+        });
       }
     }
   });

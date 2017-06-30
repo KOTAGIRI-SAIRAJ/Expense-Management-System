@@ -36,6 +36,9 @@
             </div>
           </div>
         </div>
+        <div id="warningdiv" class="alert alert-danger" *ngIf="flag === 1">
+          <strong>Warning!</strong> Invalid Email-Id or Password
+        </div>
         <br>
         <div class="col-sm pull-right">
            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!loginForm.valid">Submit</button>

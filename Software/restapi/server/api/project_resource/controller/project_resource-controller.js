@@ -1,6 +1,7 @@
 import project_resourceDAO from '../dao/project_resource-dao';
 
 export default class project_resourceController {
+
   static getAll(req, res) {
     project_resourceDAO
       .getAll()
@@ -18,11 +19,28 @@ export default class project_resourceController {
   }
 
   static removeById(req, res) {
-    let _id = req.params.id;
+
+    let _id = req.params;
 
     project_resourceDAO
       .removeById(_id)
-      .then(() => res.status(200).end())
+      .then((response) => res.status(200).end())
       .catch(error => res.status(400).json(error));
+  }
+  static getById(req,res){
+    const _query = req.params.id;
+    project_resourceDAO
+      .getById(_query)
+      .then(data => {
+        res.status(200).json(data.rows);
+      })
+      .catch(error => {
+
+        if (error === 404) {
+
+          return res.status(404)
+        }
+        res.status(400);
+      });
   }
 }

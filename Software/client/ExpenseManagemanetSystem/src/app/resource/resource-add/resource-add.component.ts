@@ -3,20 +3,25 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import {resourceService} from "../resource.service";
 import {UserService} from "../../homepage/user.service";
+import {localStorageService} from "../../app.service";
 
 
 @Component({
   selector: 'app-resource-add',
   templateUrl: './resource-add.component.html',
   styleUrls: ['./resource-add.component.css'],
-  providers:[FormBuilder,resourceService,UserService  ]
+  providers:[FormBuilder,resourceService,UserService,localStorageService]
 })
 export class ResourceAddComponent implements OnInit {
   resourceForm : FormGroup;
   public router: Router;
+  flag = 0;
+  LoggedInPersonType = null;
   allEmailsFromResource:Array<any> =[];
-  constructor(private fb: FormBuilder,public route: Router,public _resourceService:resourceService,public _UserService:UserService) {
+  constructor(private fb: FormBuilder,public route: Router,public _resourceService:resourceService,public _UserService:UserService,public  _localStorageService:localStorageService) {
     this.router = route;
+    let localstoragedata = _localStorageService.getLocalStorageValue();
+    this.LoggedInPersonType = localstoragedata.role;
     this.resourceForm = this.fb.group({
       'firstName' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
       'lastName' : ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
@@ -49,16 +54,13 @@ export class ResourceAddComponent implements OnInit {
     this.router.navigate(['resource']);
   }
   emailCheck(emailTyped){
-    let flag =0;
+    this.flag =0;
     this.allEmailsFromResource.forEach((eachRecord)=>{
       if (eachRecord.search(emailTyped) == -1 ) {
 
       } else {
-        flag = 1;
+        this.flag = 1;
       }
     })
-    if(flag == 1){
-      alert('email id already exits');
-    }
   }
 }

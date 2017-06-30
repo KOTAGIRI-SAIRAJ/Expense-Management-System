@@ -53,8 +53,19 @@ export const ClientEndPoint= (type: string, params: any) => {
       return environment.API_ROOT + '/api/resource/' + params.id;
     case projectResource:
       if(params != null){
-        return environment.API_ROOT + '/api/project/' + params.projectId + '/assignResource/' + params.resourceId;
+        if(typeof params === 'object' && params.hasOwnProperty('id')){
+
+          return environment.API_ROOT + '/api/project_resource/'+params.id;
+        }else if(typeof params === 'object' && params.hasOwnProperty('pId') && params.hasOwnProperty('rId')){
+
+          return environment.API_ROOT + '/api/project/' + params.pId + '/assignResource/' + params.rId;
+        }
+        else {
+
+          return environment.API_ROOT + '/api/project/' + params.projectId + '/assignResource/' + params.resourceId;
+        }
       }else {
+
         return environment.API_ROOT + '/api/assignedProjects/assignedResources';
       }
     case ResourceProject:

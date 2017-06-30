@@ -55,6 +55,9 @@
                 You must include a email-Id
               </div>
             </div>
+            <div class="alert alert-warning" *ngIf="flag === 1">
+              <strong>Warning!</strong> EmailId Already Exists
+            </div>
           </div>
         </div>
         <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['password'].valid && resourceForm.controls['password'].touched}">
@@ -77,7 +80,7 @@
               <select name="role" class="form-control" [formControl]="resourceForm.controls['role']">
                 <option value="Manager">Manager</option>
                 <option value="Staff">Staff</option>
-                <option value="ExpenseAdmin">ExpenseAdmin</option>
+                <option value="ExpenseAdmin" *ngIf="LoggedInPersonType === 'ExpenseAdmin'">ExpenseAdmin</option>
               </select>
               <div *ngIf="resourceForm.controls['role'].hasError('required') && resourceForm.controls['role'].touched" class="alert alert-danger">
                 You must include your Role

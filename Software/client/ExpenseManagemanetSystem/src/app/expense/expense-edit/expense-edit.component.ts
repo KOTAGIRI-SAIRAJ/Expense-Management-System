@@ -83,7 +83,6 @@ export class ExpenseEditComponent implements OnInit {
           const obj = {id:  projectRecord[0].projectName,text: projectRecord[0].projectName};
           this.selectedProjectvalue.push(obj)
           this.resourceId =  resourceRecord[0].firstName+' '+resourceRecord[0].lastName;
-          console.log(this.resourceId);
           this.status = expenseRecord.status;
           this.autocompleterSelectedProject = projectRecord[0].projectName;
           this.expenseForm.controls['projectId'].setValue(this.selectedProjectvalue);

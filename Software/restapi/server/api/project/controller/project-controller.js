@@ -45,7 +45,7 @@ export default class projectController {
     projectDAO
       .getById(_query)
       .then(newusers => {
-        console.log(newusers)
+
         res.send(newusers);
       })
       .catch(error => {

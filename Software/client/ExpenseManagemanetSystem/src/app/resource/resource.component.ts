@@ -130,4 +130,10 @@ export class ResourceComponent implements OnInit {
       }
     })
   }
+  revertToDashBoard(){
+    this.router.navigate(['dashboard']);
+  }
+  revertToExpense(){
+    this.router.navigate(['expense']);
+  }
 }

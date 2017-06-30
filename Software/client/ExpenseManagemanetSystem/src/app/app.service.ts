@@ -3,7 +3,7 @@
  */
 export class localStorageService{
   setLocalStorageValue(value){
-    console.log(value);
+
     localStorage.setItem('LoggedIn User',JSON.stringify(value));
   }
   getLocalStorageValue(){

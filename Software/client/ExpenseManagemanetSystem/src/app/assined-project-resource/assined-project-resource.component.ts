@@ -18,9 +18,7 @@ export class AssinedProjectResourceComponent implements OnInit {
       this.getAllTheProjectResource();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {  }
 
   getAllTheProjectResource(){
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -36,8 +34,8 @@ export class AssinedProjectResourceComponent implements OnInit {
           this._projectService.getAllProjects().subscribe((allProjectData)=>{
               this.projectResourceDataTable.forEach((projectResourceRecord)=>{
                   allProjectData.forEach((eachProject)=>{
-                    if(projectResourceRecord.project_id === eachProject.id){
-                      projectResourceRecord.project_id = eachProject.projectName;
+                    if(projectResourceRecord.projectId === eachProject.id){
+                      projectResourceRecord.projectId = eachProject.projectName;
                     }
                   })
               })
@@ -45,13 +43,13 @@ export class AssinedProjectResourceComponent implements OnInit {
           this._resourceService.getAllResources().subscribe((allResourceData)=>{
             this.projectResourceDataTable.forEach((projectResourceRecord)=>{
               allResourceData.forEach((eachResource)=>{
-                if(projectResourceRecord.resource_id === eachResource.id){
-                  projectResourceRecord.resource_id = eachResource.firstName+' '+eachResource.lastName;
+                if(projectResourceRecord.resourceId === eachResource.id){
+                  projectResourceRecord.resourceId = eachResource.firstName+' '+eachResource.lastName;
                 }
               })
             })
           })
-          console.log(allprojectResourceData);
+
         })
       })
     });

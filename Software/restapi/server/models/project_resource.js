@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
       associate: models => {
         ProjectResource.belongsTo(models.project, {
           foreignKey: {
-            name: "project_id",
+            name: "projectId",
             allowNull: false
           },
           onDelete: "CASCADE"
         });
         ProjectResource.belongsTo(models.resources, {
           foreignKey: {
-            name: "resource_id",
+            name: "resourceId",
             allowNull: false
           },
           onDelete: "CASCADE"

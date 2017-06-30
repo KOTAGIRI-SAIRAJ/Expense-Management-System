@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HomepageComponent} from "./homepage/homepage.component";
 import {ProjectComponent} from "./project/project.component";
 import {FooterComponent} from "./footer/footer.component";
@@ -9,6 +9,9 @@ import {FooterComponent} from "./footer/footer.component";
   styleUrls: ['./app.component.css'],
   providers:[HomepageComponent,ProjectComponent,FooterComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Welcome to Expense Management System...!!!';
+  ngOnInit() {
+    localStorage.clear();
+  }
 }

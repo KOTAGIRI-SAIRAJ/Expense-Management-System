@@ -7,8 +7,8 @@ export default class project_resourceDAO{
     return new Promise((resolve, reject) => {
       models.ProjectResource
         .create({
-          project_id: request.projectId,
-          resource_id: request.resourceId,
+          projectId: request.projectId,
+          resourceId: request.resourceId,
         }).then(result => {
               resolve(result)
         })
@@ -24,6 +24,36 @@ export default class project_resourceDAO{
         .findAll({})
         .then(result => {
           resolve(result);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+  static getById(queryParams) {
+    return new Promise((resolve, reject) => {
+      const _query = queryParams;
+      models.ProjectResource
+        .findAndCountAll({where:{$or:[{ projectId : queryParams}]}})
+        .then(result => {
+
+          resolve(result);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
+
+  static removeById(_id) {
+    return new Promise((resolve, reject) => {
+      models.ProjectResource
+        .find({where:{$or:[{resourceId:_id.projectId},{resourceId:_id.resourceId}]}})
+        .then(result => {
+          if (!result) {
+            return reject(404);
+          }
+          return result
+            .destroy()
+            .then(() => { resolve(204); }, (error) => reject(error));
         }, (error) => {
           reject(error);
         });

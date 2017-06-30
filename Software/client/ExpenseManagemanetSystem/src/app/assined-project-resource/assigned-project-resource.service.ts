@@ -33,7 +33,7 @@ export class projectResourceService {
         return Observable.throw(error.json());
       });
   }
-  getAllProjectResources(){
+  getAllProjectResources(): Observable<any> {
     let data
     return this.queryApi.doGet('projectResource', data)
       .map((res: Response) => {
@@ -41,6 +41,27 @@ export class projectResourceService {
       })
       .catch((error: any) => {
         return Observable.throw(error.json().error || "server error")
+    })
+  }
+  getAllProjectResourcesById(val):Observable<any>{
+    return this.queryApi.doGet('projectResource',val)
+      .map((res:Response)=>{
+
+        return res.json();
+      })
+      .catch((error:any)=>{
+        console.log(error)
+        return Observable.throw(error.json());
+      })
+  }
+  deleteTheProjectResource(val):Observable<any>{
+    return this.queryApi.doDelete('projectResource',val)
+      .map((res:Response)=>{
+        console.log(res);
+        return res.status;
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
       })
   }
 }

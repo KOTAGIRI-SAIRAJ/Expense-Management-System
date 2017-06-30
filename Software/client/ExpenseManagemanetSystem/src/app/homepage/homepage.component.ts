@@ -13,7 +13,7 @@ import {localStorageService} from "../app.service";
 export class HomepageComponent implements OnInit {
   loginForm: FormGroup;
   public router: Router;
-
+  flag = 0;
   constructor(private fb: FormBuilder, public route: Router, private _userService: UserService,public _localStorage:localStorageService) {
     this.router = route;
     this.loginForm = this.fb.group({
@@ -27,7 +27,7 @@ export class HomepageComponent implements OnInit {
   }
 
   loginData(values) {
-    console.log(values);
+
     this.loginForm.reset();
     this._userService.createUser(values).subscribe((response) => {
       this.router.navigate(['dashboard']);
@@ -38,6 +38,7 @@ export class HomepageComponent implements OnInit {
   checkforCredentials(values) {
 
     this._userService.getAllUsers().subscribe(allUserDetails => {
+      this.flag = 0;
       let flag =0;
       allUserDetails.forEach((eachRecord) => {
         if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "ExpenseAdmin") {
@@ -61,6 +62,7 @@ export class HomepageComponent implements OnInit {
       });
       if(flag === 1){
         this.loginForm.reset();
+        this.flag = 1;
       }
     });
 
