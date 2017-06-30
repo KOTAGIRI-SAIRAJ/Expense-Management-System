@@ -1,79 +1,80 @@
 <body>
-  <div class="container">
-    <div class="row main">
-      <div class="panel-heading">
-        <a class="pull-right" style="width: 80%" (click)="revertToHome()" role="button">Logout</a>
-        <div class="panel-title text-center">
-          <h1 class="title">Generate a Expense</h1>
-          <hr />
-        </div>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <a class="pull-right" style="width: 80%" (click)="revertToHome()" role="button">Logout</a>
+      <div class="panel-title text-center">
+        <h1 class="title">Generate a Expense</h1>
+        <hr />
       </div>
-      <div class="main-login main-center">
-        <form [formGroup]="expenseForm" (ngSubmit)="expenseData(expenseForm.value)">
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['title'].valid && expenseForm.controls['title'].touched}">
-            <label>Title</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
-                <input class="form-control" type="text" placeholder="Enter the Title Name" [formControl]="expenseForm.controls['title']">
-                <div *ngIf="expenseForm.controls['title'].hasError('required') && expenseForm.controls['title'].touched" class="alert alert-danger">
-                  You must include a Title
-                </div>
+    </div>
+    <div class="main-login main-center">
+      <div *ngIf="projectNamesforAutoCompleter.length > 0">
+      <form [formGroup]="expenseForm" (ngSubmit)="expenseData(expenseForm.value)">
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['title'].valid && expenseForm.controls['title'].touched}">
+          <label>Title</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
+              <input class="form-control" type="text" placeholder="Enter the Title Name" [formControl]="expenseForm.controls['title']">
+              <div *ngIf="expenseForm.controls['title'].hasError('required') && expenseForm.controls['title'].touched" class="alert alert-danger">
+                You must include a Title
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['amount'].valid && expenseForm.controls['amount'].touched}">
-            <label>Amount</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-gbp" aria-hidden="true"></i></span>
-                <input class="form-control" type="number" placeholder="Enter the Amount" [formControl]="expenseForm.controls['amount']">
-                <div *ngIf="expenseForm.controls['amount'].hasError('required') && expenseForm.controls['amount'].touched" class="alert alert-danger">
-                  You must include a Amount
-                </div>
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['amount'].valid && expenseForm.controls['amount'].touched}">
+          <label>Amount</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-gbp" aria-hidden="true"></i></span>
+              <input class="form-control" type="number" placeholder="Enter the Amount" [formControl]="expenseForm.controls['amount']">
+              <div *ngIf="expenseForm.controls['amount'].hasError('required') && expenseForm.controls['amount'].touched" class="alert alert-danger">
+                You must include a Amount
+              </div>
 
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['expenseDate'].valid && expenseForm.controls['expenseDate'].touched}">
+          <label> Date of Expense:</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+              <input class="form-control" type="date" placeholder="Enter the Date" [formControl]="expenseForm.controls['expenseDate']">
+              <div *ngIf="expenseForm.controls['expenseDate'].hasError('required') && expenseForm.controls['expenseDate'].touched" class="alert alert-danger">
+                You must include Date of Expense
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['expenseDate'].valid && expenseForm.controls['expenseDate'].touched}">
-            <label> Date of Expense:</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-                <input class="form-control" type="date" placeholder="Enter the Date" [formControl]="expenseForm.controls['expenseDate']">
-                <div *ngIf="expenseForm.controls['expenseDate'].hasError('required') && expenseForm.controls['expenseDate'].touched" class="alert alert-danger">
-                  You must include Date of Expense
-                </div>
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['expensetype'].valid && expenseForm.controls['expensetype'].touched}">
+          <label>Expense Type  :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+              <select name="expensetype" class="form-control" [formControl]="expenseForm.controls['expensetype']">
+                <option value="PrePopulatedDataOffice">Pre Populated Data Office</option>
+                <option value="Recruitment">Recruitment</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Airfare">Air Fare</option>
+                <option value="FoodForStaff">Food For Staff</option>
+              </select>
+              <div *ngIf="expenseForm.controls['expensetype'].hasError('required') && expenseForm.controls['expensetype'].touched" class="alert alert-danger">
+                You must include Expense Type
               </div>
             </div>
           </div>
-
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['expensetype'].valid && expenseForm.controls['expensetype'].touched}">
-            <label>Expense Type  :</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                <select name="expensetype" class="form-control" [formControl]="expenseForm.controls['expensetype']">
-                  <option value="PrePopulatedDataOffice">Pre Populated Data Office</option>
-                  <option value="Recruitment">Recruitment</option>
-                  <option value="Hotel">Hotel</option>
-                  <option value="Airfare">Air Fare</option>
-                  <option value="FoodForStaff">Food For Staff</option>
-                </select>
-                <div *ngIf="expenseForm.controls['expensetype'].hasError('required') && expenseForm.controls['expensetype'].touched" class="alert alert-danger">
-                  You must include Expense Type
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['projectId'].valid && expenseForm.controls['projectId'].touched}">
-            <label>Project Name :</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
-                <div *ngIf="projectNamesforAutoCompleter.length > 0">
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['projectId'].valid && expenseForm.controls['projectId'].touched}">
+          <label>Project Name :</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
+              <div *ngIf="projectNamesforAutoCompleter.length > 0">
                 <ng-select  [formControl]="expenseForm.controls['projectId']"
                             [allowClear]="true"
                             [items]="projectNamesforAutoCompleter"
@@ -81,58 +82,63 @@
                             (removed)="removedProject($event)"
                             placeholder="No Project selected">
                 </ng-select>
-                </div>
-                <div *ngIf="expenseForm.controls['projectId'].hasError('required') && expenseForm.controls['projectId'].touched" class="alert alert-danger">
-                  You must include the Projects
-                </div>
+              </div>
+              <div *ngIf="expenseForm.controls['projectId'].hasError('required') && expenseForm.controls['projectId'].touched" class="alert alert-danger">
+                You must include the Projects
               </div>
             </div>
           </div>
-          <!--<div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['resourceId'].valid && expenseForm.controls['resourceId'].touched}">
-            <label>Resource Id:</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                <input class="form-control" type="number" placeholder="Enter the resource" [formControl]="expenseForm.controls['resourceId']">
-                <div *ngIf="expenseForm.controls['resourceId'].hasError('required') && expenseForm.controls['resourceId'].touched" class="alert alert-danger">
-                  You must include Resources
-                </div>
-              </div>
-            </div>
-          </div>-->
-          <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['status'].valid && expenseForm.controls['status'].touched}">
-            <label>Status:</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-stats" aria-hidden="true"></i></span>
-                <select name="status" class="form-control" [formControl]="expenseForm.controls['status']">
-                  <option value="Draft">Draft</option>
-                  <option value="Submitted">Submitted</option>
-                  <option value="Rejected">Rejected</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Settled">Settled</option>
-                </select>
-                <div *ngIf="expenseForm.controls['status'].hasError('required') && expenseForm.controls['status'].touched" class="alert alert-danger">
-                  You must include Status
-                </div>
+        </div>
+        <!--<div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['resourceId'].valid && expenseForm.controls['resourceId'].touched}">
+          <label>Resource Id:</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+              <input class="form-control" type="number" placeholder="Enter the resource" [formControl]="expenseForm.controls['resourceId']">
+              <div *ngIf="expenseForm.controls['resourceId'].hasError('required') && expenseForm.controls['resourceId'].touched" class="alert alert-danger">
+                You must include Resources
               </div>
             </div>
           </div>
-          <br>
-          <div class="col-sm pull-right" *ngIf="LoggedInPersonType === 'Staff'">
-            <!--<button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>-->
-            <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
+        </div>-->
+        <div class="form-group" [ngClass]="{'has-error':!expenseForm.controls['status'].valid && expenseForm.controls['status'].touched}">
+          <label>Status:</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-stats" aria-hidden="true"></i></span>
+              <select name="status" class="form-control" [formControl]="expenseForm.controls['status']">
+                <option value="Draft">Draft</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Approved">Approved</option>
+                <option value="Settled">Settled</option>
+              </select>
+              <div *ngIf="expenseForm.controls['status'].hasError('required') && expenseForm.controls['status'].touched" class="alert alert-danger">
+                You must include Status
+              </div>
+            </div>
           </div>
-          <div class="col-sm pull-right" *ngIf="LoggedInPersonType !== 'Staff'">
-            <button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>
-            <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
-          </div>
-          <br><br>
-        </form>
+        </div>
+        <br>
+        <div class="col-sm pull-right" *ngIf="LoggedInPersonType === 'Staff'">
+          <!--<button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>-->
+          <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
+        </div>
+        <div class="col-sm pull-right" *ngIf="LoggedInPersonType !== 'Staff'">
+          <button type="button" class="btn btn-danger" (click)="revertToExpense()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!expenseForm.valid">Submit</button>
+        </div>
+        <br><br>
+      </form>
+      </div>
+      <div *ngIf="projectNamesforAutoCompleter.length === 0">
+        <h1>You are Not assigned to any project</h1>
+        <h2>You cannot generate a expense</h2>
       </div>
     </div>
-    <br><br><br>
   </div>
+  <br><br><br>
+</div>
 </body>
 
 <div bsModal #popUpConfirmation="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
