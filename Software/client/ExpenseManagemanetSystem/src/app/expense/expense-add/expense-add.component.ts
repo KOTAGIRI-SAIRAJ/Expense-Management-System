@@ -50,6 +50,13 @@ export class ExpenseAddComponent implements OnInit {
 
   ngOnInit() {
     this._projectResourceService.getAllProjectResources().subscribe((projectResourceData)=>{
+      projectResourceData.forEach((eachProjectResource)=>{
+        console.log(eachProjectResource);
+        console.log(eachProjectResource.project);
+        console.log(eachProjectResource.resource);
+        console.log(eachProjectResource.projectId);
+        console.log(eachProjectResource.resourceId);
+      })
       this._resourceService.getAllResources().subscribe((response)=>{
         response.forEach((eachResource)=>{
           if(this.resourceDataLocalStorage.emailId === eachResource.emailId){
@@ -70,7 +77,6 @@ export class ExpenseAddComponent implements OnInit {
                 this.projectNamesforAutoCompleter.push(eachRecord.projectName);
               }
             })
-
             this.projectData.set(eachRecord.id, eachRecord.projectName);
           })
           this._resourceService.getAllResources().subscribe((resources) => {
@@ -103,7 +109,7 @@ export class ExpenseAddComponent implements OnInit {
 
       })
     }else{
-      alert('Include atleast one project and Resource');
+      alert('Include atleast one project');
     }
 
   }
@@ -126,7 +132,6 @@ export class ExpenseAddComponent implements OnInit {
   public selectedProject(SelectedValue:any):void {
 
     this.projectData.forEach((value: string, key: number) => {
-
       if(SelectedValue.id === value){
         this.selectedProjectsId = key;
       }

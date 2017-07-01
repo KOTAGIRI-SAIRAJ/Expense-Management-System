@@ -21,8 +21,14 @@ export default class project_resourceDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.ProjectResource
-        .findAll({})
+        .findAll({
+          include: [
+            {model:models.resources},
+            {model:models.project}
+          ]
+        })
         .then(result => {
+          console.log(result);
           resolve(result);
         }, (error) => {
           reject(error);
