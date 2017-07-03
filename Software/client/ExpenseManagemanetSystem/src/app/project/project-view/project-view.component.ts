@@ -30,9 +30,9 @@ export class ProjectViewComponent implements OnInit {
     this.router = route;
 
     this._resourceService.getAllResources().subscribe((allResources) => {
-        allResources.forEach((eachResource)=>{
-          this.totalResources.push(eachResource);
-        })
+      allResources.forEach((eachResource)=>{
+        this.totalResources.push(eachResource);
+      })
       this.dataTableForTheSelectedProjectResource();
     })
   }
@@ -83,18 +83,18 @@ export class ProjectViewComponent implements OnInit {
   }
 
   dataTableForTheSelectedProjectResource(){
-      let data ={
-        id:this.userId
-      }
+    let data ={
+      id:this.userId
+    }
     this.allProjectResoureData = [];
-      this._projectResourceService.getAllProjectResourcesById(data).subscribe((getTheRelatedData)=>{
-        getTheRelatedData.forEach((eachRecord)=>{
-          this.allProjectResoureData.push(eachRecord);
-        })
-        this.convetIdsToNames();
-        this.updateAutoCompleter();
-        this.dataTableFlag =1;
+    this._projectResourceService.getAllProjectResourcesById(data).subscribe((getTheRelatedData)=>{
+      getTheRelatedData.forEach((eachRecord)=>{
+        this.allProjectResoureData.push(eachRecord);
       })
+      this.convetIdsToNames();
+      this.updateAutoCompleter();
+      this.dataTableFlag =1;
+    })
 
   }
 
@@ -131,10 +131,10 @@ export class ProjectViewComponent implements OnInit {
   }
 
   deleteProjectResourceData(values){
-      this._projectResourceService.deleteTheProjectResource(values).subscribe((responce)=>{
+    this._projectResourceService.deleteTheProjectResource(values).subscribe((responce)=>{
 
-        this.dataTableForTheSelectedProjectResource();
-      })
+      this.dataTableForTheSelectedProjectResource();
+    })
   }
 
   convetIdsToNames(){
