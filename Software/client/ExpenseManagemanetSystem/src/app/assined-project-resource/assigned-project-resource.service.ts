@@ -24,7 +24,7 @@ export class projectResourceService {
 
   constructor(private http: Http, private queryApi: QueryApi, private router: Router) {
   }
-  createProject(data): Observable<any> {
+  createProjectResource(data): Observable<any> {
     return this.queryApi.doPost('projectResource',data)
       .map((res: Response) => {
         return res.json();

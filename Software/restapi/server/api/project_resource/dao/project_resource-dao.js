@@ -39,9 +39,15 @@ export default class project_resourceDAO{
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.ProjectResource
-        .findAndCountAll({where:{$or:[{ projectId : queryParams}]}})
+        .findAll({
+          include: [
+            {model:models.resources},
+            {model:models.project}
+          ],
+          where:{$or:[{ projectId : queryParams}]}
+        })
         .then(result => {
-
+          console.log(result);
           resolve(result);
         }, (error) => {
           reject(error);

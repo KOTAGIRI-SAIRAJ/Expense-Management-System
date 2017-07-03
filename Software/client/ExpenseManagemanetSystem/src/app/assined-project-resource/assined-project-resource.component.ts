@@ -28,7 +28,7 @@ export class AssinedProjectResourceComponent implements OnInit {
         "projectId":this.projectId,
         "resourceId":this.resourceId
       }
-      this._projectResourceService.createProject(valuesData).subscribe((projectResourceData) => {
+      this._projectResourceService.createProjectResource(valuesData).subscribe((projectResourceData) => {
         this._projectResourceService.getAllProjectResources().subscribe((allprojectResourceData)=>{
           this.projectResourceDataTable = allprojectResourceData;
           this._projectService.getAllProjects().subscribe((allProjectData)=>{

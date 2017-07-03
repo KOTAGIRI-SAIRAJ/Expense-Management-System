@@ -72,7 +72,7 @@ export class ProjectViewComponent implements OnInit {
             "projectId":this.userId,
             "resourceId":eachResource.id
           }
-          this._projectResourceService.createProject(valuesData).subscribe((projectResourceData) => {
+          this._projectResourceService.createProjectResource(valuesData).subscribe((projectResourceData) => {
             this.dataTableForTheSelectedProjectResource();
           })
         }

@@ -31,16 +31,7 @@ export default class project_resourceController {
     const _query = req.params.id;
     project_resourceDAO
       .getById(_query)
-      .then(data => {
-        res.status(200).json(data.rows);
-      })
-      .catch(error => {
-
-        if (error === 404) {
-
-          return res.status(404)
-        }
-        res.status(400);
-      });
+      .then(project_resources => res.status(200).json(project_resources))
+      .catch(error => res.status(400).json(error));
   }
 }

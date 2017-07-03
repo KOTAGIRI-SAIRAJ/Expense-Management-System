@@ -54,9 +54,9 @@
       <th style="width: 10%">
         <mfDefaultSorter by="End_Date">Status</mfDefaultSorter>
       </th>
-      <th style="width: 30%">
+      <!--<th style=" width: 30%">
         Options
-      </th>
+      </th>-->
     </tr>
     </thead>
     <div *ngIf="allExpenseDetails.length === 0">
@@ -72,14 +72,13 @@
       <td>{{item.projectId}}</td>
       <td>{{item.resourceId}}</td>
       <td>{{item.status}}</td>
-      <td>
+      <!--<td>
         <button type="button" class="btn btn-info " routerLink="{{item.id}}">View</button>
         &emsp;
         <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
         <button type="button" class="btn btn-danger" (click)="deleteExpenseData(item)">Delete</button>
-      </td>
+      </td>-->
     </tr>
-
     </tbody>
   </table>
 </div>

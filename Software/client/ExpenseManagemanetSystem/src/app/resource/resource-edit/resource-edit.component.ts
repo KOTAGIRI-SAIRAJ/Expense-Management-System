@@ -9,12 +9,15 @@ import {resourceService} from "../resource.service";
   styleUrls: ['./resource-edit.component.css'],
   providers: [resourceService,FormBuilder]
 })
+
 export class ResourceEditComponent implements OnInit {
+
   resourceForm : FormGroup;
   public router: Router;
   userId:any;
   DOB:any;emailId:any;endDate:any;firstName:any;
   joinDate:any;lastName:any;password:any;role:string;
+
   constructor(private fb: FormBuilder,public route: Router,public _resourceService:resourceService,private activatedRoute: ActivatedRoute) {
     this.router = route;
     this.resourceForm = this.fb.group({
@@ -35,6 +38,7 @@ export class ResourceEditComponent implements OnInit {
       this.getTheIdDetailsFromDataBase(this.userId);
     });
   }
+
   resourceData(values){
     values.id = this.userId;
     this._resourceService.updateResource(values).subscribe((response) => {
@@ -65,6 +69,7 @@ export class ResourceEditComponent implements OnInit {
       });
     });
   }
+
   revertToResources(){
     this.router.navigate(['resource']);
   }

@@ -2,7 +2,6 @@
  * Created by semanticbit on 20/6/17.
  */
 import { environment } from './../../../environments/environment';
-import {isUndefined} from "util";
 
 export const user = 'user';
 export const project = 'project';

@@ -49,7 +49,7 @@ export class HomepageComponent implements OnInit {
         } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Manager") {
           flag = 0;
           this._localStorage.setLocalStorageValue(eachRecord)
-          this.router.navigate((['expense']));
+          this.router.navigate((['dashboard']));
           this.loginForm.reset();
         } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Staff") {
           flag = 0;
@@ -65,6 +65,5 @@ export class HomepageComponent implements OnInit {
         this.flag = 1;
       }
     });
-
   }
 }
