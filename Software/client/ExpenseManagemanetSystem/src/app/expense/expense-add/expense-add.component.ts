@@ -50,13 +50,13 @@ export class ExpenseAddComponent implements OnInit {
 
   ngOnInit() {
     this._projectResourceService.getAllProjectResources().subscribe((projectResourceData)=>{
-      projectResourceData.forEach((eachProjectResource)=>{
+      /*projectResourceData.forEach((eachProjectResource)=>{
         console.log(eachProjectResource);
         console.log(eachProjectResource.project);
         console.log(eachProjectResource.resource);
         console.log(eachProjectResource.projectId);
         console.log(eachProjectResource.resourceId);
-      })
+      })*/
       this._resourceService.getAllResources().subscribe((response)=>{
         response.forEach((eachResource)=>{
           if(this.resourceDataLocalStorage.emailId === eachResource.emailId){

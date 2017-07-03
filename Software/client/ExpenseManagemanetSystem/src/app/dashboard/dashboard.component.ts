@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+
   gotoProject(){
     this.router.navigate(['project']);
   }

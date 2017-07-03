@@ -28,7 +28,7 @@ export default class project_resourceDAO{
           ]
         })
         .then(result => {
-          console.log(result);
+
           resolve(result);
         }, (error) => {
           reject(error);

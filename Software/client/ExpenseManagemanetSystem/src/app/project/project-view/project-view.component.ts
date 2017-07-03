@@ -25,10 +25,10 @@ export class ProjectViewComponent implements OnInit {
   allProjectResourceDataTableValues:Array<any> =[];
   public allResourceNamesForAutoCompleter:Array<any> = [];
   public totalResources:Array<any> = [];
+
   constructor(private activatedRoute: ActivatedRoute,public route: Router,public _projectService:projectService,public _resourceService:resourceService,public _projectResourceService:projectResourceService) {
     this.tempFlag = 0;
     this.router = route;
-
     this._resourceService.getAllResources().subscribe((allResources) => {
       allResources.forEach((eachResource)=>{
         this.totalResources.push(eachResource);
@@ -45,6 +45,7 @@ export class ProjectViewComponent implements OnInit {
 
     });
   }
+
   getTheIdDetailsFromDataBase(idValue){
     this._projectService.getTheDataById(idValue).subscribe((response) => {
       response = response[0];
@@ -78,7 +79,7 @@ export class ProjectViewComponent implements OnInit {
       })
 
     }else{
-      alert('select one resource');
+      alert('No resource selected');
     }
   }
 
@@ -132,18 +133,14 @@ export class ProjectViewComponent implements OnInit {
 
   deleteProjectResourceData(values){
     this._projectResourceService.deleteTheProjectResource(values).subscribe((responce)=>{
-
       this.dataTableForTheSelectedProjectResource();
     })
   }
 
   convetIdsToNames(){
-
     this.allProjectResourceDataTableValues = [];
-
     this.totalResources.forEach((eachRecord)=>{
       this.allProjectResoureData.forEach((eachIdRecord)=>{
-
         if(eachIdRecord.resourceId === eachRecord.id){
           this._projectService.getTheDataById(eachIdRecord.projectId).subscribe((projectData)=>{
             let tempRecord = {
@@ -153,11 +150,10 @@ export class ProjectViewComponent implements OnInit {
               resourceId : eachRecord.firstName+' '+eachRecord.lastName,
             }
             this.allProjectResourceDataTableValues.push(tempRecord);
-
           })
-
         }
       })
     })
   }
+
 }

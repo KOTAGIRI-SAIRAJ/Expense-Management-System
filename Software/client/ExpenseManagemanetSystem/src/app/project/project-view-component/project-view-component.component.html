@@ -1,3 +1,50 @@
-<p>
-  project-view-component works!
-</p>
+<body>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <a class="pull-right" role="button" style="width: 80%" (click)="revertToProjects()">Projects</a>
+      <div class="panel-title text-center">
+        <h1 class="title">Project Details</h1>
+      </div>
+    </div>
+    <div class="container main-login main-center">
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Project Name :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectName}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Project Description :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectDescription}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Start Date :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectStartDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> End Date :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectEndDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="revertToProjects()">Submit</button>
+      <button type="button" class="btn btn-warning" (click)="onclickResourceButton()">
+        <span class="glyphicon glyphicon-save-file"></span> Get all Resources
+      </button>
+    </div>
+  </div>
+</div>
+</body>
