@@ -1,0 +1,76 @@
+<!--
+<div id="navbar">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+        <a class="navbar-brand" (click)="revertToExpense()" role="button">Expense</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button">Project Operations<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="kopie" routerLink="create"><a role="button">ADD PROJECT</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="navbar-brand pull-right" (click)="revertToDashBoard()" role="button">DashBoard</a>
+    </div>
+  </nav>
+</div>
+-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a role="button">DashBoard</a></li>
+      <li class="dropdown" >
+        <a role="button" class="dropdown-toggle" data-toggle="dropdown">Expense <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class="divider" *ngIf="LoggedInPersonType !== 'Staff'"></li>
+            <li><a role="button" *ngIf="LoggedInPersonType !== 'Staff'" routerLink="expense">Expenses</a></li>
+          <li class="divider" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'"></li>
+            <li><a role="button" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'">My Expenses</a></li>
+          <li class="divider" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'"></li>
+            <li><a role="button" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'" routerLink="expense/create">Generate Expense</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a role="button" class="dropdown-toggle" data-toggle="dropdown" *ngIf="LoggedInPersonType === 'ExpenseAdmin'">Project <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class="divider"></li>
+            <li><a role="button" routerLink="project/create">Create Project</a></li>
+          <li class="divider"></li>
+            <li><a role="button" routerLink="project">Search</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a role="button" class="dropdown-toggle" data-toggle="dropdown" *ngIf="LoggedInPersonType === 'ExpenseAdmin'">Resource <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class="divider"></li>
+            <li><a role="button" routerLink="resource/create">Create Resource</a></li>
+          <li class="divider"></li>
+            <li><a role="button" routerLink="resource">Search</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-right">
+    <li class="dropdown pull-right">
+      <a  class="dropdown-toggle" data-toggle="dropdown">Hi {{LoggedInPersonName}}<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a role="button" (click)="revertToHome()">LogOut</a></li>
+      </ul>
+    </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

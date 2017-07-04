@@ -41,20 +41,10 @@ export class HomepageComponent implements OnInit {
       this.flag = 0;
       let flag =0;
       allUserDetails.forEach((eachRecord) => {
-        if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "ExpenseAdmin") {
+        if (eachRecord.emailId === values.emailId && eachRecord.password === values.password ) {
           flag = 0;
-          this._localStorage.setLocalStorageValue(eachRecord)
-          this.router.navigate(['dashboard']);
-          this.loginForm.reset();
-        } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Manager") {
-          flag = 0;
-          this._localStorage.setLocalStorageValue(eachRecord)
-          this.router.navigate((['dashboard']));
-          this.loginForm.reset();
-        } else if (eachRecord.emailId === values.emailId && eachRecord.password === values.password && eachRecord.role === "Staff") {
-          flag = 0;
-          this._localStorage.setLocalStorageValue(eachRecord)
-          this.router.navigate((['expense/create']));
+          this._localStorage.setLocalStorageValue(eachRecord);
+          this.router.navigate(['newdashboard']);
           this.loginForm.reset();
         }else{
           flag = 1;

@@ -57,7 +57,7 @@ export class ProjectViewComponent implements OnInit {
   }
 
   revertToProjects(){
-    this.router.navigate(['project']);
+    this.router.navigate(['newdashboard/project']);
   }
   onclickResourceButton(){
     this.tempFlag =1;

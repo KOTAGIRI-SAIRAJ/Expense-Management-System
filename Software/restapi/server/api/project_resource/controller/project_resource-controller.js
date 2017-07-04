@@ -9,7 +9,6 @@ export default class project_resourceController {
       .catch(error => res.status(400).json(error));
   }
 
-
   static createNew(req, res) {
     let _project_resource = req.params;
     project_resourceDAO
@@ -19,14 +18,13 @@ export default class project_resourceController {
   }
 
   static removeById(req, res) {
-
     let _id = req.params;
-
     project_resourceDAO
       .removeById(_id)
       .then((response) => res.status(200).end())
       .catch(error => res.status(400).json(error));
   }
+
   static getById(req,res){
     const _query = req.params.id;
     project_resourceDAO
@@ -34,4 +32,5 @@ export default class project_resourceController {
       .then(project_resources => res.status(200).json(project_resources))
       .catch(error => res.status(400).json(error));
   }
+
 }

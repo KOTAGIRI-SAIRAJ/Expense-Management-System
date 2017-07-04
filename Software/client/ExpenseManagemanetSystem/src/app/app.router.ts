@@ -23,6 +23,7 @@ import {ExpenseEditComponent} from "./expense/expense-edit/expense-edit.componen
 import {AssinedProjectResourceComponent} from "./assined-project-resource/assined-project-resource.component";
 import {AppComponent} from "./app.component";
 import {ProjectViewComponentComponent} from "./project/project-view-component/project-view-component.component";
+import {DashBoardNewComponent} from "./dash-board-new/dash-board-new.component";
 
   export const router:  Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,15 +31,15 @@ import {ProjectViewComponentComponent} from "./project/project-view-component/pr
     {path: 'home', component : HomepageComponent},
     {path: 'dashboard', component : DashboardComponent},
 
-    {path: 'expense', component : ExpenseComponent},
-    {path: 'expense/create', component : ExpenseAddComponent},
+    //{path: 'expense', component : ExpenseComponent},
+    // {path: 'expense/create', component : ExpenseAddComponent},
     {path: 'expense/:id', component : ExpenseViewComponent},
     {path: 'expense/:id/edit', component : ExpenseEditComponent},
 
-    {path: 'project', component : ProjectComponent},
+   /* {path: 'newdashboard/project', component : ProjectComponent},
     {path: 'project/create', component : ProjectAddComponent},
     {path: 'project/:id/edit', component : ProjectEditComponent},
-    {path: 'project/:id', component : ProjectViewComponent},
+    {path: 'project/:id', component : ProjectViewComponent},*/
 
 
     /*{path: 'project', component : ProjectComponent,
@@ -49,15 +50,31 @@ import {ProjectViewComponentComponent} from "./project/project-view-component/pr
       ]
     }, */
 
-    {path: 'resource', component : ResourceComponent},
+    /*{path: 'resource', component : ResourceComponent},
     {path: 'resource/create', component : ResourceAddComponent},
     {path: 'resource/:id/edit', component : ResourceEditComponent},
-    {path: 'resource/:id', component : ResourceViewComponent},
+    {path: 'resource/:id', component : ResourceViewComponent},*/
 
     {path: 'project/:projectId/assignResource/:resourceId', component : AssinedProjectResourceComponent},
     {path: 'resource/:resourceId/assignProject/:projectId', component : AssinedProjectResourceComponent},
 
-    {path:'home/projectViewComponent/:id',component: ProjectViewComponentComponent}
+    {path:'home/projectViewComponent/:id',component: ProjectViewComponentComponent},
+    {path: 'newdashboard',component:DashBoardNewComponent,
+      children : [
+        {path : 'project', component: ProjectComponent},
+        {path: 'project/create', component : ProjectAddComponent},
+        {path: 'project/:id/edit', component : ProjectEditComponent},
+        {path: 'project/:id', component : ProjectViewComponent},
+
+        {path: 'resource', component : ResourceComponent},
+        {path: 'resource/create', component : ResourceAddComponent},
+        {path: 'resource/:id/edit', component : ResourceEditComponent},
+        {path: 'resource/:id', component : ResourceViewComponent},
+
+        {path: 'expense', component : ExpenseComponent},
+        {path: 'expense/create', component : ExpenseAddComponent},
+      ]
+    }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

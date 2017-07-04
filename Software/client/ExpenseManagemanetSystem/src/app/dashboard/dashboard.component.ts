@@ -30,4 +30,7 @@ export class DashboardComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['home']);
   }
+  revertToNewDashBoard(){
+    this.router.navigate(['newdashboard']);
+  }
 }

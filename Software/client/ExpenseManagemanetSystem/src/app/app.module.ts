@@ -9,9 +9,6 @@ import { MomentModule } from 'angular2-moment';
 import { SelectModule } from 'ng2-select';
 
 
-
-
-
 import { QueryApi } from './common/request/QueryApi';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -35,6 +32,7 @@ import { ExpenseViewComponent } from './expense/expense-view/expense-view.compon
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
 import { AssinedProjectResourceComponent } from './assined-project-resource/assined-project-resource.component';
 import { ProjectViewComponentComponent } from './project/project-view-component/project-view-component.component';
+import { DashBoardNewComponent } from './dash-board-new/dash-board-new.component';
 
 
 
@@ -63,6 +61,7 @@ import { ProjectViewComponentComponent } from './project/project-view-component/
     ExpenseEditComponent,
     AssinedProjectResourceComponent,
     ProjectViewComponentComponent,
+    DashBoardNewComponent,
 
   ],
   imports: [
@@ -75,7 +74,6 @@ import { ProjectViewComponentComponent } from './project/project-view-component/
     ModalModule.forRoot(),
     MomentModule,
     SelectModule
-
   ],
   providers: [QueryApi],
   bootstrap: [AppComponent]

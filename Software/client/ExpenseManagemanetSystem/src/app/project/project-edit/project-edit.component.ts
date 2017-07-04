@@ -53,6 +53,6 @@ export class ProjectEditComponent implements OnInit {
     });
   }
   revertToProjects(){
-    this.router.navigate(['project']);
+    this.router.navigate(['newdashboard/project']);
   }
 }

@@ -27,12 +27,12 @@ export class ProjectAddComponent implements OnInit {
   projectsData(values){
     this._projectService.createProject(values).subscribe((response) => {
       //this.projectsForm.reset();
-      this.router.navigate(['project']);
+      this.router.navigate(['newdashboard/project']);
       //this.revertToProjects();
     });
 
   }
   revertToProjects(){
-    this.router.navigate(['project']);
+    this.router.navigate(['newdashboard/project']);
   }
 }

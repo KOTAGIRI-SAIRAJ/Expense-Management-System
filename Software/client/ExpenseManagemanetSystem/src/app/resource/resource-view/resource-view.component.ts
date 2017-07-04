@@ -54,7 +54,7 @@ export class ResourceViewComponent implements OnInit {
     });
   }
   revertToProjects(){
-    this.router.navigate(['resource']);
+    this.router.navigate(['newdashboard/resource']);
   }
   onclickProjectsButton(){
     this.tempFlag =1;
