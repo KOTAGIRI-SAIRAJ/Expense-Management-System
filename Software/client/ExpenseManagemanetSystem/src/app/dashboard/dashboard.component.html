@@ -1,26 +1,15 @@
-<!--<div id="navbar">
-  <nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" >ADMIN</a>
-        <a class="navbar-brand"  (click)="gotoProject()">Projects</a>
-        <a class="navbar-brand"  (click)="gotoResource()">Resources</a>
-
-    </div>
-  </nav>
-</div>-->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" *ngIf="loggedPerson != null">
       <li ><a><h4>Home</h4></a></li>
-      <li ><a (click)="gotoProject()"><h4>Projects</h4></a></li>
-      <li ><a (click)="gotoResource()"><h4>Resources</h4></a></li>
+      <!--<div *ngIf="loggedPerson != null">-->
+      <li><a role="button" (click)="gotoProject()"><h4>Projects</h4></a></li>
+      <li *ngIf="loggedPerson === 'ExpenseAdmin'"><a role="button" (click)="gotoResource()"><h4>Resources</h4></a></li>
+
+      <!--</div>-->
     </ul>
+    <a class="navbar-brand pull-right" role="button" (click)="revertToHome()">LogOut</a>
   </div>
 </nav>
 
+<button class="btn btn-success pull-right" (click)="revertToNewDashBoard()">redirect to new DashBoard</button>

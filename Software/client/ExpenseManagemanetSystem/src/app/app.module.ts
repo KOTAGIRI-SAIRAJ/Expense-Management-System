@@ -9,13 +9,11 @@ import { MomentModule } from 'angular2-moment';
 import { SelectModule } from 'ng2-select';
 
 
-
 import { QueryApi } from './common/request/QueryApi';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { AdminOperationsComponent } from './admin-operations/admin-operations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ProjectAddComponent } from './project/project-add/project-add.component';
@@ -32,6 +30,9 @@ import { ExpenseComponent } from './expense/expense.component';
 import { ExpenseAddComponent } from './expense/expense-add/expense-add.component';
 import { ExpenseViewComponent } from './expense/expense-view/expense-view.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
+import { AssinedProjectResourceComponent } from './assined-project-resource/assined-project-resource.component';
+import { ProjectViewComponentComponent } from './project/project-view-component/project-view-component.component';
+import { DashBoardNewComponent } from './dash-board-new/dash-board-new.component';
 
 
 
@@ -42,7 +43,6 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    AdminOperationsComponent,
     DashboardComponent,
 
     ProjectAddComponent,
@@ -59,6 +59,9 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
     ExpenseAddComponent,
     ExpenseViewComponent,
     ExpenseEditComponent,
+    AssinedProjectResourceComponent,
+    ProjectViewComponentComponent,
+    DashBoardNewComponent,
 
   ],
   imports: [
@@ -71,7 +74,6 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
     ModalModule.forRoot(),
     MomentModule,
     SelectModule
-
   ],
   providers: [QueryApi],
   bootstrap: [AppComponent]

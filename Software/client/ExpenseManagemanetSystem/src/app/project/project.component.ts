@@ -2,12 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {projectService} from "./project.service";
 import {ModalDirective} from "ngx-bootstrap";
 import {Router} from '@angular/router';
+import {localStorageService} from "../app.service";
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
-  providers :[projectService]
+  providers :[projectService,localStorageService]
 })
 export class ProjectComponent implements OnInit {
   private value: any = {};
@@ -16,13 +17,14 @@ export class ProjectComponent implements OnInit {
   public router: Router;
   public allProjectDetails:Array<any> =[];
   public totalProjectDetails:Array<any> =[];
+  LoggedInPersonType = '';
   public allProjectNamesForAutoCompleter:Array<any>;
   tempProjectDetails:any;
   tempProjectName:string = '';
-
-  allProjectsForAutoComplter = ['sai','raj'];
   @ViewChild('DeleteProjectDetails') public DeleteProjectDetails:ModalDirective;
-  constructor(public _projectService:projectService,public route: Router) {
+  constructor(public _projectService:projectService,public route: Router,public _localStorage:localStorageService) {
+    let loggedInInfo = this._localStorage.getLocalStorageValue();
+    this.LoggedInPersonType = loggedInInfo.role;
     this.router = route;
     this.getTheProjectsData();
   }
@@ -78,7 +80,6 @@ export class ProjectComponent implements OnInit {
   deleteProjectData = (Data):void =>{
     this.tempProjectDetails = Data;
     this.tempProjectName = Data.projectName;
-    console.log(this.tempProjectDetails);
     this.DeleteProjectDetails.show();
   };
   public hideDeleteProjectDetails = ():void =>{
@@ -95,9 +96,7 @@ export class ProjectComponent implements OnInit {
     this.disabled = this._disabledV === '1';
   }
 
-  // Get The Selected Product and returns the Product Id using Event Emitter
   public selected(value: any): void {
-    console.log('from Selected '+value.id);
     this.updateDataTable(value.id);
   }
 
@@ -122,5 +121,11 @@ export class ProjectComponent implements OnInit {
         this.allProjectDetails.push(eachRecord);
       }
     })
+  }
+  revertToDashBoard(){
+    this.router.navigate(['dashboard']);
+  }
+  revertToExpense(){
+    this.router.navigate(['expense']);
   }
 }

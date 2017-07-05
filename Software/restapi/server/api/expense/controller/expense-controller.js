@@ -12,6 +12,15 @@ export default class expenseController {
       .catch(error => res.status(400).json(error));
   }
 
+  static getAllExpensesByRole(req,res){
+    const _query = req.body;
+    expenseDAO
+      .getAllExpensesByRole(_query)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(error => res.status(400).json(error));
+  }
 
   static createNew(req, res) {
     const _reqBody = req.body;

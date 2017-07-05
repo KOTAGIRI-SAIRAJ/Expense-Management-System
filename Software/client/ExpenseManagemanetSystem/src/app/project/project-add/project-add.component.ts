@@ -24,16 +24,15 @@ export class ProjectAddComponent implements OnInit {
 
   ngOnInit() {  }
 
-  projectsPopup(values){
-    alert('from Projects');
-    console.log(values);
+  projectsData(values){
     this._projectService.createProject(values).subscribe((response) => {
-      this.projectsForm.reset();
-      this.revertToProjects();
+      //this.projectsForm.reset();
+      this.router.navigate(['newdashboard/project']);
+      //this.revertToProjects();
     });
 
   }
   revertToProjects(){
-    this.router.navigate(['project']);
+    this.router.navigate(['newdashboard/project']);
   }
 }

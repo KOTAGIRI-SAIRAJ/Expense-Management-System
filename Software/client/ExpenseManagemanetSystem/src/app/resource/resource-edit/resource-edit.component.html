@@ -1,127 +1,125 @@
-
 <body>
-<div class="container">
-  <div class="row main">
-    <div class="panel-heading">
-      <div class="panel-title text-center">
-        <h1 class="title">Update a Resource</h1>
-        <hr />
+  <div class="container">
+    <div class="row main">
+      <div class="panel-heading">
+        <div class="panel-title text-center">
+          <h1 class="title">Update a Resource</h1>
+          <hr />
+        </div>
+      </div>
+      <div class="main-login main-center">
+        <form [formGroup]="resourceForm" (ngSubmit)="resourceData(resourceForm.value)">
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['firstName'].valid && resourceForm.controls['firstName'].touched}">
+            <label>First Name :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the FirstName" value="{{firstName}}" [formControl]="resourceForm.controls['firstName']">
+                <div *ngIf="resourceForm.controls['firstName'].hasError('required') && resourceForm.controls['firstName'].touched" class="alert alert-danger">
+                  You must include a First Name
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['lastName'].valid && resourceForm.controls['lastName'].touched}">
+            <label>Last Name :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the LastName" value="{{lastName}}" [formControl]="resourceForm.controls['lastName']">
+                <div *ngIf="resourceForm.controls['lastName'].hasError('required') && resourceForm.controls['lastName'].touched" class="alert alert-danger">
+                  You must include a Last Name
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['DOB'].valid && resourceForm.controls['DOB'].touched}">
+              <label>DOB :</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                  <input class="form-control" type="date" placeholder="Enter the DOB" value="{{DOB | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['DOB']">
+                  <div *ngIf="resourceForm.controls['DOB'].hasError('required') && resourceForm.controls['DOB'].touched" class="alert alert-danger">
+                    You must include a DOB
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['emailId'].valid && resourceForm.controls['emailId'].touched}">
+            <label>Email-Id:</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                <input class="form-control" type="email" placeholder="Enter the Email-Id" value="{{emailId}}" disabled [formControl]="resourceForm.controls['emailId']">
+                <div *ngIf="resourceForm.controls['emailId'].hasError('required') && resourceForm.controls['emailId'].touched" class="alert alert-danger">
+                  You must include a email-Id
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['password'].valid && resourceForm.controls['password'].touched}">
+            <label>Password :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                <input class="form-control" type="text" placeholder="Enter the Password" value="{{password}}" [formControl]="resourceForm.controls['password']">
+                <div *ngIf="resourceForm.controls['password'].hasError('required') && resourceForm.controls['password'].touched" class="alert alert-danger">
+                  You must include a Password
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['role'].valid && resourceForm.controls['role'].touched}">
+            <label>Role :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                <select name="role" class="form-control" [formControl]="resourceForm.controls['role']">
+                  <option value="Manager">Manager</option>
+                  <option value="Staff">Staff</option>
+                  <option value="ExpenseAdmin">ExpenseAdmin</option>
+                </select>
+                <div *ngIf="resourceForm.controls['role'].hasError('required') && resourceForm.controls['role'].touched" class="alert alert-danger">
+                  You must include your Role
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['joinDate'].valid && resourceForm.controls['joinDate'].touched}">
+            <label>Join Date :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                <input class="form-control" type="date" placeholder="Enter the joinDate" value="{{joinDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['joinDate']">
+                <div *ngIf="resourceForm.controls['joinDate'].hasError('required') && resourceForm.controls['joinDate'].touched" class="alert alert-danger">
+                  You must include a Date of Joining
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['endDate'].valid && resourceForm.controls['emailId'].touched}">
+            <label>End Date :</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                <input class="form-control" type="date" placeholder="Enter the endDate" value="{{endDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['endDate']">
+                <div *ngIf="resourceForm.controls['endDate'].hasError('required') && resourceForm.controls['endDate'].touched" class="alert alert-danger">
+                  You must include a Date of Ending
+                </div>
+              </div>
+            </div>
+          </div>
+          <br><br>
+          <div class="col-sm pull-right">
+            <button type="button" class="btn btn-danger" (click)="revertToResources()">Cancel</button>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          <br><br>
+        </form>
       </div>
     </div>
-    <div class="main-login main-center">
-      <form [formGroup]="resourceForm" (ngSubmit)="resourcePopup(resourceForm.value)">
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['firstName'].valid && resourceForm.controls['firstName'].touched}">
-          <label>First Name :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <input class="form-control" type="text" placeholder="Enter the FirstName" value="{{firstName}}" [formControl]="resourceForm.controls['firstName']">
-              <div *ngIf="resourceForm.controls['firstName'].hasError('required') && resourceForm.controls['firstName'].touched" class="alert alert-danger">
-                You must include a First Name
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['lastName'].valid && resourceForm.controls['lastName'].touched}">
-          <label>Last Name :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <input class="form-control" type="text" placeholder="Enter the LastName" value="{{lastName}}" [formControl]="resourceForm.controls['lastName']">
-              <div *ngIf="resourceForm.controls['lastName'].hasError('required') && resourceForm.controls['lastName'].touched" class="alert alert-danger">
-                You must include a Last Name
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['DOB'].valid && resourceForm.controls['DOB'].touched}">
-          <label>DOB :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the DOB" value="{{DOB | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['DOB']">
-              <div *ngIf="resourceForm.controls['DOB'].hasError('required') && resourceForm.controls['DOB'].touched" class="alert alert-danger">
-                You must include a DOB
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['emailId'].valid && resourceForm.controls['emailId'].touched}">
-          <label>Email-Id:</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-              <input class="form-control" type="email" placeholder="Enter the Email-Id" value="{{emailId}}" [formControl]="resourceForm.controls['emailId']">
-              <div *ngIf="resourceForm.controls['emailId'].hasError('required') && resourceForm.controls['emailId'].touched" class="alert alert-danger">
-                You must include a email-Id
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['password'].valid && resourceForm.controls['password'].touched}">
-          <label>Password :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-              <input class="form-control" type="text" placeholder="Enter the Password" value="{{password}}" [formControl]="resourceForm.controls['password']">
-              <div *ngIf="resourceForm.controls['password'].hasError('required') && resourceForm.controls['password'].touched" class="alert alert-danger">
-                You must include a Password
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['role'].valid && resourceForm.controls['role'].touched}">
-          <label>Role :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-              <select name="role" class="form-control" [formControl]="resourceForm.controls['role']">
-                <option value="Manager">Manager</option>
-                <option value="Staff">Staff</option>
-                <option value="ExpenseAdmin">ExpenseAdmin</option>
-              </select>
-              <div *ngIf="resourceForm.controls['role'].hasError('required') && resourceForm.controls['role'].touched" class="alert alert-danger">
-                You must include your Role
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['joinDate'].valid && resourceForm.controls['joinDate'].touched}">
-          <label>Join Date :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the joinDate" value="{{joinDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['joinDate']">
-              <div *ngIf="resourceForm.controls['joinDate'].hasError('required') && resourceForm.controls['joinDate'].touched" class="alert alert-danger">
-                You must include a Date of Joining
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['endDate'].valid && resourceForm.controls['emailId'].touched}">
-          <label>End Date :</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-              <input class="form-control" type="date" placeholder="Enter the endDate" value="{{endDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}" [formControl]="resourceForm.controls['endDate']">
-              <div *ngIf="resourceForm.controls['endDate'].hasError('required') && resourceForm.controls['endDate'].touched" class="alert alert-danger">
-                You must include a Date of Ending
-              </div>
-            </div>
-          </div>
-        </div>
-        <br><br>
-        <div class="col-sm pull-right">
-          <button type="button" class="btn btn-danger" (click)="revertToResources()">Cancel</button>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-        <br><br>
-      </form>
-    </div>
+    <br><br><br>
   </div>
-  <br><br><br>
-</div>
-
 </body>
 

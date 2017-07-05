@@ -9,7 +9,7 @@ export default class expenseDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.expense
-        .findAndCountAll({})
+        .findAll({})
         .then(result => {
           resolve(result);
         }, (error) => {

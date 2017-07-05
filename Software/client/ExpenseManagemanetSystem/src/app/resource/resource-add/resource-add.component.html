@@ -1,4 +1,3 @@
-
 <body>
 <div class="container">
   <div class="row main">
@@ -9,7 +8,7 @@
       </div>
     </div>
     <div class="main-login main-center">
-      <form [formGroup]="resourceForm" (ngSubmit)="resourcePopup(resourceForm.value)">
+      <form [formGroup]="resourceForm" (ngSubmit)="resourceData(resourceForm.value)">
         <div class="form-group" [ngClass]="{'has-error':!resourceForm.controls['firstName'].valid && resourceForm.controls['firstName'].touched}">
           <label>First Name :</label>
           <div class="cols-sm-10">
@@ -51,10 +50,13 @@
           <div class="cols-sm-10">
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-              <input class="form-control" type="email" placeholder="Enter the Email-Id" [formControl]="resourceForm.controls['emailId']">
+              <input class="form-control" type="email" placeholder="Enter the Email-Id" [ngModel]="range" (ngModelChange)="emailCheck($event)" [formControl]="resourceForm.controls['emailId']">
               <div *ngIf="resourceForm.controls['emailId'].hasError('required') && resourceForm.controls['emailId'].touched" class="alert alert-danger">
                 You must include a email-Id
               </div>
+            </div>
+            <div class="alert alert-warning" *ngIf="flag === 1">
+              <strong>Warning!</strong> EmailId Already Exists
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@
               <select name="role" class="form-control" [formControl]="resourceForm.controls['role']">
                 <option value="Manager">Manager</option>
                 <option value="Staff">Staff</option>
-                <option value="ExpenseAdmin">ExpenseAdmin</option>
+                <option value="ExpenseAdmin" *ngIf="LoggedInPersonType === 'ExpenseAdmin'">ExpenseAdmin</option>
               </select>
               <div *ngIf="resourceForm.controls['role'].hasError('required') && resourceForm.controls['role'].touched" class="alert alert-danger">
                 You must include your Role
@@ -112,7 +114,7 @@
         </div>
         <br><br>
         <div class="col-sm pull-right">
-          <button type="button" class="btn btn-danger" (click)="resource.hide()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="revertToResources()">Cancel</button>
 
           <button type="submit" class="btn btn-primary" [disabled]="!resourceForm.valid">Submit</button>
         </div>

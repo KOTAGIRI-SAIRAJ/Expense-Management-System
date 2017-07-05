@@ -1,7 +1,6 @@
 /**
- * Created by semanticbits on 19/6/17.
+ * Created by semanticbits on 28/6/17.
  */
-
 import {Injectable} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
@@ -21,12 +20,12 @@ import { QueryApi } from '../common/request/QueryApi';
 
 
 @Injectable()
-export class projectService {
+export class projectResourceService {
 
   constructor(private http: Http, private queryApi: QueryApi, private router: Router) {
   }
-  createProject( project ): Observable<any> {
-    return this.queryApi.doPost('project', project)
+  createProjectResource(data): Observable<any> {
+    return this.queryApi.doPost('projectResource',data)
       .map((res: Response) => {
         return res.json();
       })
@@ -34,38 +33,32 @@ export class projectService {
         return Observable.throw(error.json());
       });
   }
-  getAllProjects(): Observable<any> {
-    let project
-    return this.queryApi.doGet('project', project)
+  getAllProjectResources(): Observable<any> {
+    let data
+    return this.queryApi.doGet('projectResource', data)
       .map((res: Response) => {
         return res.json();
       })
       .catch((error: any) => {
         return Observable.throw(error.json().error || "server error")
-      })
+    })
   }
-  deleteTheProjectRecord(projectId): Observable<any>{
-    return this.queryApi.doDelete('delProject',projectId)
+  getAllProjectResourcesById(val):Observable<any>{
+    return this.queryApi.doGet('projectResource',val)
       .map((res:Response)=>{
+
         return res.json();
       })
       .catch((error:any)=>{
+        console.log(error)
         return Observable.throw(error.json());
       })
   }
-  getTheDataById(projectId){
-    return this.queryApi.doGet('getProjectById',projectId)
+  deleteTheProjectResource(val):Observable<any>{
+    return this.queryApi.doDelete('projectResource',val)
       .map((res:Response)=>{
-        return res.json();
-      })
-      .catch((error:any)=>{
-        return Observable.throw(error.json());
-      })
-  }
-  updateTheProjectDetails(values){
-    return this.queryApi.doPut('updateTheProjectDetails',values)
-      .map((res:Response)=>{
-        return res.json();
+        console.log(res);
+        return res.status;
       })
       .catch((error:any)=>{
         return Observable.throw(error.json());
