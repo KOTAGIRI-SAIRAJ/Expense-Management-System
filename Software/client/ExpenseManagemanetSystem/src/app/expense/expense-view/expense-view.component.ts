@@ -62,12 +62,11 @@ export class ExpenseViewComponent implements OnInit {
     this._expenseService.getTheDataById(this.userId).subscribe((expenseRecord) => {
       expenseRecord = expenseRecord[0];
       expenseRecord.status = this.status;
+      console.log(expenseRecord);
       this._expenseService.updateExpenses(expenseRecord).subscribe((response) => {
         this.UpdateStatus.hide();
         this._expenseService.getAllExpenses().subscribe((resp)=>{
-          console.log('***********************')
-          console.log(resp)
-          console.log('***********************')
+
         })
       })
     })

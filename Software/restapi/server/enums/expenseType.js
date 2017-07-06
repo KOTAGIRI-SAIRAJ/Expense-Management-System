@@ -2,7 +2,7 @@
  * Created by semanticbit on 17/6/17.
  */
 const expenseType = {
-  "Pre-populated data - Office": { code: "Pre-populated data - Office", value: "Pre-populated data - Office" },
+  "PrePopulatedDataOffice": { code: "PrePopulatedDataOffice", value: "PrePopulatedDataOffice" },
   "Recruitment": { code: "Recruitment", value: "Recruitment" },
   "Hotel": { code: "Hotel", value: "Hotel" },
   "Airfare": { code: "Airfare", value: "Airfare" },

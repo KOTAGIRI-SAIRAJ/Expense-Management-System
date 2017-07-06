@@ -67,6 +67,7 @@ export class ResourceComponent implements OnInit {
   }
 
   ViewResourcedata(values){
+
     this.router.navigate(['resource/'+values.id]);
   }
 
@@ -131,9 +132,9 @@ export class ResourceComponent implements OnInit {
     })
   }
   revertToDashBoard(){
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['newdashboard/dashboard']);
   }
   revertToExpense(){
-    this.router.navigate(['expense']);
+    this.router.navigate(['newdashboard/expense']);
   }
 }

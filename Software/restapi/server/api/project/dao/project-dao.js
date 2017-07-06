@@ -17,7 +17,6 @@ export default class projectDAO{
   }
 
   static getById(queryParams) {
-    console.log("from getById")
     return new Promise((resolve, reject) => {
       const _query = queryParams;
       models.project

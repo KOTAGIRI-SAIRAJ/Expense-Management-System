@@ -42,8 +42,6 @@ export default class userController {
 
   static getById(req, res) {
     const _query = req.params.id;
-    console.log('from get iD')
-    console.log(_query)
     userDAO
       .getById(_query)
       .then(newusers => {

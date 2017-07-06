@@ -122,10 +122,5 @@ export class ProjectComponent implements OnInit {
       }
     })
   }
-  revertToDashBoard(){
-    this.router.navigate(['dashboard']);
-  }
-  revertToExpense(){
-    this.router.navigate(['expense']);
-  }
+  
 }

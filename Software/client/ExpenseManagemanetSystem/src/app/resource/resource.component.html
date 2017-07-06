@@ -59,10 +59,11 @@
      <!-- <td>{{item.password}}</td>
       <td>{{item.joinDate}}</td>
       <td>{{item.endDate}}</td>-->
+
       <td>
-        <button type="button" class="btn btn-info " (click)="ViewResourcedata(item)">View</button>
+        <button type="button" class="btn btn-info " routerLink="{{item.id}}">View</button>
         &emsp;
-        <button type="button" class="btn btn-primary " (click)="EditResourceData(item)">Edit</button>&emsp;
+        <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
         <button type="button" class="btn btn-danger" (click)="deleteResourceData(item)">Delete</button>
       </td>
     </tr>
