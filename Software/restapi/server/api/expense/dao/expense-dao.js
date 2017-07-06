@@ -9,7 +9,11 @@ export default class expenseDAO{
   static getAll(queryParams) {
     return new Promise((resolve, reject) => {
       models.expense
-        .findAll({})
+        .findAll({
+          include: [
+            {model:models.resources}
+          ]
+        })
         .then(result => {
           resolve(result);
         }, (error) => {
@@ -98,5 +102,17 @@ export default class expenseDAO{
     });
   }
 
+  static getDetailsManager(queryParams) {
+    return new Promise((resolve, reject) => {
+      models.expense
+        .findAll({where:{resourceId:{$in:[('SELECT id FROM resources WHERE role != \'Manager\'')]}}})
+        .then(result => {
+          console.log(result);
+          resolve(result);
+        }, (error) => {
+          reject(error);
+        });
+    });
+  }
 }
 

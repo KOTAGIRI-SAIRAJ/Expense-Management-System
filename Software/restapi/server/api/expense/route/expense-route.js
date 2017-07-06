@@ -12,5 +12,9 @@ export default class expenseRoutes {
       .get(expenseController.getById)
       .delete(expenseController.removeById)
       .put(expenseController.update);
+
+    router
+      .route('/api/getDetailsManager')
+      .get(expenseController.getDetailsManager)
   }
 }

@@ -1,0 +1,86 @@
+<!--
+<div id="navbar">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div *ngIf="LoggedInPersonType !== '' ">
+        <a class="navbar-brand">{{LoggedInPersonType}}</a>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button">Expense Operations<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li class="kopie" routerLink="create" role="listitem"><a role="button">Generate Expense</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="navbar-brand pull-right" (click)="revertToDashBoard()" role="button">DashBoard</a>
+    </div>
+  </nav>
+</div>
+-->
+
+
+
+<div class="container">
+  <h1>Expense Data Table</h1>
+  <table class="table table-striped" [mfData]="allExpenseDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+    <tr>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Expense_Name">Title</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Expense_Description">Amount</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="Start_Date">Expense Date</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Expense type</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Project Name</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Resource Name</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="End_Date">Status</mfDefaultSorter>
+      </th>
+    </tr>
+    </thead>
+    <div *ngIf="allExpenseDetails.length === 0">
+      <h2>No Expenses...!!</h2>
+    </div>
+    <tbody>
+
+    <tr bgcolor="#fffaf0" *ngFor="let item of allExpenseDetails">
+      <td>{{item.title}}</td>
+      <td>{{item.amount}}</td>
+      <td>{{item.expenseDate}}</td>
+      <td>{{item.expensetype}}</td>
+      <td>{{item.projectId}}</td>
+      <td>{{item.resourceId}}</td>
+      <td>{{item.status}}</td>
+
+      <!--<td>
+        <button type="button" class="btn btn-info "  routerLink="{{item.id}}">View</button>
+        &emsp;
+        <button type="button" class="btn btn-primary " routerLink="{{item.id}}/edit">Edit</button>&emsp;
+        <button type="button" class="btn btn-danger" (click)="deleteExpenseData(item)">Delete</button>
+      </td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

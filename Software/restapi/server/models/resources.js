@@ -1,6 +1,6 @@
 'use strict';
 const roleStatus = require("../enums/role")
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var resources = sequelize.define('resources', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
@@ -14,9 +14,25 @@ module.exports = function(sequelize, DataTypes) {
       values:roleStatus.values
     }
   }, {
+    tableName: "resources",
+    underscore: true,
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+      associate: models => {
+        resources.belongsToMany(models.project, {
+          through: models.ProjectResource,
+          as: "projects",
+          foreignKey: {
+            name: "resourceId",
+            allowNull: false
+          }
+        });
+        resources.hasMany(models.expense, {
+          as: "expenses",
+          foreignKey: {
+            name: "resourceId",
+            allowNull: false
+          }
+        });
       }
     }
   });

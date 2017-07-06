@@ -77,4 +77,14 @@ export default class expenseController {
         res.status(400).json(error);
       });
   }
+
+  static getDetailsManager(req, res){
+    const _query = req.query;
+    expenseDAO
+      .getDetailsManager(_query)
+      .then(result => {
+        res.send(result);
+      })
+      .catch(error => res.status(400).json(error));
+  }
 }

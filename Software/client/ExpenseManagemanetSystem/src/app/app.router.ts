@@ -24,6 +24,7 @@ import {AssinedProjectResourceComponent} from "./assined-project-resource/assine
 import {AppComponent} from "./app.component";
 import {ProjectViewComponentComponent} from "./project/project-view-component/project-view-component.component";
 import {DashBoardNewComponent} from "./dash-board-new/dash-board-new.component";
+import {MyexpensesComponent} from "./expense/myexpenses/myexpenses.component";
 
   export const router:  Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -74,6 +75,7 @@ import {DashBoardNewComponent} from "./dash-board-new/dash-board-new.component";
         {path: 'expense', component : ExpenseComponent},
         {path: 'expense/create', component : ExpenseAddComponent},
         {path: 'expense/:id', component : ExpenseViewComponent},
+        {path: 'myexpenses', component : MyexpensesComponent},
       ]
     }
 ];

@@ -36,7 +36,7 @@
           <li class="divider" *ngIf="LoggedInPersonType !== 'Staff'"></li>
             <li><a role="button" *ngIf="LoggedInPersonType !== 'Staff'" routerLink="expense">Expenses</a></li>
           <li class="divider" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'"></li>
-            <li><a role="button" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'">My Expenses</a></li>
+            <li><a role="button" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'" routerLink="myexpenses">My Expenses</a></li>
           <li class="divider" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'"></li>
             <li><a role="button" *ngIf="LoggedInPersonType !== 'ExpenseAdmin'" routerLink="expense/create">Generate Expense</a></li>
           <li class="divider"></li>

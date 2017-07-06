@@ -33,6 +33,7 @@ import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.compon
 import { AssinedProjectResourceComponent } from './assined-project-resource/assined-project-resource.component';
 import { ProjectViewComponentComponent } from './project/project-view-component/project-view-component.component';
 import { DashBoardNewComponent } from './dash-board-new/dash-board-new.component';
+import { MyexpensesComponent } from './expense/myexpenses/myexpenses.component';
 
 
 
@@ -62,6 +63,7 @@ import { DashBoardNewComponent } from './dash-board-new/dash-board-new.component
     AssinedProjectResourceComponent,
     ProjectViewComponentComponent,
     DashBoardNewComponent,
+    MyexpensesComponent,
 
   ],
   imports: [

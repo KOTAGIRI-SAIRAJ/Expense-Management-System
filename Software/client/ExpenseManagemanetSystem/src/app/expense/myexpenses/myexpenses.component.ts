@@ -1,37 +1,32 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
-import {ModalDirective} from "ngx-bootstrap";
+import { Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {expenseService} from "./expense.service";
-import {projectService} from "../project/project.service";
-import {resourceService} from "../resource/resource.service";
-import {localStorageService} from "../app.service";
-import {router} from "../app.router";
-
+import {expenseService} from ".././expense.service";
+import {projectService} from "../../project/project.service";
+import {resourceService} from "../../resource/resource.service";
+import {localStorageService} from "../../app.service";
 
 @Component({
-  selector: 'app-expense',
-  templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.css'],
+  selector: 'app-myexpenses',
+  templateUrl: './myexpenses.component.html',
+  styleUrls: ['./myexpenses.component.css'],
   providers :[expenseService,projectService,resourceService,localStorageService]
 })
-export class ExpenseComponent implements OnInit {
-  tempExpenseDetails:any;
+export class MyexpensesComponent implements OnInit {
   public router: Router;
-  tempTitle:any;
   LoggedInPersonType:any;
   allExpenseDetails:Array<any>=[];
   totalExpenseDetails:Array<any> = [];
   projectDetailsTotal:Array<any> =[];
   resourceDetailsTotal:Array<any> =[];
-  @ViewChild('DeleteExpenseDetails') public DeleteExpenseDetails:ModalDirective;
+
   constructor(public _expenseService:expenseService,public route: Router,public _projectService: projectService,public _resourceService: resourceService,public _localStorageService:localStorageService) {
     this.router = route;
     let loggedPersonData = _localStorageService.getLocalStorageValue();
 
     this.LoggedInPersonType = loggedPersonData.role;
     this._projectService.getAllProjects().subscribe(projectDetails=>{
-        this.projectDetailsTotal = projectDetails;
-        this.getTheResourcesData();
+      this.projectDetailsTotal = projectDetails;
+      this.getTheResourcesData();
     });
     this._resourceService.getAllResources().subscribe(resourceDetails=>{
       this.resourceDetailsTotal = resourceDetails;
@@ -73,29 +68,10 @@ export class ExpenseComponent implements OnInit {
       if(eachRecord.resource.role === this.LoggedInPersonType){
         tmp =1;
       }
-      if(tmp === 0){
+      if(tmp === 1){
         this.allExpenseDetails.push(eachRecord);
       }
     })
   }
 
-
-  DeleteExpenseData(values){
-    this._expenseService.deleteTheExpenseRecord(values).subscribe(Expense=>{
-      console.log('Sucessfully Deleted');
-      this.getTheResourcesData();
-    });
-    this.hideDeleteExpenseDetails();
-  }
-  deleteExpenseData = (Data):void =>{
-    this.tempExpenseDetails = Data;
-    this.tempTitle = Data.title;
-    this.DeleteExpenseDetails.show();
-  };
-  public hideDeleteExpenseDetails = ():void =>{
-    this.DeleteExpenseDetails.hide();
-  };
-  revertToDashBoard(){
-    this.router.navigate(['dashboard']);
-  }
 }
