@@ -66,16 +66,14 @@ export class ExpenseComponent implements OnInit {
   }
 
   updateExpensesWithoutTheLoggedPerson(){
-    let temp = this.allExpenseDetails;
-    this.allExpenseDetails = [];
-    temp.forEach((eachRecord)=>{
-      let tmp=0;
-      if(eachRecord.resource.role === this.LoggedInPersonType){
-        tmp =1;
-      }
-      if(tmp === 0){
+    let val= {
+      "role":this.LoggedInPersonType
+    }
+    this._expenseService.getExpenseWithoutCurrentRole(val).subscribe((response)=>{
+      this.allExpenseDetails = [];
+      response.forEach((eachRecord)=>{
         this.allExpenseDetails.push(eachRecord);
-      }
+      })
     })
   }
 

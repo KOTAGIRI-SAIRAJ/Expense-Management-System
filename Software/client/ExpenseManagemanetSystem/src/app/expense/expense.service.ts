@@ -70,4 +70,13 @@ export class expenseService {
         return Observable.throw(error.json());
       })
   }
+  getExpenseWithoutCurrentRole(values){
+    return this.queryApi.doPost('expenseRole',values)
+      .map((res:Response)=>{
+        return res.json();
+      })
+      .catch((error:any)=>{
+        return Observable.throw(error.json());
+      })
+  }
 }

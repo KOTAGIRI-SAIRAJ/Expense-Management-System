@@ -15,6 +15,7 @@ export const updateTheProjectDetails = 'updateTheProjectDetails';
 export const updateTheResourceDetails = 'updateTheResourceDetails';
 export const projectResource='projectResource';
 export const ResourceProject ='ResourceProject';
+export const expenseRole= 'expenseRole';
 
 
 export const ClientEndPoint= (type: string, params: any) => {
@@ -73,6 +74,8 @@ export const ClientEndPoint= (type: string, params: any) => {
       }else {
         return environment.API_ROOT + '/api/assignedProjects/assignedResources';
       }
+    case expenseRole:
+      return environment.API_ROOT + '/api/getExpenseWithoutCurrentRole';
   }
 }
 

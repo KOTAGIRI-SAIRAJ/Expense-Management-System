@@ -14,7 +14,7 @@ export default class expenseRoutes {
       .put(expenseController.update);
 
     router
-      .route('/api/getDetailsManager')
-      .get(expenseController.getDetailsManager)
+      .route('/api/getExpenseWithoutCurrentRole')
+      .post(expenseController.getDetailsManager)
   }
 }

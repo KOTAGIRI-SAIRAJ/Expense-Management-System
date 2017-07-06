@@ -31,7 +31,7 @@
 
 
 <div class="container">
-  <h1>Expense Data Table</h1>
+  <h1>My Expenses Data Table</h1>
   <table class="table table-striped" [mfData]="allExpenseDetails" #mf="mfDataTable" [mfRowsOnPage]="5">
     <thead>
     <tr>
@@ -59,7 +59,7 @@
     </tr>
     </thead>
     <div *ngIf="allExpenseDetails.length === 0">
-      <h2>No Expenses...!!</h2>
+      <h2>You have no Expenses...!!</h2>
     </div>
     <tbody>
 

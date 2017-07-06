@@ -62,10 +62,11 @@ export class MyexpensesComponent implements OnInit {
 
   updateExpensesWithoutTheLoggedPerson(){
     let temp = this.allExpenseDetails;
+    let localstoragedata = this._localStorageService.getLocalStorageValue();
     this.allExpenseDetails = [];
     temp.forEach((eachRecord)=>{
       let tmp=0;
-      if(eachRecord.resource.role === this.LoggedInPersonType){
+      if(eachRecord.resource.role === localstoragedata.role && eachRecord.resource.emailId=== localstoragedata.emailId){
         tmp =1;
       }
       if(tmp === 1){

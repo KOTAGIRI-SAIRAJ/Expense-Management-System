@@ -4,6 +4,7 @@ import expenseStatus from "../../../enums/expenseStatus"
 import expenseType from "../../../enums/expenseType"
 
 
+
 export default class expenseDAO{
 
   static getAll(queryParams) {
@@ -63,6 +64,7 @@ export default class expenseDAO{
     let _reqBody = request;
     /*let date = new Date(_reqBody.expenseDate);
      date = new Date(date.getYear(),date.getMonth(),date.getDate()+1);*/
+
     return new Promise((resolve, reject) => {
       models.expense
         .update({
@@ -104,11 +106,25 @@ export default class expenseDAO{
 
   static getDetailsManager(queryParams) {
     return new Promise((resolve, reject) => {
-      models.expense
-        .findAll({where:{resourceId:{$in:[('SELECT id FROM resources WHERE role != \'Manager\'')]}}})
+    let resultfromres;
+      models.resources.findAll({
+        where: {$not:{role: queryParams.role}},
+        attributes: ['id'],
+        raw: true,
+      })
         .then(result => {
-          console.log(result);
-          resolve(result);
+          resultfromres = result;
+          let temp = [];
+          resultfromres.forEach((eachRecord)=>{
+            temp.push((eachRecord.id).toString());
+          })
+          models.expense.findAll({where:{resourceId:{$in:temp}},raw: true
+          }).then(results => {
+            console.log(results);
+            resolve(results);
+          }, (error) => {
+            reject(error);
+          });
         }, (error) => {
           reject(error);
         });

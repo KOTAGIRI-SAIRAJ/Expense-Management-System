@@ -79,7 +79,7 @@ export default class expenseController {
   }
 
   static getDetailsManager(req, res){
-    const _query = req.query;
+    const _query = req.body;
     expenseDAO
       .getDetailsManager(_query)
       .then(result => {
