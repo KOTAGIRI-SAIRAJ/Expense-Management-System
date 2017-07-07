@@ -42,7 +42,6 @@ export class ProjectViewComponent implements OnInit {
       this.userId = params['id'];
       this.getTheIdDetailsFromDataBase(this.userId);
 
-
     });
   }
 

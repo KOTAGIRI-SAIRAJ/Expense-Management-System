@@ -25,6 +25,7 @@ import {AppComponent} from "./app.component";
 import {ProjectViewComponentComponent} from "./project/project-view-component/project-view-component.component";
 import {DashBoardNewComponent} from "./dash-board-new/dash-board-new.component";
 import {MyexpensesComponent} from "./expense/myexpenses/myexpenses.component";
+import {PrjectviewComponent} from "./project/prjectview/prjectview.component";
 
   export const router:  Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -65,7 +66,7 @@ import {MyexpensesComponent} from "./expense/myexpenses/myexpenses.component";
         {path : 'project', component: ProjectComponent},
         {path: 'project/create', component : ProjectAddComponent},
         {path: 'project/:id/edit', component : ProjectEditComponent},
-        {path: 'project/:id', component : ProjectViewComponent},
+        {path: 'project/:id', component : PrjectviewComponent},
 
         {path: 'resource', component : ResourceComponent},
         {path: 'resource/create', component : ResourceAddComponent},

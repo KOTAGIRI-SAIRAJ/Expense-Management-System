@@ -1,0 +1,104 @@
+<body>
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">Project Details</h1>
+      </div>
+    </div>
+    <div class="container main-login main-center">
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Project Name :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectName}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Project Description :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectDescription}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> Start Date :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectStartDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label> End Date :</label>
+        </div>
+        <div class="col-md-4">
+          <label>{{projectEndDate | amUtc | amDateFormat: 'YYYY-MM-DD'}}</label>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="revertToProjects()">Submit</button>
+      <button type="button" class="btn btn-warning" (click)="onclickResourceButton()">
+        <span class="glyphicon glyphicon-save-file"></span> Get all Resources
+      </button>
+      <br><br><br>
+      <div *ngIf="tempFlag === 1">
+        <div *ngIf="resourceAutoCompleterNames.length > 0">
+          <div class="col-sm-7">
+            <ng-select [allowClear]="true"
+                       [items]="resourceAutoCompleterNames"
+                       (selected)="selected($event)"
+                       (removed)="removed($event)"
+                       placeholder="No Resource Name selected">
+            </ng-select>
+          </div>
+          <button type="button" class="btn btn-success pull-right" (click)="assignResource()">
+            <span class="glyphicon glyphicon-user"></span> Assign Resource
+          </button>
+        </div>
+        <div *ngIf="resourceAutoCompleterNames.length === 0">No Resources to assign</div>
+      </div>
+    </div>
+    <br><br><br>
+    <div class="panel-footer center-block" style="width: 70%">
+      <div *ngIf="dataTableFlag === 1">
+        <div class="container">
+          <div class="center-block">
+            <h1>Assigned Resource to the Project</h1>
+            <table class="table table-striped" style="width: 60%" [mfData]="allProjectResourceDataTableValues" #mf="mfDataTable" [mfRowsOnPage]="5">
+              <thead>
+              <tr>
+                <th style="width: 15%">
+                  <mfDefaultSorter by="Project_Name">Project Name</mfDefaultSorter>
+                </th>
+                <th style="width: 15%">
+                  <mfDefaultSorter by="Resource_Name">Resource Name</mfDefaultSorter>
+                </th>
+                <th style="width: 40%">
+                  Options
+                </th>
+              </tr>
+              </thead>
+              <div *ngIf="allProjectResourceDataTableValues.length === 0">
+                <h2>No Associations...!!</h2>
+              </div>
+              <tbody>
+              <tr bgcolor="#fffaf0" *ngFor="let item of allProjectResourceDataTableValues">
+                <td>{{item.projectname}}</td>
+                <td>{{item.ResourceName}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger" (click)="deleteProjectResourceData(item)">Delete</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+  </div>
+</div>
+</body>

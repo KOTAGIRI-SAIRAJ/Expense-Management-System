@@ -131,16 +131,15 @@ export class ProjectViewComponentComponent implements OnInit {
 
   public selected(value: any): void {
     this.selectedResource = value;
-      console.log(this.selectedResource);
+
   }
 
   public removed(value: any): void {
     this.selectedResource = null;
-    console.log(this.selectedResource);
+
   }
 
   deleteProjectResourceData(values){
-    console.log(values)
     this._projectResourceService.deleteTheProjectResource(values).subscribe((responce)=>{
       this.settingAndUpdatingDataTable();
     })

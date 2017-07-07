@@ -16,7 +16,8 @@ export const updateTheResourceDetails = 'updateTheResourceDetails';
 export const projectResource='projectResource';
 export const ResourceProject ='ResourceProject';
 export const expenseRole= 'expenseRole';
-
+export const projectResources= 'projectResources';
+export const delProjectResource ='delProjectResource';
 
 export const ClientEndPoint= (type: string, params: any) => {
 
@@ -76,6 +77,16 @@ export const ClientEndPoint= (type: string, params: any) => {
       }
     case expenseRole:
       return environment.API_ROOT + '/api/getExpenseWithoutCurrentRole';
+    case projectResources:
+      if(typeof params === 'object' && params.hasOwnProperty('projectId') && params.hasOwnProperty('resourceId')) {
+        return environment.API_ROOT + '/api/project_resource'
+      }else if(typeof params === 'object' && params.hasOwnProperty('projectId')){
+        return environment.API_ROOT + '/api/project_resource/'+params.projectId
+      }else{
+        return environment.API_ROOT + '/api/project_resource'
+      }
+    case delProjectResource:
+      return environment.API_ROOT + '/api/project_resource/'+params.projectId+'/'+params.resourceId
   }
 }
 

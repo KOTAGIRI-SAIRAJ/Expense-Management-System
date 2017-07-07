@@ -9,6 +9,10 @@ export default class project_resourceRoutes {
 
     router
       .route('/api/project_resource/:id')
+      .get(project_resourceController.getProjectAssignedByIdData);
+
+    router
+      .route('/api/project_resource/:projectId/:resourceId')
       .delete(project_resourceController.removeById);
   }
 }
