@@ -18,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ProjectAddComponent } from './project/project-add/project-add.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
-import { ProjectViewComponent } from './project/project-view/project-view.component';
+
 import { ProjectComponent } from './project/project.component';
 
 import { ResourceComponent } from './resource/resource.component';
@@ -30,8 +30,8 @@ import { ExpenseComponent } from './expense/expense.component';
 import { ExpenseAddComponent } from './expense/expense-add/expense-add.component';
 import { ExpenseViewComponent } from './expense/expense-view/expense-view.component';
 import { ExpenseEditComponent } from './expense/expense-edit/expense-edit.component';
-import { AssinedProjectResourceComponent } from './assined-project-resource/assined-project-resource.component';
-import { ProjectViewComponentComponent } from './project/project-view-component/project-view-component.component';
+
+
 import { DashBoardNewComponent } from './dash-board-new/dash-board-new.component';
 import { MyexpensesComponent } from './expense/myexpenses/myexpenses.component';
 import { PrjectviewComponent } from './project/prjectview/prjectview.component';
@@ -49,7 +49,6 @@ import { PrjectviewComponent } from './project/prjectview/prjectview.component';
 
     ProjectAddComponent,
     ProjectEditComponent,
-    ProjectViewComponent,
     ProjectComponent,
 
     ResourceComponent,
@@ -61,8 +60,6 @@ import { PrjectviewComponent } from './project/prjectview/prjectview.component';
     ExpenseAddComponent,
     ExpenseViewComponent,
     ExpenseEditComponent,
-    AssinedProjectResourceComponent,
-    ProjectViewComponentComponent,
     DashBoardNewComponent,
     MyexpensesComponent,
     PrjectviewComponent,

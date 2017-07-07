@@ -5,8 +5,8 @@ import {expenseService} from "../expense.service";
 import {resourceService} from "../../resource/resource.service";
 import {projectService} from "../../project/project.service";
 import {localStorageService} from "../../app.service";
-import {projectResourceService} from "../../assined-project-resource/assigned-project-resource.service";
 import {ModalDirective} from "ngx-bootstrap";
+import {ProjectResourcesService} from "../../project/project_resources.service";
 
 
 
@@ -14,7 +14,7 @@ import {ModalDirective} from "ngx-bootstrap";
   selector: 'app-expense-add',
   templateUrl: './expense-add.component.html',
   styleUrls: ['./expense-add.component.css'],
-  providers: [FormBuilder , expenseService, resourceService, projectService,localStorageService,projectResourceService]
+  providers: [FormBuilder , expenseService, resourceService, projectService,localStorageService,ProjectResourcesService]
 })
 export class ExpenseAddComponent implements OnInit {
   @ViewChild('popUpConfirmation') public popUpConfirmation:ModalDirective;
@@ -27,14 +27,13 @@ export class ExpenseAddComponent implements OnInit {
   resorceNamesforAutoCompleter:Array<any> = [];
   projectData : Map<number, string> = new Map<number, string>();
   resourceData : Map<number, string> = new Map<number, string>();
-  selectedProjects:Array<any> = [];
   selectedResources:Array<any> = [];
   resourceDataLocalStorage:any;
   selectedProjectsId:any;
   LoggedInPersonType = null;
   tempId = 0;
   resourceIdRelatedProjectIds:Array<any> =[];
-  constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,public _resourceService:resourceService,public _projectService:projectService,public _localStroage:localStorageService,public _projectResourceService:projectResourceService) {
+  constructor(private fb: FormBuilder,public route: Router,public _expenseService:expenseService,public _resourceService:resourceService,public _projectService:projectService,public _localStroage:localStorageService,public _projectResourceService:ProjectResourcesService) {
     this.router = route;
     this.resourceDataLocalStorage = this._localStroage.getLocalStorageValue();
     this.LoggedInPersonType = this.resourceDataLocalStorage.role;
@@ -49,14 +48,7 @@ export class ExpenseAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._projectResourceService.getAllProjectResources().subscribe((projectResourceData)=>{
-      /*projectResourceData.forEach((eachProjectResource)=>{
-        console.log(eachProjectResource);
-        console.log(eachProjectResource.project);
-        console.log(eachProjectResource.resource);
-        console.log(eachProjectResource.projectId);
-        console.log(eachProjectResource.resourceId);
-      })*/
+    this._projectResourceService.getAllTheRecords().subscribe((projectResourceData)=>{
       this._resourceService.getAllResources().subscribe((response)=>{
         response.forEach((eachResource)=>{
           if(this.resourceDataLocalStorage.emailId === eachResource.emailId){
@@ -64,7 +56,6 @@ export class ExpenseAddComponent implements OnInit {
           }
         })
         projectResourceData.forEach((eachProjectResourceRecord)=>{
-
           if(eachProjectResourceRecord.resourceId === this.tempId){
             this.resourceIdRelatedProjectIds.push(eachProjectResourceRecord.projectId);
           }
