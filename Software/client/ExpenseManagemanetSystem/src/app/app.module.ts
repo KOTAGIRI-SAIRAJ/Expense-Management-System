@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 import { ProjectAddComponent } from './project/project-add/project-add.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
@@ -45,7 +45,7 @@ import { PrjectviewComponent } from './project/prjectview/prjectview.component';
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent,
+
 
     ProjectAddComponent,
     ProjectEditComponent,

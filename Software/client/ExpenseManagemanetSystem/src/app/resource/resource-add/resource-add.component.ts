@@ -51,7 +51,7 @@ export class ResourceAddComponent implements OnInit {
     });
   }
   revertToResources(){
-    this.router.navigate(['newdashboard/resource']);
+    this.router.navigate(['dashboard/resource']);
   }
   emailCheck(emailTyped){
     this.flag =0;

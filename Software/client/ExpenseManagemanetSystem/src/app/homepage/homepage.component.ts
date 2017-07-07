@@ -44,7 +44,7 @@ export class HomepageComponent implements OnInit {
         if (eachRecord.emailId === values.emailId && eachRecord.password === values.password ) {
           flag = 0;
           this._localStorage.setLocalStorageValue(eachRecord);
-          this.router.navigate(['newdashboard']);
+          this.router.navigate(['dashboard']);
           this.loginForm.reset();
         }else{
           flag = 1;

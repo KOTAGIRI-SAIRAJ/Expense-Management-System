@@ -87,7 +87,7 @@ export class PrjectviewComponent implements OnInit {
     })
   }
   revertToProjects(){
-    this.router.navigate(['newdashboard/project']);
+    this.router.navigate(['dashboard/project']);
   }
 
   private get disabledV(): string {

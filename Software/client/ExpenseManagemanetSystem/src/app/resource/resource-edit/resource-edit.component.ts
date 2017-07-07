@@ -71,7 +71,7 @@ export class ResourceEditComponent implements OnInit {
   }
 
   revertToResources(){
-    this.router.navigate(['newdashboard/resource']);
+    this.router.navigate(['dashboard/resource']);
   }
 }
 

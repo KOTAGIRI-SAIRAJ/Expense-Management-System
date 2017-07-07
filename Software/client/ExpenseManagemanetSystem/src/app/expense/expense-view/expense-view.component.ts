@@ -51,7 +51,7 @@ export class ExpenseViewComponent implements OnInit {
     });
   }
   revertToExpense(){
-    this.router.navigate(['newdashboard/expense']);
+    this.router.navigate(['dashboard/expense']);
   }
   openUpdateStatusPopUp(){
     this.UpdateStatus.show();

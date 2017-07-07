@@ -132,9 +132,9 @@ export class ResourceComponent implements OnInit {
     })
   }
   revertToDashBoard(){
-    this.router.navigate(['newdashboard/dashboard']);
+    this.router.navigate(['dashboard/dashboard']);
   }
   revertToExpense(){
-    this.router.navigate(['newdashboard/expense']);
+    this.router.navigate(['dashboard/expense']);
   }
 }

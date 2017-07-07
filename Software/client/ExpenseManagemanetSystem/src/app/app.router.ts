@@ -4,7 +4,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomepageComponent} from "./homepage/homepage.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
+
 
 import {ProjectComponent} from "./project/project.component";
 import {ProjectAddComponent} from "./project/project-add/project-add.component";
@@ -31,11 +31,11 @@ import {PrjectviewComponent} from "./project/prjectview/prjectview.component";
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'appComponent', component:AppComponent},
     {path: 'home', component : HomepageComponent},
-    {path: 'dashboard', component : DashboardComponent},
+
 
     {path: 'expense/:id/edit', component : ExpenseEditComponent},
 
-    {path: 'newdashboard',component:DashBoardNewComponent,
+    {path: 'dashboard',component:DashBoardNewComponent,
       children : [
         {path : 'project', component: ProjectComponent},
         {path: 'project/create', component : ProjectAddComponent},
