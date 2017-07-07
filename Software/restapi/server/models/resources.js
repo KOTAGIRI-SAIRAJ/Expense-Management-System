@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           through: models.ProjectResource,
           as: "projects",
           foreignKey: {
-            name: "ResourceId",
+            name: "resourceId",
             allowNull: false
           }
         });

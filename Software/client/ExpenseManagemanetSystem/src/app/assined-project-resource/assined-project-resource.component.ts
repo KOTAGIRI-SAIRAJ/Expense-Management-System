@@ -49,7 +49,6 @@ export class AssinedProjectResourceComponent implements OnInit {
               })
             })
           })
-
         })
       })
     });
